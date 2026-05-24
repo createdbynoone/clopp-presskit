@@ -12,7 +12,7 @@ export default function Booking() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailto = `mailto:booking@clopp.xyz?subject=BOOKING INQUIRY — ${form.company || form.name}&body=NAME: ${form.name}%0ACOMPANY/PROMOTER: ${form.company}%0AEVENT DATE: ${form.date}%0ACITY: ${form.city}%0A%0AMESSAGE:%0A${form.message}`;
+    const mailto = `mailto:info@cloppmusic.com?subject=BOOKING INQUIRY — ${form.company || form.name}&body=NAME: ${form.name}%0ACOMPANY/PROMOTER: ${form.company}%0AEVENT DATE: ${form.date}%0ACITY: ${form.city}%0A%0AMESSAGE:%0A${form.message}`;
     window.location.href = mailto;
     setStatus('sent');
   };
@@ -55,11 +55,11 @@ export default function Booking() {
             {/* Email prominent */}
             <div style={{ marginBottom: '40px' }}>
               <a
-                href="mailto:booking@clopp.xyz"
+                href="mailto:info@cloppmusic.com"
                 className="block hover:text-[#D40000] transition-colors duration-200"
                 style={{ fontSize: 'clamp(16px, 2.5vw, 26px)', letterSpacing: '0.06em', color: '#FFFFFF' }}
               >
-                BOOKING@CLOPP.XYZ
+                INFO@CLOPPMUSIC.COM
               </a>
             </div>
 

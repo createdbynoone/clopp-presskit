@@ -80,7 +80,7 @@ export default function Riders() {
         {/* CTA */}
         <div className="flex justify-end mt-16 pt-10 border-t" style={{ borderColor: '#3A3A3A' }}>
           <a
-            href="mailto:booking@clopp.xyz"
+            href="mailto:info@cloppmusic.com"
             className="inline-flex items-center gap-3 border py-3 px-6 hover:bg-[#D40000] hover:border-[#D40000] transition-all duration-200"
             style={{ borderColor: '#3A3A3A', fontSize: '13px', letterSpacing: '0.15em', whiteSpace: 'nowrap' }}
           >
