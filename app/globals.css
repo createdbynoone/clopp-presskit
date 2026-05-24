@@ -208,9 +208,9 @@ img {
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Transparent nav (top of page) — links in red */
-nav[data-scrolled="false"] .nav-link {
-  color: #D40000;
+/* Scrolled nav — red bg + black text on links */
+nav[data-scrolled="true"] .nav-link {
+  color: #000000;
 }
 
 /* Hover: always red bg + black text */

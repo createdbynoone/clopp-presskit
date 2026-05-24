@@ -32,15 +32,20 @@ export default function Navigation() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-5 transition-all duration-500"
         data-scrolled={String(scrolled)}
         style={{
-          backgroundColor: scrolled ? 'rgba(10,10,10,0.92)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(8px)' : 'none',
+          backgroundColor: scrolled ? '#D40000' : 'transparent',
+          backdropFilter: 'none',
         }}
       >
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="text-white font-black tracking-widest text-sm hover:text-[#D40000] transition-colors duration-200"
-          style={{ fontWeight: 900, letterSpacing: '0.2em', fontSize: '13px' }}
+          className="tracking-widest text-sm transition-colors duration-300"
+          style={{
+            fontWeight: 900,
+            letterSpacing: '0.2em',
+            fontSize: '13px',
+            color: scrolled ? '#000000' : '#FFFFFF',
+          }}
         >
           CLOPP
         </a>
@@ -65,16 +70,16 @@ export default function Navigation() {
           aria-label="Toggle menu"
         >
           <span
-            className="block w-6 h-[1px] bg-white transition-all duration-300"
-            style={{ transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }}
+            className="block w-6 h-[1px] transition-all duration-300"
+            style={{ backgroundColor: scrolled ? '#000000' : '#FFFFFF', transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }}
           />
           <span
-            className="block w-6 h-[1px] bg-white transition-all duration-300"
-            style={{ opacity: menuOpen ? 0 : 1 }}
+            className="block w-6 h-[1px] transition-all duration-300"
+            style={{ backgroundColor: scrolled ? '#000000' : '#FFFFFF', opacity: menuOpen ? 0 : 1 }}
           />
           <span
-            className="block w-6 h-[1px] bg-white transition-all duration-300"
-            style={{ transform: menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }}
+            className="block w-6 h-[1px] transition-all duration-300"
+            style={{ backgroundColor: scrolled ? '#000000' : '#FFFFFF', transform: menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }}
           />
         </button>
       </nav>
