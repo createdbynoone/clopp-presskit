@@ -190,13 +190,6 @@ export default function Gallery() {
           </div>
         </div>
 
-        <div
-          className="mt-10 flex items-center justify-between"
-          style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}
-        >
-          <span>6 IMAGES — PLACEHOLDER</span>
-          <span style={{ color: '#D40000' }}>FULL PORTFOLIO ON REQUEST</span>
-        </div>
       </div>
     </section>
   );

@@ -4,13 +4,12 @@ export default function Hero() {
       className="relative w-full flex flex-col justify-end overflow-hidden"
       style={{ height: '100dvh', minHeight: '600px' }}
     >
-      {/* Background placeholder */}
+      {/* Background */}
       <div
         className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(160deg, #111111 0%, #0A0A0A 40%, #0f0f0f 100%)',
-        }}
+        style={{ background: 'linear-gradient(160deg, #111111 0%, #0A0A0A 40%, #0f0f0f 100%)' }}
       >
+        {/* Grain texture */}
         <div
           className="absolute inset-0 opacity-[0.06]"
           style={{
@@ -18,6 +17,7 @@ export default function Hero() {
             backgroundSize: '200px 200px',
           }}
         />
+        {/* Structural horizontal line */}
         <div
           className="absolute"
           style={{
@@ -30,6 +30,7 @@ export default function Hero() {
             transformOrigin: 'left',
           }}
         />
+        {/* Right column shadow */}
         <div
           className="absolute right-0 top-0 bottom-0"
           style={{
@@ -40,71 +41,24 @@ export default function Hero() {
         />
       </div>
 
-      {/* Coordinate labels */}
-      <div
-        className="absolute top-24 left-6 md:left-10 flex flex-col gap-1 hero-meta"
-        style={{ color: '#888888', fontSize: '13px', letterSpacing: '0.15em' }}
-      >
-        <span>(BCN) / (ES)</span>
-        <span style={{ color: '#D40000' }}>■ 2024—</span>
-      </div>
-
-      <div
-        className="absolute top-24 right-6 md:right-10 flex flex-col items-end gap-1 hero-meta"
-        style={{ color: '#888888', fontSize: '13px', letterSpacing: '0.15em' }}
-      >
-        <span>DJ / PRODUCER</span>
-        <span>ELECTRONIC MUSIC</span>
-      </div>
-
-      {/* Thin red horizontal accent bar */}
+      {/* Red horizontal accent bar */}
       <div
         className="absolute left-0 right-0"
         style={{ bottom: '22%', height: '1px', backgroundColor: '#D40000' }}
       />
 
       {/* Main title */}
-      <div className="relative z-10 px-6 md:px-10 pb-10">
+      <div className="relative z-10 px-6 md:px-10 pb-14">
         <h1
-          className="hero-title text-white leading-none"
+          className="hero-title text-white"
           style={{
             fontSize: 'clamp(100px, 20vw, 260px)',
             lineHeight: 0.85,
             letterSpacing: '-0.02em',
-            marginBottom: '28px',
           }}
         >
           CLOPP
         </h1>
-
-        {/* Bottom meta row */}
-        <div
-          className="hero-meta flex flex-wrap items-center gap-6"
-          style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}
-        >
-          <span>PRESSKIT 2024</span>
-          <span className="hidden sm:block" style={{ color: '#3A3A3A' }}>——</span>
-          <span>BARCELONA, SPAIN</span>
-          <span className="hidden sm:block" style={{ color: '#3A3A3A' }}>——</span>
-          <span style={{ color: '#D40000' }}>BOOKING OPEN</span>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-6 right-6 md:right-10 hero-meta"
-        style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#888888' }}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <div
-            style={{
-              width: '1px',
-              height: '40px',
-              background: 'linear-gradient(to bottom, transparent, #888888)',
-            }}
-          />
-          <span>SCROLL</span>
-        </div>
       </div>
     </section>
   );

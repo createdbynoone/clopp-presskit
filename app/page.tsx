@@ -1,6 +1,5 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import Ticker from '@/components/Ticker';
 import About from '@/components/About';
 import Gallery from '@/components/Gallery';
 import Riders from '@/components/Riders';
@@ -15,15 +14,10 @@ export default function Home() {
 
       <main>
         <Hero />
-        <Ticker />
         <About />
-        <Ticker />
         <Gallery />
-        <Ticker />
         <Riders />
-        <Ticker />
         <Music />
-        <Ticker />
         <Booking />
       </main>
 
