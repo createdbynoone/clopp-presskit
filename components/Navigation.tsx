@@ -43,7 +43,7 @@ export default function Navigation() {
           style={{
             fontWeight: 900,
             letterSpacing: '0.2em',
-            fontSize: '13px',
+            fontSize: '18px',
             color: scrolled ? '#000000' : '#FFFFFF',
           }}
         >

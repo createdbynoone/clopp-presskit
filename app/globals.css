@@ -200,20 +200,20 @@ img {
    ────────────────────────────────────────────── */
 .nav-link {
   position: relative;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: #FFFFFF;
-  padding: 4px 8px;
+  padding: 4px 10px;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Scrolled nav — red bg + black text on links */
+/* Scrolled nav (red bg) — black text */
 nav[data-scrolled="true"] .nav-link {
   color: #000000;
 }
 
-/* Hover: always red bg + black text */
+/* Hover: red bg + black text */
 .nav-link:hover {
   color: #000000 !important;
   background-color: #D40000;
