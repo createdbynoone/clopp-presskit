@@ -36,8 +36,8 @@ export default function Footer() {
             className="hidden md:block"
             style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#000000', textAlign: 'center' }}
           >
-            <div>(BCN) / (ES)</div>
-            <div style={{ marginTop: '4px', color: '#5A0000' }}>DJ / PRODUCER</div>
+            <div>(COL) / (ES)</div>
+            <div style={{ marginTop: '4px', color: '#5A0000' }}>ELECTRONIC MUSIC ARTIST</div>
           </div>
 
           {/* Right — socials */}
