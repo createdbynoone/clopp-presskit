@@ -21,14 +21,6 @@ export default function Booking() {
     <section id="booking" className="section-reveal" style={{ padding: 'clamp(80px, 10vw, 140px) 0' }}>
       <div className="px-6 md:px-10 max-w-screen-2xl mx-auto">
 
-        {/* Section label */}
-        <div className="flex items-center justify-between mb-16">
-          <span style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
-            (005) — BOOKING
-          </span>
-          <div className="section-divider" style={{ width: '60%' }} />
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
 
           {/* Left — email + info */}
@@ -62,9 +54,6 @@ export default function Booking() {
 
             {/* Email prominent */}
             <div style={{ marginBottom: '40px' }}>
-              <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#888888', marginBottom: '10px' }}>
-                BOOKING
-              </div>
               <a
                 href="mailto:booking@clopp.xyz"
                 className="block hover:text-[#D40000] transition-colors duration-200"
@@ -133,10 +122,7 @@ export default function Booking() {
                     className="form-input form-textarea"
                   />
                 </div>
-                <div className="flex items-center justify-between mt-10 pt-6 border-t" style={{ borderColor: '#1E1E1E' }}>
-                  <span style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
-                    * REQUIRED FIELDS
-                  </span>
+                <div className="flex items-center justify-end mt-10 pt-6 border-t" style={{ borderColor: '#1E1E1E' }}>
                   <button
                     type="submit"
                     className="flex items-center gap-4 border py-3 px-8 hover:bg-[#D40000] hover:border-[#D40000] hover:text-white transition-all duration-300 group"
