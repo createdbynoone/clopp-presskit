@@ -10,33 +10,22 @@ export default function Footer() {
 
   return (
     <footer style={{ borderTop: '1px solid #D40000', backgroundColor: '#0A0A0A' }}>
-      <div
-        className="px-6 md:px-10 max-w-screen-2xl mx-auto"
-        style={{ padding: '40px 40px' }}
-      >
+      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto" style={{ padding: '40px 40px' }}>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
 
           {/* Left */}
           <div>
             <div
               style={{
-                fontSize: 'clamp(24px, 4vw, 36px)',
-                fontWeight: 900,
-                letterSpacing: '-0.01em',
+                fontSize: 'clamp(26px, 4vw, 40px)',
                 lineHeight: 1,
+                letterSpacing: '-0.01em',
                 marginBottom: '8px',
               }}
             >
               CLOPP
             </div>
-            <div
-              style={{
-                fontSize: '9px',
-                fontWeight: 300,
-                letterSpacing: '0.18em',
-                color: '#888888',
-              }}
-            >
+            <div style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
               © {year} — ALL RIGHTS RESERVED
             </div>
           </div>
@@ -44,13 +33,7 @@ export default function Footer() {
           {/* Center */}
           <div
             className="hidden md:block"
-            style={{
-              fontSize: '9px',
-              fontWeight: 300,
-              letterSpacing: '0.18em',
-              color: '#888888',
-              textAlign: 'center',
-            }}
+            style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888', textAlign: 'center' }}
           >
             <div>(BCN) / (ES)</div>
             <div style={{ color: '#3A3A3A', marginTop: '4px' }}>DJ / PRODUCER</div>
@@ -63,12 +46,7 @@ export default function Footer() {
                 key={label}
                 href={href}
                 className="hover:text-[#D40000] transition-colors duration-200"
-                style={{
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  letterSpacing: '0.18em',
-                  color: '#888888',
-                }}
+                style={{ fontSize: '14px', letterSpacing: '0.18em', color: '#888888' }}
               >
                 {label}
               </a>
@@ -81,13 +59,13 @@ export default function Footer() {
           className="flex items-center justify-between mt-10 pt-6 border-t"
           style={{ borderColor: '#1E1E1E' }}
         >
-          <span style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.18em', color: '#3A3A3A' }}>
+          <span style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#3A3A3A' }}>
             PRESSKIT — ELECTRONIC MUSIC
           </span>
           <a
             href="mailto:booking@clopp.xyz"
             className="hover:text-[#D40000] transition-colors duration-200"
-            style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888' }}
+            style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888' }}
           >
             BOOKING@CLOPP.XYZ
           </a>

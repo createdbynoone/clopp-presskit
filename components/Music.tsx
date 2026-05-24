@@ -1,28 +1,7 @@
 const RELEASES = [
-  {
-    title: 'VOID 001',
-    type: 'EP',
-    year: '2024',
-    label: 'SELF-RELEASED',
-    tracks: 4,
-    shade: '#111111',
-  },
-  {
-    title: 'SURFACE',
-    type: 'SINGLE',
-    year: '2023',
-    label: 'SELF-RELEASED',
-    tracks: 2,
-    shade: '#131313',
-  },
-  {
-    title: 'STATIC LOOP EP',
-    type: 'EP',
-    year: '2022',
-    label: 'SELF-RELEASED',
-    tracks: 5,
-    shade: '#101010',
-  },
+  { title: 'VOID 001', type: 'EP', year: '2024', label: 'SELF-RELEASED', tracks: 4, shade: '#111111' },
+  { title: 'SURFACE', type: 'SINGLE', year: '2023', label: 'SELF-RELEASED', tracks: 2, shade: '#131313' },
+  { title: 'STATIC LOOP EP', type: 'EP', year: '2022', label: 'SELF-RELEASED', tracks: 5, shade: '#101010' },
 ];
 
 const MIXES = [
@@ -38,7 +17,7 @@ export default function Music() {
 
         {/* Section label */}
         <div className="flex items-center justify-between mb-16">
-          <span style={{ fontSize: '10px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888' }}>
+          <span style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
             (004) — MUSIC
           </span>
           <div className="section-divider" style={{ width: '60%' }} />
@@ -46,8 +25,7 @@ export default function Music() {
 
         <h2
           style={{
-            fontSize: 'clamp(40px, 6vw, 80px)',
-            fontWeight: 900,
+            fontSize: 'clamp(44px, 6.5vw, 88px)',
             lineHeight: 0.9,
             letterSpacing: '-0.02em',
             marginBottom: '64px',
@@ -58,10 +36,7 @@ export default function Music() {
 
         {/* Releases */}
         <div style={{ marginBottom: '80px' }}>
-          <div
-            className="flex items-center gap-4 mb-8"
-            style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.2em', color: '#888888' }}
-          >
+          <div className="flex items-center gap-4 mb-8" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
             <div style={{ width: '24px', height: '1px', backgroundColor: '#D40000' }} />
             DISCOGRAPHY
           </div>
@@ -74,66 +49,24 @@ export default function Music() {
                 style={{ overflow: 'hidden' }}
               >
                 {/* Cover placeholder */}
-                <div
-                  style={{
-                    width: '100%',
-                    paddingBottom: '100%',
-                    position: 'relative',
-                    backgroundColor: shade,
-                  }}
-                >
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{ opacity: 0.08 }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 'clamp(60px, 12vw, 100px)',
-                        fontWeight: 900,
-                        letterSpacing: '-0.04em',
-                        color: '#FFFFFF',
-                        userSelect: 'none',
-                      }}
-                    >
+                <div style={{ width: '100%', paddingBottom: '100%', position: 'relative', backgroundColor: shade }}>
+                  <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 0.08 }}>
+                    <span style={{ fontSize: 'clamp(60px, 12vw, 100px)', letterSpacing: '-0.04em', color: '#FFFFFF', userSelect: 'none' }}>
                       C
                     </span>
                   </div>
-                  <div
-                    className="absolute inset-0 bg-[#D40000] opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                  />
+                  <div className="absolute inset-0 bg-[#D40000] opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </div>
 
                 {/* Metadata */}
                 <div className="p-5 border-t" style={{ borderColor: '#222' }}>
-                  <div
-                    style={{
-                      fontSize: '9px',
-                      fontWeight: 300,
-                      letterSpacing: '0.2em',
-                      color: '#888888',
-                      marginBottom: '6px',
-                    }}
-                  >
+                  <div style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888', marginBottom: '8px' }}>
                     {type} — {year} — {label}
                   </div>
-                  <div
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 900,
-                      letterSpacing: '0.05em',
-                    }}
-                  >
+                  <div style={{ fontSize: '17px', letterSpacing: '0.04em' }}>
                     {title}
                   </div>
-                  <div
-                    style={{
-                      fontSize: '9px',
-                      fontWeight: 300,
-                      letterSpacing: '0.18em',
-                      color: '#888888',
-                      marginTop: '8px',
-                    }}
-                  >
+                  <div style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888', marginTop: '8px' }}>
                     {tracks} TRACKS
                   </div>
                 </div>
@@ -144,10 +77,7 @@ export default function Music() {
 
         {/* Featured Mix embed placeholder */}
         <div style={{ marginBottom: '64px' }}>
-          <div
-            className="flex items-center gap-4 mb-8"
-            style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.2em', color: '#888888' }}
-          >
+          <div className="flex items-center gap-4 mb-8" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
             <div style={{ width: '24px', height: '1px', backgroundColor: '#D40000' }} />
             FEATURED MIX
           </div>
@@ -164,34 +94,14 @@ export default function Music() {
             }}
           >
             <div className="text-center">
-              <div
-                style={{
-                  fontSize: 'clamp(32px, 6vw, 64px)',
-                  fontWeight: 900,
-                  letterSpacing: '-0.02em',
-                  color: '#222222',
-                  marginBottom: '16px',
-                }}
-              >
+              <div style={{ fontSize: 'clamp(32px, 6vw, 64px)', letterSpacing: '-0.02em', color: '#222222', marginBottom: '16px' }}>
                 ▶
               </div>
-              <div
-                style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.2em', color: '#888888' }}
-              >
+              <div style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
                 EMBED PLACEHOLDER — SOUNDCLOUD / MIXCLOUD
               </div>
             </div>
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '24px',
-                fontSize: '9px',
-                fontWeight: 300,
-                letterSpacing: '0.18em',
-                color: '#888888',
-              }}
-            >
+            <div style={{ position: 'absolute', bottom: '20px', left: '24px', fontSize: '13px', letterSpacing: '0.12em', color: '#888888' }}>
               RESIDENT ADVISOR MIX — RA.001 — 2024 — 1H 12M
             </div>
           </div>
@@ -199,10 +109,7 @@ export default function Music() {
 
         {/* Mix list */}
         <div>
-          <div
-            className="flex items-center gap-4 mb-6"
-            style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.2em', color: '#888888' }}
-          >
+          <div className="flex items-center gap-4 mb-6" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
             <div style={{ width: '24px', height: '1px', backgroundColor: '#D40000' }} />
             SELECTED MIXES
           </div>
@@ -214,20 +121,14 @@ export default function Music() {
               style={{ borderColor: '#222222' }}
             >
               <div className="flex items-center gap-6">
-                <span
-                  className="group-hover:text-[#D40000] transition-colors duration-200"
-                  style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em' }}
-                >
+                <span className="group-hover:text-[#D40000] transition-colors duration-200" style={{ fontSize: '13px', letterSpacing: '0.1em' }}>
                   ▶
                 </span>
-                <span style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em' }}>
+                <span style={{ fontSize: '15px', letterSpacing: '0.08em' }}>
                   {title}
                 </span>
               </div>
-              <div
-                className="flex items-center gap-6"
-                style={{ fontSize: '10px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888' }}
-              >
+              <div className="flex items-center gap-6" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
                 <span className="hidden sm:block">{year}</span>
                 <span>{duration}</span>
               </div>
@@ -242,12 +143,7 @@ export default function Music() {
               key={platform}
               href="#"
               className="border py-2 px-5 hover:bg-white hover:text-black transition-all duration-200"
-              style={{
-                borderColor: '#3A3A3A',
-                fontSize: '9px',
-                fontWeight: 700,
-                letterSpacing: '0.18em',
-              }}
+              style={{ borderColor: '#3A3A3A', fontSize: '13px', letterSpacing: '0.15em' }}
             >
               {platform}
             </a>

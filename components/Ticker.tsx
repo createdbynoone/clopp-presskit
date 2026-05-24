@@ -30,9 +30,8 @@ export default function Ticker() {
             key={i}
             className="inline-block px-6"
             style={{
-              fontSize: '10px',
-              fontWeight: item === '——' ? 100 : 700,
-              letterSpacing: '0.22em',
+              fontSize: '13px',
+              letterSpacing: '0.2em',
               color: item === '——' ? '#3A3A3A' : '#D40000',
             }}
           >

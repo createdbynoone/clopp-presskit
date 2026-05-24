@@ -5,7 +5,7 @@ export default function About() {
 
         {/* Section label */}
         <div className="flex items-center justify-between mb-16">
-          <span style={{ fontSize: '10px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888' }}>
+          <span style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
             (001) — ABOUT
           </span>
           <div className="section-divider" style={{ width: '60%' }} />
@@ -29,7 +29,6 @@ export default function About() {
               <div
                 style={{
                   fontSize: 'clamp(80px, 12vw, 160px)',
-                  fontWeight: 900,
                   lineHeight: 0.85,
                   color: '#161616',
                   letterSpacing: '-0.03em',
@@ -45,8 +44,7 @@ export default function About() {
           <div className="md:col-span-9 md:pl-16">
             <h2
               style={{
-                fontSize: 'clamp(36px, 5vw, 72px)',
-                fontWeight: 900,
+                fontSize: 'clamp(40px, 5.5vw, 78px)',
                 lineHeight: 0.9,
                 letterSpacing: '-0.02em',
                 marginBottom: '40px',
@@ -61,10 +59,9 @@ export default function About() {
             >
               <p
                 style={{
-                  fontSize: '14px',
-                  fontWeight: 400,
+                  fontSize: '17px',
                   lineHeight: 1.8,
-                  letterSpacing: '0.04em',
+                  letterSpacing: '0.03em',
                   color: '#FFFFFF',
                   textTransform: 'none',
                 }}
@@ -76,10 +73,9 @@ export default function About() {
               </p>
               <p
                 style={{
-                  fontSize: '14px',
-                  fontWeight: 400,
+                  fontSize: '17px',
                   lineHeight: 1.8,
-                  letterSpacing: '0.04em',
+                  letterSpacing: '0.03em',
                   color: '#888888',
                   textTransform: 'none',
                 }}
@@ -102,12 +98,12 @@ export default function About() {
               ].map(({ label, value }) => (
                 <div key={label}>
                   <div
-                    style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.2em', color: '#888888', marginBottom: '8px' }}
+                    style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#888888', marginBottom: '8px' }}
                   >
                     {label}
                   </div>
                   <div
-                    style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', color: '#FFFFFF' }}
+                    style={{ fontSize: '15px', letterSpacing: '0.08em', color: '#FFFFFF' }}
                   >
                     {value}
                   </div>
@@ -133,10 +129,10 @@ export default function About() {
               className="flex-1 py-5 px-6 border-r last:border-r-0"
               style={{ borderColor: '#3A3A3A', minWidth: '160px' }}
             >
-              <div style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888', marginBottom: '4px' }}>
+              <div style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888', marginBottom: '6px' }}>
                 ({String(i + 1).padStart(2, '0')})
               </div>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', color: '#FFFFFF' }}>
+              <div style={{ fontSize: '14px', letterSpacing: '0.1em', color: '#FFFFFF' }}>
                 {venue}
               </div>
             </div>

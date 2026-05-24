@@ -1,23 +1,23 @@
 const TECHNICAL_RIDER = [
-  { num: '01', item: '2× CDJ-3000 or equivalent (Pioneer DXJ-XP2 accepted)' },
-  { num: '02', item: 'Pioneer DJM-900NXS2 or DJM-V10 (preferred)' },
-  { num: '03', item: 'All channels calibrated and fully functional' },
-  { num: '04', item: 'XLR stereo output connected to house system' },
-  { num: '05', item: 'Monitor speakers: minimum 2× floor monitors (minimum 400W each)' },
-  { num: '06', item: 'Reliable power supply with surge protection' },
-  { num: '07', item: 'Stage lighting under technical direction of venue' },
-  { num: '08', item: 'Booth accessible 30 min before performance for soundcheck' },
+  { num: '01', item: '2× CDJ-3000 o equivalente (Pioneer DXJ-XP2 aceptado)' },
+  { num: '02', item: 'Pioneer DJM-900NXS2 o DJM-V10 (preferido)' },
+  { num: '03', item: 'Todos los canales calibrados y completamente funcionales' },
+  { num: '04', item: 'Salida XLR estéreo conectada al sistema de sala' },
+  { num: '05', item: 'Monitores: mínimo 2× monitores de suelo (mínimo 400W c/u)' },
+  { num: '06', item: 'Suministro eléctrico estable con protección de sobretensión' },
+  { num: '07', item: 'Iluminación de escenario bajo dirección técnica del local' },
+  { num: '08', item: 'Cabina accesible 30 min antes de la actuación para soundcheck' },
 ];
 
 const HOSPITALITY_RIDER = [
-  { num: '01', item: 'Artist + 1 guest pass (laminate / wristband access)' },
-  { num: '02', item: 'Private or shared green room with secure entry' },
-  { num: '03', item: '1× case of water (500ml bottles), soft drinks' },
-  { num: '04', item: 'Light food/snacks available backstage' },
-  { num: '05', item: 'Hotel accommodation if venue is 50+ km from Barcelona' },
-  { num: '06', item: 'Airport / venue transfers when required' },
-  { num: '07', item: 'Confirmed fee payment method and schedule in advance' },
-  { num: '08', item: 'Promoter contact on-site from artist arrival' },
+  { num: '01', item: 'Pase de artista + 1 acompañante (acceso laminado / pulsera)' },
+  { num: '02', item: 'Camarín privado o compartido con acceso seguro' },
+  { num: '03', item: '1× caja de agua (botellas 500ml), refrescos' },
+  { num: '04', item: 'Snacks / comida ligera disponible backstage' },
+  { num: '05', item: 'Hotel si la distancia desde Barcelona supera los 50 km' },
+  { num: '06', item: 'Traslados aeropuerto / local cuando sea necesario' },
+  { num: '07', item: 'Método y calendario de pago confirmados con antelación' },
+  { num: '08', item: 'Contacto del promotor en sala desde la llegada del artista' },
 ];
 
 export default function Riders() {
@@ -27,7 +27,7 @@ export default function Riders() {
 
         {/* Section label */}
         <div className="flex items-center justify-between mb-16">
-          <span style={{ fontSize: '10px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888' }}>
+          <span style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
             (003) — RIDERS
           </span>
           <div className="section-divider" style={{ width: '60%' }} />
@@ -35,8 +35,7 @@ export default function Riders() {
 
         <h2
           style={{
-            fontSize: 'clamp(40px, 6vw, 80px)',
-            fontWeight: 900,
+            fontSize: 'clamp(44px, 6.5vw, 88px)',
             lineHeight: 0.9,
             letterSpacing: '-0.02em',
             marginBottom: '64px',
@@ -48,10 +47,10 @@ export default function Riders() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
 
           {/* Technical Rider */}
-          <div className="border-r" style={{ borderColor: '#3A3A3A', paddingRight: '48px' }}>
+          <div style={{ borderRight: '1px solid #3A3A3A', paddingRight: '48px' }}>
             <div className="flex items-center gap-4 mb-10">
-              <div style={{ width: '2px', height: '20px', backgroundColor: '#D40000', flexShrink: 0 }} />
-              <h3 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.18em' }}>
+              <div style={{ width: '2px', height: '22px', backgroundColor: '#D40000', flexShrink: 0 }} />
+              <h3 style={{ fontSize: '14px', letterSpacing: '0.15em' }}>
                 TECHNICAL RIDER
               </h3>
             </div>
@@ -62,28 +61,10 @@ export default function Riders() {
                   className="flex gap-6 py-5 border-b"
                   style={{ borderColor: '#222222' }}
                 >
-                  <span
-                    style={{
-                      fontSize: '9px',
-                      fontWeight: 300,
-                      letterSpacing: '0.18em',
-                      color: '#D40000',
-                      flexShrink: 0,
-                      paddingTop: '2px',
-                    }}
-                  >
+                  <span style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#D40000', flexShrink: 0, paddingTop: '2px' }}>
                     {num}
                   </span>
-                  <span
-                    style={{
-                      fontSize: '12px',
-                      fontWeight: 400,
-                      lineHeight: 1.6,
-                      letterSpacing: '0.06em',
-                      color: i === 1 ? '#FFFFFF' : '#CCCCCC',
-                      textTransform: 'none',
-                    }}
-                  >
+                  <span style={{ fontSize: '15px', lineHeight: 1.6, letterSpacing: '0.04em', color: i === 1 ? '#FFFFFF' : '#CCCCCC', textTransform: 'none' }}>
                     {item}
                   </span>
                 </div>
@@ -94,8 +75,8 @@ export default function Riders() {
           {/* Hospitality Rider */}
           <div style={{ paddingLeft: '48px' }}>
             <div className="flex items-center gap-4 mb-10">
-              <div style={{ width: '2px', height: '20px', backgroundColor: '#D40000', flexShrink: 0 }} />
-              <h3 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.18em' }}>
+              <div style={{ width: '2px', height: '22px', backgroundColor: '#D40000', flexShrink: 0 }} />
+              <h3 style={{ fontSize: '14px', letterSpacing: '0.15em' }}>
                 HOSPITALITY RIDER
               </h3>
             </div>
@@ -106,28 +87,10 @@ export default function Riders() {
                   className="flex gap-6 py-5 border-b"
                   style={{ borderColor: '#222222' }}
                 >
-                  <span
-                    style={{
-                      fontSize: '9px',
-                      fontWeight: 300,
-                      letterSpacing: '0.18em',
-                      color: '#D40000',
-                      flexShrink: 0,
-                      paddingTop: '2px',
-                    }}
-                  >
+                  <span style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#D40000', flexShrink: 0, paddingTop: '2px' }}>
                     {num}
                   </span>
-                  <span
-                    style={{
-                      fontSize: '12px',
-                      fontWeight: 400,
-                      lineHeight: 1.6,
-                      letterSpacing: '0.06em',
-                      color: '#CCCCCC',
-                      textTransform: 'none',
-                    }}
-                  >
+                  <span style={{ fontSize: '15px', lineHeight: 1.6, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
                     {item}
                   </span>
                 </div>
@@ -139,25 +102,19 @@ export default function Riders() {
         {/* Download CTA */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-16 pt-10 border-t" style={{ borderColor: '#3A3A3A' }}>
           <div>
-            <div style={{ fontSize: '9px', fontWeight: 300, letterSpacing: '0.18em', color: '#888888', marginBottom: '8px' }}>
-              COMPLETE RIDER AVAILABLE AS PDF
+            <div style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888', marginBottom: '8px' }}>
+              RIDER COMPLETO DISPONIBLE EN PDF
             </div>
-            <div style={{ fontSize: '11px', fontWeight: 400, letterSpacing: '0.1em', color: '#CCCCCC', textTransform: 'none' }}>
-              For specific requirements or questions, contact the booking team directly.
+            <div style={{ fontSize: '15px', lineHeight: 1.6, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
+              Para requerimientos específicos, contacta directamente con el equipo de booking.
             </div>
           </div>
           <a
             href="mailto:booking@clopp.xyz"
             className="inline-flex items-center gap-3 border py-3 px-6 hover:bg-[#D40000] hover:border-[#D40000] transition-all duration-200"
-            style={{
-              borderColor: '#3A3A3A',
-              fontSize: '10px',
-              fontWeight: 700,
-              letterSpacing: '0.18em',
-              whiteSpace: 'nowrap',
-            }}
+            style={{ borderColor: '#3A3A3A', fontSize: '13px', letterSpacing: '0.15em', whiteSpace: 'nowrap' }}
           >
-            REQUEST RIDER PDF
+            SOLICITAR RIDER PDF
           </a>
         </div>
       </div>

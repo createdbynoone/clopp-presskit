@@ -80,6 +80,7 @@
    ────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
+  font-weight: 500 !important;
 }
 
 html {
@@ -89,6 +90,7 @@ html {
 
 body {
   font-family: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
   background-color: #0A0A0A;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -198,9 +200,9 @@ img {
    ────────────────────────────────────────────── */
 .nav-link {
   position: relative;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   color: #FFFFFF;
   transition: color 0.2s ease;
 }
@@ -251,9 +253,9 @@ img {
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
@@ -274,11 +276,11 @@ img {
   border-bottom: 1px solid #3A3A3A;
   color: #FFFFFF;
   font-family: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 14px 0;
+  padding: 16px 0;
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -295,6 +297,16 @@ img {
   resize: none;
   min-height: 120px;
   padding-top: 14px;
+}
+
+/* ──────────────────────────────────────────────
+   DOWNLOAD CONTENT LINK
+   ────────────────────────────────────────────── */
+.download-link {
+  transition: opacity 0.25s ease;
+}
+.download-link:hover {
+  opacity: 0.65;
 }
 
 /* ──────────────────────────────────────────────
