@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <section
-      className="relative w-full flex flex-col justify-end overflow-hidden"
+      className="relative w-full flex flex-col overflow-hidden"
       style={{ height: '100dvh', minHeight: '600px' }}
     >
       {/* Background */}
@@ -17,44 +17,17 @@ export default function Hero() {
             backgroundSize: '200px 200px',
           }}
         />
-        {/* Structural horizontal line */}
-        <div
-          className="absolute"
-          style={{
-            top: '35%',
-            left: 0,
-            right: 0,
-            height: '1px',
-            backgroundColor: '#3A3A3A',
-            transform: 'rotate(-2deg) scaleX(1.1)',
-            transformOrigin: 'left',
-          }}
-        />
-        {/* Right column shadow */}
-        <div
-          className="absolute right-0 top-0 bottom-0"
-          style={{
-            width: '55%',
-            background: 'linear-gradient(to left, #161616 0%, transparent 100%)',
-            borderLeft: '1px solid #222',
-          }}
-        />
       </div>
 
-      {/* Red horizontal accent bar */}
-      <div
-        className="absolute left-0 right-0"
-        style={{ bottom: '22%', height: '1px', backgroundColor: '#D40000' }}
-      />
-
       {/* Main title */}
-      <div className="relative z-10 px-6 md:px-10 pb-14">
+      <div className="relative z-10 flex items-center justify-center" style={{ flex: 1 }}>
         <h1
-          className="hero-title text-white"
+          className="hero-title"
           style={{
             fontSize: 'clamp(100px, 20vw, 260px)',
             lineHeight: 0.85,
             letterSpacing: '-0.02em',
+            color: '#D40000',
           }}
         >
           CLOPP
