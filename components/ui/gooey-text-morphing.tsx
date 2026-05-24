@@ -26,17 +26,17 @@ export function GooeyText({
   const frameRef = React.useRef<number>(0);
 
   React.useEffect(() => {
-    // When not active: show first text statically
     if (!active) {
       cancelAnimationFrame(frameRef.current);
+      // Bug fix: use 0/1 not "0%"/"100%" — opacity only accepts 0–1
       if (text1Ref.current) {
         text1Ref.current.style.filter = "";
-        text1Ref.current.style.opacity = "0%";
+        text1Ref.current.style.opacity = "0";
         text1Ref.current.textContent = texts[0];
       }
       if (text2Ref.current) {
         text2Ref.current.style.filter = "";
-        text2Ref.current.style.opacity = "100%";
+        text2Ref.current.style.opacity = "1";
         text2Ref.current.textContent = texts[0];
       }
       return;
@@ -52,20 +52,21 @@ export function GooeyText({
 
     const setMorph = (fraction: number) => {
       if (!text1Ref.current || !text2Ref.current) return;
+      // Bug fix: opacity as 0–1 number, not percentage string
       text2Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-      text2Ref.current.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+      text2Ref.current.style.opacity = String(Math.pow(fraction, 0.4));
       fraction = 1 - fraction;
       text1Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-      text1Ref.current.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+      text1Ref.current.style.opacity = String(Math.pow(fraction, 0.4));
     };
 
     const doCooldown = () => {
       morph = 0;
       if (!text1Ref.current || !text2Ref.current) return;
       text2Ref.current.style.filter = "";
-      text2Ref.current.style.opacity = "100%";
+      text2Ref.current.style.opacity = "1";
       text1Ref.current.style.filter = "";
-      text1Ref.current.style.opacity = "0%";
+      text1Ref.current.style.opacity = "0";
     };
 
     const doMorph = () => {
@@ -102,6 +103,18 @@ export function GooeyText({
     return () => cancelAnimationFrame(frameRef.current);
   }, [texts, morphTime, cooldownTime, active]);
 
+  // Bug fix: explicit centering via top/left/transform — flex alignment
+  // does not reliably position absolute children across all browsers
+  const spanStyle: React.CSSProperties = {
+    ...textStyle,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+  };
+
   return (
     <div className={`relative w-full h-full ${className ?? ""}`}>
       <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
@@ -120,18 +133,18 @@ export function GooeyText({
       </svg>
 
       <div
-        className="w-full h-full flex items-center justify-center"
-        style={{ filter: "url(#gooey-threshold)" }}
+        className="w-full h-full"
+        style={{ filter: "url(#gooey-threshold)", position: "relative" }}
       >
         <span
           ref={text1Ref}
-          className={`absolute inline-block select-none text-center ${textClassName ?? ""}`}
-          style={textStyle}
+          className={`select-none ${textClassName ?? ""}`}
+          style={spanStyle}
         />
         <span
           ref={text2Ref}
-          className={`absolute inline-block select-none text-center ${textClassName ?? ""}`}
-          style={textStyle}
+          className={`select-none ${textClassName ?? ""}`}
+          style={spanStyle}
         />
       </div>
     </div>
