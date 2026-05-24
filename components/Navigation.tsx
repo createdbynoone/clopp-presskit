@@ -30,6 +30,7 @@ export default function Navigation() {
     <>
       <nav
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-5 transition-all duration-500"
+        data-scrolled={String(scrolled)}
         style={{
           backgroundColor: scrolled ? 'rgba(10,10,10,0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(8px)' : 'none',

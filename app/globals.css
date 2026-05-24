@@ -196,7 +196,7 @@ img {
 }
 
 /* ──────────────────────────────────────────────
-   NAV LINK HOVER
+   NAV LINK
    ────────────────────────────────────────────── */
 .nav-link {
   position: relative;
@@ -204,22 +204,20 @@ img {
   font-weight: 500;
   letter-spacing: 0.15em;
   color: #FFFFFF;
-  transition: color 0.2s ease;
+  padding: 4px 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 1px;
+/* Transparent nav (top of page) — links in red */
+nav[data-scrolled="false"] .nav-link {
+  color: #D40000;
+}
+
+/* Hover: always red bg + black text */
+.nav-link:hover {
+  color: #000000 !important;
   background-color: #D40000;
-  transition: width 0.25s ease;
 }
-
-.nav-link:hover::after { width: 100%; }
-.nav-link:hover { color: #D40000; }
 
 /* ──────────────────────────────────────────────
    GALLERY
