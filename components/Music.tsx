@@ -3,10 +3,10 @@ import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 import MusicPortfolio, { type Release } from '@/components/ui/music-portfolio';
 
 const RELEASES_DATA: Release[] = [
-  { id: 1, artist: 'CLOPP', album: 'VOID 001',       category: 'EP',     label: 'SELF-RELEASED', year: '2024', image: '/images/hero.png' },
-  { id: 2, artist: 'CLOPP', album: 'SURFACE',        category: 'SINGLE', label: 'SELF-RELEASED', year: '2023', image: '/images/hero.png' },
-  { id: 3, artist: 'CLOPP', album: 'STATIC LOOP EP', category: 'EP',     label: 'SELF-RELEASED', year: '2022', image: '/images/hero.png' },
-  { id: 4, artist: 'CLOPP', album: 'FRAGMENTS',      category: 'ALBUM',  label: 'SELF-RELEASED', year: '2021', image: '/images/hero.png' },
+  { id: 1, artist: 'CLOPP', album: 'VOID 001',       category: 'EP',     label: 'SELF-RELEASED', year: '2024', image: '/images/hero.webp' },
+  { id: 2, artist: 'CLOPP', album: 'SURFACE',        category: 'SINGLE', label: 'SELF-RELEASED', year: '2023', image: '/images/hero.webp' },
+  { id: 3, artist: 'CLOPP', album: 'STATIC LOOP EP', category: 'EP',     label: 'SELF-RELEASED', year: '2022', image: '/images/hero.webp' },
+  { id: 4, artist: 'CLOPP', album: 'FRAGMENTS',      category: 'ALBUM',  label: 'SELF-RELEASED', year: '2021', image: '/images/hero.webp' },
 ];
 
 const SC_SETS = [

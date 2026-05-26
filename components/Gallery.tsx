@@ -5,7 +5,7 @@ import { motion, stagger, useAnimate } from "motion/react"
 import Floating, { FloatingElement } from "@/components/ui/parallax-floating"
 import { ScrambleOnView } from "@/components/ui/scramble-on-view"
 
-const IMG = "/images/hero.png"
+const IMG = "/images/hero.webp"
 
 const DOWNLOAD_STYLE: React.CSSProperties = {
   fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",

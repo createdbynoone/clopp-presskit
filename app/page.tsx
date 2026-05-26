@@ -2,12 +2,12 @@ import dynamic from 'next/dynamic';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Riders from '@/components/Riders';
-import Booking from '@/components/Booking';
 
-// Heavy sections — code-split so they don't block the initial Hero bundle
-const Gallery = dynamic(() => import('@/components/Gallery'));
+// Code-split everything below the fold
 const Music   = dynamic(() => import('@/components/Music'));
+const Gallery = dynamic(() => import('@/components/Gallery'));
+const Riders  = dynamic(() => import('@/components/Riders'));
+const Booking = dynamic(() => import('@/components/Booking'));
 
 export default function Home() {
   return (

@@ -24,13 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <head>
-        <link
-          rel="preload"
-          href="/fonts/NeueHaasDisplayMedium.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
+        <link rel="preload" href="/fonts/NeueHaasDisplayMedium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/images/hero.webp" as="image" type="image/webp" />
       </head>
       <body>
         <ScrollAnimationsInit />

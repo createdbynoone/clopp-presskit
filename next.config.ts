@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
 
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+
   async headers() {
     return [
       {
@@ -15,7 +19,7 @@ const nextConfig: NextConfig = {
       {
         source: '/images/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
     ];
