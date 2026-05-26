@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { T } from '@/lib/translations';
 
@@ -11,6 +11,7 @@ export default function Navigation() {
   const { lang, toggle } = useLanguage();
   const t = T[lang].nav;
   const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
@@ -44,6 +45,10 @@ export default function Navigation() {
     setMenuOpen(false);
     setMusicOpen(false);
     setRidersOpen(false);
+    if (pathname !== '/') {
+      router.push(`/#${id.toLowerCase()}`);
+      return;
+    }
     setTimeout(() => {
       document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
     }, 300);
