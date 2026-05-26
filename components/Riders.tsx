@@ -37,18 +37,47 @@ const ROW_STYLE = {
 } as const;
 
 function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; category: string }) {
-  const [current, setCurrent] = useState(0);
-  const touchStartX = useRef<number | null>(null);
   const total = card.slides.length;
+  // Append clone of first slide so the loop always goes left → seamless wrap
+  const extSlides = [...card.slides, card.slides[0]];
 
-  // Auto-advance every 1 second, reset on manual interaction
+  const [idx, setIdx] = useState(0);
+  const [animated, setAnimated] = useState(true);
+  const touchStartX = useRef<number | null>(null);
+
+  // Auto-advance every 2 s, always forward
   useEffect(() => {
-    const id = setInterval(() => setCurrent(i => (i + 1) % total), 1000);
+    const id = setInterval(() => setIdx(i => i + 1), 2000);
     return () => clearInterval(id);
-  }, [total]);
+  }, []);
 
-  const prev = () => setCurrent(i => (i - 1 + total) % total);
-  const next = () => setCurrent(i => (i + 1) % total);
+  // When we land on the clone (idx === total), snap back to 0 after transition
+  useEffect(() => {
+    if (idx < total) return;
+    const snap = setTimeout(() => {
+      setAnimated(false);
+      setIdx(0);
+    }, 360);
+    return () => clearTimeout(snap);
+  }, [idx, total]);
+
+  // Re-enable transition after the no-animation snap
+  useEffect(() => {
+    if (animated) return;
+    const raf = requestAnimationFrame(() =>
+      requestAnimationFrame(() => setAnimated(true))
+    );
+    return () => cancelAnimationFrame(raf);
+  }, [animated]);
+
+  const displayIdx = idx % total;
+  const slide = card.slides[displayIdx];
+
+  const next = () => setIdx(i => i + 1);
+  const prev = () => {
+    // Going backwards: jump to the real previous slide directly (no clone trick needed)
+    setIdx(i => (i - 1 + total) % total);
+  };
 
   const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
   const onTouchEnd = (e: React.TouchEvent) => {
@@ -58,8 +87,6 @@ function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; cate
     touchStartX.current = null;
   };
 
-  const slide = card.slides[current];
-
   return (
     <div style={{ border: '1px solid #1E1E1E', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <div style={{ padding: '8px 12px', borderBottom: '1px solid #1E1E1E' }}>
@@ -67,8 +94,12 @@ function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; cate
       </div>
 
       <div style={{ overflow: 'hidden', flex: 1, cursor: 'grab' }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        <div style={{ display: 'flex', transform: `translateX(-${current * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-          {card.slides.map((s, i) => (
+        <div style={{
+          display: 'flex',
+          transform: `translateX(-${idx * 100}%)`,
+          transition: animated ? 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+        }}>
+          {extSlides.map((s, i) => (
             <div key={i} style={{ flex: '0 0 100%', aspectRatio: '3 / 4', backgroundColor: '#0E0E0E', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={s.src} alt={s.label} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }} draggable={false} />
@@ -93,7 +124,7 @@ function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; cate
           </button>
           <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
             {card.slides.map((_, i) => (
-              <button key={i} onClick={() => setCurrent(i)} aria-label={`Slide ${i + 1}`} style={{ width: i === current ? '12px' : '5px', height: '5px', borderRadius: '3px', backgroundColor: i === current ? '#D40000' : '#333', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.25s ease', flexShrink: 0 }} />
+              <button key={i} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} style={{ width: i === displayIdx ? '12px' : '5px', height: '5px', borderRadius: '3px', backgroundColor: i === displayIdx ? '#D40000' : '#333', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.25s ease', flexShrink: 0 }} />
             ))}
           </div>
           <button onClick={next} aria-label="Siguiente" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: '#555', lineHeight: 1, display: 'flex', alignItems: 'center' }}>
