@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const links = ['ABOUT', 'GALLERY', 'RIDERS', 'MUSIC', 'BOOKING'];
+const links = ['ABOUT', 'MUSIC', 'GALLERY', 'RIDERS', 'BOOKING'];
 
 const MUSIC_SUB = [
   { label: 'RELEASES', id: 'releases' },
