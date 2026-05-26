@@ -20,6 +20,7 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
   const cooldownRef = useRef(COOLDOWN_TIME);
   const prevTimeRef = useRef(Date.now());
   const wasInCooldownRef = useRef(true);
+  const frameCountRef = useRef(0);
 
   const applyStyles = useCallback((frac: number) => {
     const t1 = text1Ref.current;
@@ -41,6 +42,7 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
     cooldownRef.current = COOLDOWN_TIME;
     prevTimeRef.current = Date.now();
     wasInCooldownRef.current = true;
+    frameCountRef.current = 0;
 
     if (text1Ref.current) text1Ref.current.textContent = texts[texts.length - 1];
     if (text2Ref.current) text2Ref.current.textContent = texts[0];
@@ -49,6 +51,10 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
 
     const tick = () => {
       frameId = requestAnimationFrame(tick);
+
+      // Throttle to ~30fps — skip odd frames, imperceptible for this animation
+      frameCountRef.current++;
+      if (frameCountRef.current % 2 !== 0) return;
 
       const now = Date.now();
       const dt = (now - prevTimeRef.current) / 1000;
@@ -109,19 +115,21 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
           </filter>
         </defs>
       </svg>
+      {/* contain: layout paint limits repaint scope to this element */}
       <div
         className={`relative w-full h-full ${className} morph-container`}
-        style={{ filter: "url(#morph-liquid) blur(0.6px)" }}
+        style={{ filter: "url(#morph-liquid) blur(0.6px)", contain: "layout paint" }}
       >
+        {/* will-change promotes spans to GPU layers — blur runs on compositor */}
         <span
           ref={text1Ref}
           className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-          style={textStyle}
+          style={{ ...textStyle, willChange: "filter, opacity" }}
         />
         <span
           ref={text2Ref}
           className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-          style={textStyle}
+          style={{ ...textStyle, willChange: "filter, opacity" }}
         />
       </div>
     </>
