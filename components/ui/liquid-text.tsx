@@ -119,16 +119,15 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
         className={`relative w-full h-full ${className} morph-container`}
         style={{ filter: "url(#morph-liquid) blur(0.6px)" }}
       >
-        {/* will-change promotes spans to GPU layers — blur runs on compositor */}
         <span
           ref={text1Ref}
           className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-          style={{ ...textStyle, willChange: "filter, opacity" }}
+          style={textStyle}
         />
         <span
           ref={text2Ref}
           className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-          style={{ ...textStyle, willChange: "filter, opacity" }}
+          style={textStyle}
         />
       </div>
     </>
