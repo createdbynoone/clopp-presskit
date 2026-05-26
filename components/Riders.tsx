@@ -195,7 +195,7 @@ export default function Riders() {
 
             {/* BOOTH — plain text, spreads to match card height */}
             <div style={{ display: 'flex', flexDirection: 'column', padding: '8px 8px', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-              <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: '0 0 16px' }}>{t.booth}</p>
+              <p style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#D40000', margin: '0 0 16px' }}>{t.booth}</p>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', flex: 1 }}>
                 {t.boothItems.map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', paddingBottom: '12px' }}>
