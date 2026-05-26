@@ -5,8 +5,6 @@ import { motion, stagger, useAnimate } from "motion/react"
 import Floating, { FloatingElement } from "@/components/ui/parallax-floating"
 import { ScrambleOnView } from "@/components/ui/scramble-on-view"
 
-const isMobile = () => typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches
-
 const IMG = "/images/hero.webp"
 
 const DOWNLOAD_STYLE: React.CSSProperties = {
@@ -37,10 +35,17 @@ const FRAMES = [
 export default function Gallery() {
   const [scope, animate] = useAnimate()
   const [lightbox, setLightbox] = useState<{ src: string; obj: string } | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    animate("img", { opacity: [0, 1] }, { duration: 0.6, delay: stagger(0.12) })
+    // Detect touch/mobile after mount — avoids SSR hydration mismatch
+    setIsMobile(window.matchMedia('(hover: none) and (pointer: coarse)').matches)
   }, [])
+
+  useEffect(() => {
+    if (isMobile) return
+    animate("img", { opacity: [0, 1] }, { duration: 0.6, delay: stagger(0.12) })
+  }, [isMobile])
 
   // Close lightbox on Escape
   useEffect(() => {
@@ -51,7 +56,7 @@ export default function Gallery() {
   }, [lightbox])
 
   // Mobile: static 2-col grid, no parallax, no motion/react animation frame
-  if (isMobile()) return (
+  if (isMobile) return (
     <section id="gallery" style={{ backgroundColor: "#0A0A0A", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(16px,3vh,32px)", padding: "clamp(20px,4vh,64px) 24px" }}>
       <a href="#" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
         DOWNLOAD<br />CONTENT
