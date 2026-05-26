@@ -63,37 +63,13 @@ export default function Booking() {
               Include event date, venue capacity and expected fee range.
             </p>
 
-            <div style={{ marginBottom: 'clamp(12px, 2vh, 32px)' }}>
-              <a
-                href="mailto:info@cloppmusic.com"
-                className="block hover:text-[#D40000] transition-colors duration-200"
-                style={{ fontSize: 'clamp(14px, 2.2vw, 26px)', letterSpacing: '0.06em', color: '#FFFFFF' }}
-              >
-                <ScrambleOnView as="span">INFO@CLOPPMUSIC.COM</ScrambleOnView>
-              </a>
-            </div>
-
-            <div className="flex flex-col gap-0">
-              {[
-                { label: 'MANAGEMENT', value: 'SELF-MANAGED' },
-                { label: 'BASE', value: 'BARCELONA, SPAIN' },
-                { label: 'TRAVEL', value: 'WORLDWIDE' },
-                { label: 'RESPONSE', value: '48H MAX' },
-              ].map(({ label, value }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-8 border-b"
-                  style={{ borderColor: '#1E1E1E', paddingTop: 'clamp(6px, 1vh, 16px)', paddingBottom: 'clamp(6px, 1vh, 16px)' }}
-                >
-                  <ScrambleOnView as="span" style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888', minWidth: '110px' }}>
-                    {label}
-                  </ScrambleOnView>
-                  <ScrambleOnView as="span" style={{ fontSize: '13px', letterSpacing: '0.1em' }}>
-                    {value}
-                  </ScrambleOnView>
-                </div>
-              ))}
-            </div>
+            <a
+              href="mailto:info@cloppmusic.com"
+              className="block hover:text-[#D40000] transition-colors duration-200"
+              style={{ fontSize: 'clamp(14px, 2.2vw, 26px)', letterSpacing: '0.06em', color: '#FFFFFF' }}
+            >
+              <ScrambleOnView as="span">INFO@CLOPPMUSIC.COM</ScrambleOnView>
+            </a>
           </div>
 
           {/* Right — form */}
