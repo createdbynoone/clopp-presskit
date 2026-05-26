@@ -333,8 +333,8 @@ export default function Riders() {
           </div>
 
           <div
-            className="flex justify-end border-t"
-            style={{ borderColor: '#1E1E1E', marginTop: 'clamp(10px, 1.8vh, 40px)', paddingTop: 'clamp(10px, 1.8vh, 32px)' }}
+            className="flex justify-end"
+            style={{ marginTop: 'clamp(10px, 1.8vh, 40px)' }}
           >
             <a
               href="mailto:info@cloppmusic.com"
@@ -563,8 +563,8 @@ export default function Riders() {
             </div>
 
             <div
-              className="flex justify-end border-t"
-              style={{ borderColor: 'rgba(0,0,0,0.15)', marginTop: 'clamp(10px, 1.8vh, 40px)', paddingTop: 'clamp(10px, 1.8vh, 32px)' }}
+              className="flex justify-end"
+              style={{ marginTop: 'clamp(10px, 1.8vh, 40px)' }}
             >
               <a
                 href="mailto:info@cloppmusic.com"
