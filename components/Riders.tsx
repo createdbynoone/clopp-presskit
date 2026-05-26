@@ -24,11 +24,9 @@ const HOSPITALITY_RIDER = [
   { num: '08', item: 'Contacto del promotor en sala desde la llegada del artista' },
 ];
 
-const H2 = {
-  fontSize: 'clamp(44px, 6.5vw, 88px)',
-  lineHeight: 0.9,
-  letterSpacing: '-0.02em',
-  marginBottom: '52px',
+const ROW_STYLE = {
+  paddingTop: 'clamp(6px, 1.1vh, 18px)',
+  paddingBottom: 'clamp(6px, 1.1vh, 18px)',
 } as const;
 
 export default function Riders() {
@@ -41,12 +39,19 @@ export default function Riders() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: 'clamp(64px, 8vw, 100px) 0',
+          padding: 'clamp(20px, 4vh, 64px) 0',
         }}
       >
         <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
 
-          <h2 style={H2}>
+          <h2
+            style={{
+              fontSize: 'clamp(36px, 6.5vw, 88px)',
+              lineHeight: 0.9,
+              letterSpacing: '-0.02em',
+              marginBottom: 'clamp(16px, 2.5vh, 48px)',
+            }}
+          >
             <ScrambleOnView as="span">TECHNICAL</ScrambleOnView>
             <br />
             <ScrambleOnView as="span" style={{ color: '#D40000' }}>RIDER</ScrambleOnView>
@@ -54,18 +59,21 @@ export default function Riders() {
 
           <div className="flex flex-col scroll-trigger animate--slide-in">
             {TECHNICAL_RIDER.map(({ num, item }) => (
-              <div key={num} className="flex gap-6 py-5 border-b" style={{ borderColor: '#1E1E1E' }}>
+              <div key={num} className="flex gap-6 border-b" style={{ borderColor: '#1E1E1E', ...ROW_STYLE }}>
                 <span style={{ fontSize: '11px', letterSpacing: '0.18em', color: '#D40000', flexShrink: 0, paddingTop: '3px', minWidth: '28px' }}>
                   {num}
                 </span>
-                <span style={{ fontSize: '15px', lineHeight: 1.65, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
+                <span style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
                   {item}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-end mt-10 pt-8 border-t scroll-trigger animate--fade-in" style={{ borderColor: '#1E1E1E' }}>
+          <div
+            className="flex justify-end border-t scroll-trigger animate--fade-in"
+            style={{ borderColor: '#1E1E1E', marginTop: 'clamp(10px, 1.8vh, 40px)', paddingTop: 'clamp(10px, 1.8vh, 32px)' }}
+          >
             <a
               href="mailto:info@cloppmusic.com"
               className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"
@@ -92,13 +100,21 @@ export default function Riders() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: 'clamp(64px, 8vw, 100px) 0',
+          padding: 'clamp(20px, 4vh, 64px) 0',
           backgroundColor: '#D40000',
         }}
       >
         <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
 
-          <h2 style={{ ...H2, color: '#000000' }}>
+          <h2
+            style={{
+              fontSize: 'clamp(36px, 6.5vw, 88px)',
+              lineHeight: 0.9,
+              letterSpacing: '-0.02em',
+              marginBottom: 'clamp(16px, 2.5vh, 48px)',
+              color: '#000000',
+            }}
+          >
             <ScrambleOnView as="span">HOSPITALITY</ScrambleOnView>
             <br />
             <ScrambleOnView as="span">RIDER</ScrambleOnView>
@@ -108,20 +124,23 @@ export default function Riders() {
             {HOSPITALITY_RIDER.map(({ num, item }) => (
               <div
                 key={num}
-                className="flex gap-6 py-5 border-b"
-                style={{ borderColor: 'rgba(0,0,0,0.12)' }}
+                className="flex gap-6 border-b"
+                style={{ borderColor: 'rgba(0,0,0,0.12)', ...ROW_STYLE }}
               >
                 <span style={{ fontSize: '11px', letterSpacing: '0.18em', color: 'rgba(0,0,0,0.35)', flexShrink: 0, paddingTop: '3px', minWidth: '28px' }}>
                   {num}
                 </span>
-                <span style={{ fontSize: '15px', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
+                <span style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
                   {item}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-end mt-10 pt-8 border-t scroll-trigger animate--fade-in" style={{ borderColor: 'rgba(0,0,0,0.15)' }}>
+          <div
+            className="flex justify-end border-t scroll-trigger animate--fade-in"
+            style={{ borderColor: 'rgba(0,0,0,0.15)', marginTop: 'clamp(10px, 1.8vh, 40px)', paddingTop: 'clamp(10px, 1.8vh, 32px)' }}
+          >
             <a
               href="mailto:info@cloppmusic.com"
               className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"

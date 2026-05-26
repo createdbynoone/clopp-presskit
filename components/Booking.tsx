@@ -27,20 +27,20 @@ export default function Booking() {
   return (
     <section
       id="booking"
-      style={{ display: 'flex', flexDirection: 'column', paddingTop: 'clamp(80px, 10vw, 140px)' }}
+      style={{ display: 'flex', flexDirection: 'column', paddingTop: 'clamp(20px, 4vh, 72px)' }}
     >
       {/* ── Main booking content ── */}
-      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full" style={{ flex: 1, paddingBottom: 'clamp(60px, 8vw, 100px)' }}>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
+      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full" style={{ flex: 1, paddingBottom: 'clamp(20px, 4vh, 60px)' }}>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
 
           {/* Left — email + info */}
           <div className="md:col-span-5 scroll-trigger animate--slide-in">
             <h2
               style={{
-                fontSize: 'clamp(40px, 5.5vw, 78px)',
+                fontSize: 'clamp(36px, 5.5vw, 78px)',
                 lineHeight: 0.9,
                 letterSpacing: '-0.02em',
-                marginBottom: '40px',
+                marginBottom: 'clamp(12px, 2.5vh, 40px)',
               }}
             >
               <ScrambleOnView as="span">{"LET'S"}</ScrambleOnView>
@@ -50,12 +50,12 @@ export default function Booking() {
 
             <p
               style={{
-                fontSize: '17px',
-                lineHeight: 1.8,
+                fontSize: 'clamp(13px, 1.8vh, 17px)',
+                lineHeight: 1.7,
                 letterSpacing: '0.03em',
                 color: '#888888',
                 textTransform: 'none',
-                marginBottom: '48px',
+                marginBottom: 'clamp(12px, 2.5vh, 40px)',
                 maxWidth: '360px',
               }}
             >
@@ -63,11 +63,11 @@ export default function Booking() {
               Include event date, venue capacity and expected fee range.
             </p>
 
-            <div style={{ marginBottom: '40px' }}>
+            <div style={{ marginBottom: 'clamp(12px, 2vh, 32px)' }}>
               <a
                 href="mailto:info@cloppmusic.com"
                 className="block hover:text-[#D40000] transition-colors duration-200"
-                style={{ fontSize: 'clamp(16px, 2.5vw, 26px)', letterSpacing: '0.06em', color: '#FFFFFF' }}
+                style={{ fontSize: 'clamp(14px, 2.2vw, 26px)', letterSpacing: '0.06em', color: '#FFFFFF' }}
               >
                 <ScrambleOnView as="span">INFO@CLOPPMUSIC.COM</ScrambleOnView>
               </a>
@@ -80,11 +80,15 @@ export default function Booking() {
                 { label: 'TRAVEL', value: 'WORLDWIDE' },
                 { label: 'RESPONSE', value: '48H MAX' },
               ].map(({ label, value }) => (
-                <div key={label} className="flex items-center gap-8 py-4 border-b" style={{ borderColor: '#1E1E1E' }}>
-                  <ScrambleOnView as="span" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888', minWidth: '120px' }}>
+                <div
+                  key={label}
+                  className="flex items-center gap-8 border-b"
+                  style={{ borderColor: '#1E1E1E', paddingTop: 'clamp(6px, 1vh, 16px)', paddingBottom: 'clamp(6px, 1vh, 16px)' }}
+                >
+                  <ScrambleOnView as="span" style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888', minWidth: '110px' }}>
                     {label}
                   </ScrambleOnView>
-                  <ScrambleOnView as="span" style={{ fontSize: '15px', letterSpacing: '0.1em' }}>
+                  <ScrambleOnView as="span" style={{ fontSize: '13px', letterSpacing: '0.1em' }}>
                     {value}
                   </ScrambleOnView>
                 </div>
@@ -95,15 +99,15 @@ export default function Booking() {
           {/* Right — form */}
           <div className="md:col-span-7 scroll-trigger animate--slide-in" style={{ '--animation-order': 1 } as React.CSSProperties}>
             {status === 'sent' ? (
-              <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '400px', gap: '16px' }}>
+              <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '300px', gap: '16px' }}>
                 <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#D40000', marginBottom: '8px' }}>■</div>
-                <div style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.01em' }}>MESSAGE SENT</div>
-                <p style={{ fontSize: '15px', letterSpacing: '0.08em', color: '#888888', textTransform: 'none' }}>
+                <div style={{ fontSize: 'clamp(20px, 4vw, 44px)', letterSpacing: '-0.01em' }}>MESSAGE SENT</div>
+                <p style={{ fontSize: '14px', letterSpacing: '0.08em', color: '#888888', textTransform: 'none' }}>
                   Your mail client should have opened. We'll be in touch within 48 hours.
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="mt-6 border py-2 px-6 hover:bg-white hover:text-black transition-all duration-200"
+                  className="mt-4 border py-2 px-6 hover:bg-white hover:text-black transition-all duration-200"
                   style={{ borderColor: '#3A3A3A', fontSize: '13px', letterSpacing: '0.15em' }}
                 >
                   SEND ANOTHER
@@ -129,7 +133,10 @@ export default function Booking() {
                     className="form-input form-textarea"
                   />
                 </div>
-                <div className="flex items-center justify-end mt-10 pt-6 border-t" style={{ borderColor: '#1E1E1E' }}>
+                <div
+                  className="flex items-center justify-end border-t"
+                  style={{ borderColor: '#1E1E1E', marginTop: 'clamp(12px, 2vh, 40px)', paddingTop: 'clamp(12px, 2vh, 24px)' }}
+                >
                   <button
                     type="submit"
                     className="flex items-center gap-4 border py-3 px-8 hover:bg-[#D40000] hover:border-[#D40000] hover:text-white transition-all duration-300 group"
@@ -145,21 +152,20 @@ export default function Booking() {
         </div>
       </div>
 
-      {/* ── Footer bar — integrated at bottom of this section ── */}
+      {/* ── Footer bar ── */}
       <footer style={{ backgroundColor: '#D40000', marginTop: 'auto' }}>
         <div
           className="px-6 md:px-10 max-w-screen-2xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{ padding: '28px 40px' }}
+          style={{ padding: '24px 40px' }}
         >
-          {/* Left */}
           <div>
             <div
               style={{
                 fontFamily: "'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif",
-                fontSize: 'clamp(22px, 3.5vw, 36px)',
+                fontSize: 'clamp(20px, 3vw, 36px)',
                 lineHeight: 1,
                 letterSpacing: '-0.01em',
-                marginBottom: '6px',
+                marginBottom: '5px',
                 color: '#000000',
               }}
             >
@@ -170,15 +176,10 @@ export default function Booking() {
             </div>
           </div>
 
-          {/* Center */}
-          <div
-            className="hidden md:block"
-            style={{ fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.4)' }}
-          >
+          <div className="hidden md:block" style={{ fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.4)' }}>
             ELECTRONIC MUSIC ARTIST
           </div>
 
-          {/* Right — socials */}
           <div className="flex items-center gap-6">
             {SOCIALS.map(({ label, href }) => (
               <a

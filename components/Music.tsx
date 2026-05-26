@@ -15,7 +15,6 @@ const SC_SETS = [
   { title: 'PANORAMA BAR CAST', duration: '1H 30M', year: '2023' },
 ];
 
-
 export default function Music() {
   return (
     <>
@@ -24,49 +23,49 @@ export default function Music() {
         <MusicPortfolio releases={RELEASES_DATA} />
       </section>
 
-      {/* ── SESSIONS — fullscreen, no title, content centered ── */}
-      <section id="sessions" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(48px, 6vw, 80px) 0' }}>
+      {/* ── SESSIONS — fullscreen, content centered ── */}
+      <section id="sessions" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(16px, 3vh, 48px) 0' }}>
         <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
 
-          {/* Title */}
-          <div style={{ fontSize: 'clamp(11px, 1vw, 13px)', letterSpacing: '0.22em', color: '#3A3A3A', marginBottom: '20px' }}>
+          {/* Label */}
+          <div style={{ fontSize: '11px', letterSpacing: '0.22em', color: '#3A3A3A', marginBottom: 'clamp(8px, 1.2vh, 20px)' }}>
             SESSIONS
           </div>
 
-          {/* YouTube placeholder */}
+          {/* YouTube placeholder — height capped at 50vh so it never overflows */}
           <div
-            className="relative w-full border"
+            className="relative border"
             style={{
+              width: 'min(100%, calc(50vh * 1.778))',
               aspectRatio: '16/9',
               backgroundColor: '#111111',
               borderColor: '#222222',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '4px',
             }}
           >
-            <div style={{ fontSize: 'clamp(32px, 6vw, 64px)', letterSpacing: '-0.02em', color: '#222222' }}>▶</div>
+            <div style={{ fontSize: 'clamp(24px, 5vh, 56px)', letterSpacing: '-0.02em', color: '#222222' }}>▶</div>
             <div style={{ position: 'absolute', top: '14px', right: '18px', fontSize: '10px', letterSpacing: '0.18em', color: '#3A3A3A' }}>
               YOUTUBE
             </div>
           </div>
 
           {/* SoundCloud sets */}
-          <div style={{ marginTop: '32px' }}>
+          <div style={{ marginTop: 'clamp(8px, 1.5vh, 28px)' }}>
             {SC_SETS.map(({ title, duration, year }) => (
               <div
                 key={title}
-                className="flex items-center justify-between py-5 border-b hover:border-[#D40000] transition-colors duration-200 cursor-pointer group"
-                style={{ borderColor: '#222222' }}
+                className="flex items-center justify-between border-b hover:border-[#D40000] transition-colors duration-200 cursor-pointer group"
+                style={{ borderColor: '#222222', paddingTop: 'clamp(6px, 1vh, 16px)', paddingBottom: 'clamp(6px, 1vh, 16px)' }}
               >
                 <div className="flex items-center gap-6">
                   <span className="group-hover:text-[#D40000] transition-colors duration-200" style={{ fontSize: '13px' }}>▶</span>
-                  <ScrambleOnView as="span" style={{ fontSize: '15px', letterSpacing: '0.08em' }}>
+                  <ScrambleOnView as="span" style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', letterSpacing: '0.08em' }}>
                     {title}
                   </ScrambleOnView>
                 </div>
-                <div className="flex items-center gap-6" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888' }}>
+                <div className="flex items-center gap-6" style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#888888' }}>
                   <span className="hidden sm:block">{year}</span>
                   <span>{duration}</span>
                 </div>

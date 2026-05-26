@@ -273,7 +273,7 @@ nav[data-scrolled="true"] .nav-link {
 
 .form-textarea {
   resize: none;
-  min-height: 120px;
+  min-height: clamp(56px, 9vh, 120px);
   padding-top: 14px;
 }
 
