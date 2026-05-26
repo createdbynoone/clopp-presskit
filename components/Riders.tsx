@@ -99,8 +99,8 @@ function EquipCard({ card }: { card: Card }) {
       }}
     >
       {/* Category label */}
-      <div style={{ padding: 'clamp(10px, 1.8vh, 20px) clamp(12px, 2vw, 24px)', borderBottom: '1px solid #1E1E1E' }}>
-        <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#D40000', margin: 0 }}>
+      <div style={{ padding: '8px 12px', borderBottom: '1px solid #1E1E1E' }}>
+        <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: 0 }}>
           {card.category}
         </p>
       </div>
@@ -123,7 +123,7 @@ function EquipCard({ card }: { card: Card }) {
               key={i}
               style={{
                 flex: '0 0 100%',
-                aspectRatio: '4 / 3',
+                aspectRatio: '3 / 4',
                 backgroundColor: '#0E0E0E',
                 display: 'flex',
                 alignItems: 'center',
@@ -143,16 +143,17 @@ function EquipCard({ card }: { card: Card }) {
               ) : (
                 <div style={{ textAlign: 'center', padding: '24px' }}>
                   <p style={{
-                    fontSize: 'clamp(14px, 2.2vw, 22px)',
+                    fontSize: 'clamp(11px, 1.4vw, 14px)',
                     letterSpacing: '0.06em',
                     color: '#FFFFFF',
                     lineHeight: 1.3,
                     fontWeight: 500,
+                    textAlign: 'center',
                   }}>
                     {s.label}
                   </p>
                   {s.sublabel && (
-                    <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#555', marginTop: '8px' }}>
+                    <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#555', marginTop: '6px', textAlign: 'center' }}>
                       {s.sublabel}
                     </p>
                   )}
@@ -165,17 +166,17 @@ function EquipCard({ card }: { card: Card }) {
 
       {/* Info + navigation */}
       <div style={{
-        padding: 'clamp(10px, 1.8vh, 20px) clamp(12px, 2vw, 24px)',
+        padding: '8px 12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: '12px',
+        gap: '8px',
         borderTop: '1px solid #1E1E1E',
       }}>
         <div style={{ minWidth: 0 }}>
           <p style={{
-            fontSize: 'clamp(13px, 1.8vh, 17px)',
-            letterSpacing: '0.05em',
+            fontSize: '11px',
+            letterSpacing: '0.04em',
             color: '#FFFFFF',
             fontWeight: 500,
             margin: 0,
@@ -186,7 +187,7 @@ function EquipCard({ card }: { card: Card }) {
             {slide.label}
           </p>
           {slide.sublabel && slide.src && (
-            <p style={{ fontSize: '10px', letterSpacing: '0.18em', color: '#555', margin: '3px 0 0' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '0.15em', color: '#555', margin: '2px 0 0' }}>
               {slide.sublabel}
             </p>
           )}
@@ -194,32 +195,32 @@ function EquipCard({ card }: { card: Card }) {
 
         {/* Dots + arrows */}
         {total > 1 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
             {/* Prev arrow */}
             <button
               onClick={prev}
               aria-label="Anterior"
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                padding: '4px', color: '#555', lineHeight: 1,
+                padding: '2px', color: '#555', lineHeight: 1,
                 display: 'flex', alignItems: 'center',
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6"/>
               </svg>
             </button>
 
             {/* Dot indicators */}
-            <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
               {card.slides.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
                   aria-label={`Slide ${i + 1}`}
                   style={{
-                    width: i === current ? '16px' : '6px',
-                    height: '6px',
+                    width: i === current ? '12px' : '5px',
+                    height: '5px',
                     borderRadius: '3px',
                     backgroundColor: i === current ? '#D40000' : '#333',
                     border: 'none',
@@ -238,11 +239,11 @@ function EquipCard({ card }: { card: Card }) {
               aria-label="Siguiente"
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                padding: '4px', color: '#555', lineHeight: 1,
+                padding: '2px', color: '#555', lineHeight: 1,
                 display: 'flex', alignItems: 'center',
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6"/>
               </svg>
             </button>
@@ -323,8 +324,8 @@ export default function Riders() {
           </h2>
 
           <div
-            className="grid grid-cols-1 md:grid-cols-2"
-            style={{ gap: 'clamp(8px, 1.5vh, 20px)' }}
+            className="grid grid-cols-2 md:grid-cols-4"
+            style={{ gap: 'clamp(6px, 1vh, 12px)' }}
           >
             {TECHNICAL_CARDS.map(card => (
               <EquipCard key={card.id} card={card} />
