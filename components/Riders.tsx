@@ -2,15 +2,51 @@
 import React, { useState, useEffect } from 'react';
 import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 
-const TECHNICAL_RIDER = [
-  { num: '01', item: '2× CDJ-3000 o equivalente (Pioneer DXJ-XP2 aceptado)' },
-  { num: '02', item: 'Pioneer DJM-900NXS2 o DJM-V10 (preferido)' },
-  { num: '03', item: 'Todos los canales calibrados y completamente funcionales' },
-  { num: '04', item: 'Salida XLR estéreo conectada al sistema de sala' },
-  { num: '05', item: 'Monitores: mínimo 2× monitores de suelo (mínimo 400W c/u)' },
-  { num: '06', item: 'Suministro eléctrico estable con protección de sobretensión' },
-  { num: '07', item: 'Iluminación de escenario bajo dirección técnica del local' },
-  { num: '08', item: 'Cabina accesible 30 min antes de la actuación para soundcheck' },
+const TECHNICAL_CARDS = [
+  {
+    id: 'player',
+    label: 'REPRODUCTOR DIGITAL',
+    spec: '3× CDJ-3000 O 3× CDJ-3000X',
+    images: [
+      { src: '/images/equipment/cdj3000.jpg', alt: 'Pioneer CDJ-3000' },
+      { src: '/images/equipment/cdj3000.jpg', alt: 'Pioneer CDJ-3000X' },
+    ],
+    items: [],
+  },
+  {
+    id: 'mixer',
+    label: 'MIXER',
+    spec: 'DJM-V10 — DJM-A9 — XONE:96',
+    images: [
+      { src: '/images/equipment/djmv10.jpg', alt: 'Pioneer DJM-V10' },
+      { src: '/images/equipment/djma9.jpg', alt: 'Pioneer DJM-A9' },
+      { src: '', alt: 'Allen & Heath XONE:96', label: 'XONE:96' },
+    ],
+    items: [],
+  },
+  {
+    id: 'booth',
+    label: 'BOOTH',
+    spec: '',
+    images: [],
+    items: [
+      'RETORNO / MONITORES DE SUELO',
+      'SUMINISTRO ELÉCTRICO ESTABLE',
+      'CABINA ACCESIBLE PARA SOUNDCHECK ANTES DE ACTUACIÓN',
+    ],
+  },
+  {
+    id: 'optional',
+    label: 'OPCIONAL',
+    spec: '',
+    images: [
+      { src: '/images/equipment/rmx1000.jpg', alt: 'Pioneer RMX-1000 / RMX Ignite' },
+    ],
+    items: [
+      '1× RMX-1000 / RMX IGNITE',
+      'SALIDAS DISPONIBLES PARA GRABACIÓN DESDE MIXER',
+    ],
+  },
 ];
 
 const HOSPITALITY_RIDER = [
@@ -28,6 +64,87 @@ const ROW_STYLE = {
   paddingTop: 'clamp(6px, 1.1vh, 18px)',
   paddingBottom: 'clamp(6px, 1.1vh, 18px)',
 } as const;
+
+function EquipCard({ card }: { card: typeof TECHNICAL_CARDS[0] }) {
+  return (
+    <div
+      style={{
+        border: '1px solid #1E1E1E',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 'clamp(16px, 2.5vh, 32px)',
+        gap: 'clamp(12px, 2vh, 24px)',
+      }}
+    >
+      {/* Header */}
+      <div>
+        <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#D40000', marginBottom: '8px' }}>
+          {card.label}
+        </p>
+        {card.spec && (
+          <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', letterSpacing: '0.05em', color: '#FFFFFF', lineHeight: 1.3 }}>
+            {card.spec}
+          </p>
+        )}
+        {card.items.length > 0 && (
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {card.items.map((item, i) => (
+              <li
+                key={i}
+                style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', letterSpacing: '0.04em', color: '#CCCCCC', lineHeight: 1.5, display: 'flex', gap: '10px', alignItems: 'flex-start' }}
+              >
+                <span style={{ color: '#D40000', flexShrink: 0, marginTop: '1px' }}>—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Images */}
+      {card.images.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            gap: '8px',
+            flex: 1,
+          }}
+        >
+          {card.images.map((img, i) => (
+            <div
+              key={i}
+              style={{
+                flex: 1,
+                backgroundColor: '#111111',
+                border: '1px solid #1E1E1E',
+                aspectRatio: '1 / 1',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              }}
+            >
+              {img.src ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                /* Styled text placeholder for XONE:96 (no image available) */
+                <p style={{ fontSize: 'clamp(10px, 1.3vw, 14px)', letterSpacing: '0.12em', color: '#555555', textAlign: 'center', padding: '8px' }}>
+                  {'label' in img ? img.label : img.alt}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Riders() {
   // Hospitality gate
@@ -98,21 +215,18 @@ export default function Riders() {
             <ScrambleOnView as="span" style={{ color: '#D40000' }}>RIDER</ScrambleOnView>
           </h2>
 
-          <div className="flex flex-col scroll-trigger animate--slide-in">
-            {TECHNICAL_RIDER.map(({ num, item }) => (
-              <div key={num} className="flex gap-6 border-b" style={{ borderColor: '#1E1E1E', ...ROW_STYLE }}>
-                <span style={{ fontSize: '11px', letterSpacing: '0.18em', color: '#D40000', flexShrink: 0, paddingTop: '3px', minWidth: '28px' }}>
-                  {num}
-                </span>
-                <span style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
-                  {item}
-                </span>
-              </div>
+          {/* 4 equipment cards — no scroll-trigger so they're visible after unlock */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2"
+            style={{ gap: 'clamp(8px, 1.5vh, 20px)' }}
+          >
+            {TECHNICAL_CARDS.map(card => (
+              <EquipCard key={card.id} card={card} />
             ))}
           </div>
 
           <div
-            className="flex justify-end border-t scroll-trigger animate--fade-in"
+            className="flex justify-end border-t"
             style={{ borderColor: '#1E1E1E', marginTop: 'clamp(10px, 1.8vh, 40px)', paddingTop: 'clamp(10px, 1.8vh, 32px)' }}
           >
             <a
@@ -144,7 +258,6 @@ export default function Riders() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 'clamp(16px, 3vh, 40px)',
-              // Mobile: solid black. Desktop: frosted glass blur
               backgroundColor: isMobile ? '#0A0A0A' : 'rgba(10, 10, 10, 0.55)',
               backdropFilter: isMobile ? 'none' : 'blur(14px)',
               WebkitBackdropFilter: isMobile ? 'none' : 'blur(14px)',
@@ -289,13 +402,11 @@ export default function Riders() {
                   aria-label={showPw ? 'Hide password' : 'Show password'}
                 >
                   {showPw ? (
-                    /* Eye open */
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                       <circle cx="12" cy="12" r="3"/>
                     </svg>
                   ) : (
-                    /* Eye off */
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
                       <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
@@ -311,7 +422,7 @@ export default function Riders() {
             </form>
           </div>
         ) : (
-          /* ── Hospitality content ── */
+          /* ── Hospitality content — no scroll-trigger so it's visible immediately ── */
           <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
             <h2
               style={{
