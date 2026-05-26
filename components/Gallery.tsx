@@ -58,15 +58,15 @@ export default function Gallery() {
   // Mobile: static 2-col grid, no parallax, no motion/react animation frame
   if (isMobile) return (
     <section id="gallery" style={{ backgroundColor: "#0A0A0A", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(16px,3vh,32px)", padding: "clamp(20px,4vh,64px) 24px" }}>
-      <a href="#" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
-        DOWNLOAD<br />CONTENT
-      </a>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", width: "100%" }}>
-        {FRAMES.slice(0, 6).map(({ obj }, i) => (
+        {FRAMES.slice(0, 4).map(({ obj }, i) => (
           <img key={i} src={IMG} alt="CLOPP live — press" onClick={() => setLightbox({ src: IMG, obj })}
             style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover", objectPosition: obj, cursor: "pointer" }} />
         ))}
       </div>
+      <a href="#" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
+        DOWNLOAD<br />CONTENT
+      </a>
       {lightbox && (
         <div onClick={() => setLightbox(null)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.88)", zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
           <div onClick={e => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", width: "100%" }}>
