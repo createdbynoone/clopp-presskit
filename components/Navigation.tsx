@@ -1,20 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { T } from '@/lib/translations';
 
-const links = ['ABOUT', 'MUSIC', 'GALLERY', 'RIDERS', 'BOOKING'];
-
-const MUSIC_SUB = [
-  { label: 'RELEASES', id: 'releases' },
-  { label: 'SESSIONS', id: 'sessions' },
-];
-
-const RIDERS_SUB = [
-  { label: 'TECHNICAL', id: 'technical-rider' },
-  { label: 'HOSPITALITY', id: 'hospitality-rider' },
-];
+const NAV_LINKS = ['ABOUT', 'MUSIC', 'GALLERY', 'RIDERS', 'BOOKING'];
 
 export default function Navigation() {
+  const { lang, toggle } = useLanguage();
+  const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
@@ -23,6 +17,15 @@ export default function Navigation() {
   const [mobileRidersOpen, setMobileRidersOpen] = useState(false);
   const musicRef = useRef<HTMLDivElement>(null);
   const ridersRef = useRef<HTMLDivElement>(null);
+
+  const MUSIC_SUB = [
+    { label: t.releases, id: 'releases' },
+    { label: t.sessions, id: 'sessions' },
+  ];
+  const RIDERS_SUB = [
+    { label: t.technical, id: 'technical-rider' },
+    { label: t.hospitality, id: 'hospitality-rider' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -79,9 +82,30 @@ export default function Navigation() {
           backdropFilter: 'none',
         }}
       >
+        {/* ESP / ENG toggle — top right */}
+        <button
+          onClick={toggle}
+          className="absolute right-10 hidden md:flex items-center"
+          style={{
+            background: 'none',
+            border: '1px solid',
+            borderColor: scrolled ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)',
+            color: scrolled ? '#000000' : '#FFFFFF',
+            fontSize: '10px',
+            letterSpacing: '0.18em',
+            padding: '4px 10px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = scrolled ? '#000' : '#fff'; (e.currentTarget as HTMLButtonElement).style.opacity = '0.7'; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = scrolled ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)'; (e.currentTarget as HTMLButtonElement).style.opacity = '1'; }}
+        >
+          {lang === 'es' ? 'ENG' : 'ESP'}
+        </button>
+
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => {
+          {NAV_LINKS.map((link) => {
             if (link === 'MUSIC') return (
               <div
                 key={link}
@@ -160,6 +184,15 @@ export default function Navigation() {
           })}
         </div>
 
+        {/* Mobile ESP/ENG toggle */}
+        <button
+          onClick={toggle}
+          className="md:hidden absolute left-6"
+          style={{ background: 'none', border: '1px solid', borderColor: scrolled ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)', color: scrolled ? '#000' : '#fff', fontSize: '9px', letterSpacing: '0.15em', padding: '3px 8px', cursor: 'pointer' }}
+        >
+          {lang === 'es' ? 'ENG' : 'ESP'}
+        </button>
+
         {/* Mobile hamburger */}
         <div className="md:hidden absolute right-6">
           <button
@@ -191,10 +224,10 @@ export default function Navigation() {
           aria-label="Close menu"
           style={{ fontSize: '11px', letterSpacing: '0.18em', fontWeight: 500 }}
         >
-          CLOSE
+          {t.close}
         </button>
         <div className="flex flex-col gap-8">
-          {links.map((link, i) => {
+          {NAV_LINKS.map((link, i) => {
             if (link === 'MUSIC') return (
               <div key={link}>
                 <button

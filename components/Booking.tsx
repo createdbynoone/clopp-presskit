@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { ScrambleOnView } from '@/components/ui/scramble-on-view';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { T } from '@/lib/translations';
 
 const SOCIALS = [
   { label: 'IG', href: '#' },
@@ -10,6 +12,8 @@ const SOCIALS = [
 ];
 
 export default function Booking() {
+  const { lang } = useLanguage();
+  const t = T[lang].booking;
   const [form, setForm] = useState({ name: '', company: '', date: '', city: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sent'>('idle');
 
@@ -43,9 +47,9 @@ export default function Booking() {
                 marginBottom: 'clamp(12px, 2.5vh, 40px)',
               }}
             >
-              <ScrambleOnView as="span">{"LET'S"}</ScrambleOnView>
+              <ScrambleOnView as="span">{t.title1}</ScrambleOnView>
               <br />
-              <ScrambleOnView as="span" style={{ color: '#D40000' }}>TALK</ScrambleOnView>
+              <ScrambleOnView as="span" style={{ color: '#D40000' }}>{t.title2}</ScrambleOnView>
             </h2>
 
             <p
@@ -59,8 +63,7 @@ export default function Booking() {
                 maxWidth: '360px',
               }}
             >
-              For bookings, festival slots, and collaborations. Response within 48 hours.
-              Include event date, venue capacity and expected fee range.
+              {t.description}
             </p>
 
             <a
@@ -77,32 +80,32 @@ export default function Booking() {
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '300px', gap: '16px' }}>
                 <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#D40000', marginBottom: '8px' }}>■</div>
-                <div style={{ fontSize: 'clamp(20px, 4vw, 44px)', letterSpacing: '-0.01em' }}>MESSAGE SENT</div>
+                <div style={{ fontSize: 'clamp(20px, 4vw, 44px)', letterSpacing: '-0.01em' }}>{t.sent}</div>
                 <p style={{ fontSize: '14px', letterSpacing: '0.08em', color: '#888888', textTransform: 'none' }}>
-                  Your mail client should have opened. We'll be in touch within 48 hours.
+                  {t.sentMsg}
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
                   className="mt-4 border py-2 px-6 hover:bg-white hover:text-black transition-all duration-200"
                   style={{ borderColor: '#3A3A3A', fontSize: '13px', letterSpacing: '0.15em' }}
                 >
-                  SEND ANOTHER
+                  {t.sendAnother}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-0">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
-                  <input type="text" name="name" placeholder="NAME *" required value={form.name} onChange={handleChange} className="form-input" />
-                  <input type="text" name="company" placeholder="COMPANY / PROMOTER" value={form.company} onChange={handleChange} className="form-input" />
+                  <input type="text" name="name" placeholder={t.name} required value={form.name} onChange={handleChange} className="form-input" />
+                  <input type="text" name="company" placeholder={t.company} value={form.company} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 mt-2">
-                  <input type="text" name="date" placeholder="EVENT DATE" value={form.date} onChange={handleChange} className="form-input" />
-                  <input type="text" name="city" placeholder="CITY / VENUE" value={form.city} onChange={handleChange} className="form-input" />
+                  <input type="text" name="date" placeholder={t.date} value={form.date} onChange={handleChange} className="form-input" />
+                  <input type="text" name="city" placeholder={t.city} value={form.city} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="mt-2">
                   <textarea
                     name="message"
-                    placeholder="MESSAGE — EVENT DETAILS, CAPACITY, FEE RANGE *"
+                    placeholder={t.message}
                     required
                     value={form.message}
                     onChange={handleChange}
@@ -118,7 +121,7 @@ export default function Booking() {
                     className="flex items-center gap-4 border py-3 px-8 hover:bg-[#D40000] hover:border-[#D40000] hover:text-white transition-all duration-300 group"
                     style={{ borderColor: '#FFFFFF', fontSize: '13px', letterSpacing: '0.15em' }}
                   >
-                    SEND INQUIRY
+                    {t.send}
                     <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
                   </button>
                 </div>
@@ -148,12 +151,12 @@ export default function Booking() {
               CLOPP
             </div>
             <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(0,0,0,0.5)' }}>
-              © {new Date().getFullYear()} — ALL RIGHTS RESERVED
+              © {new Date().getFullYear()} — {t.rights}
             </div>
           </div>
 
           <div className="hidden md:block" style={{ fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.4)' }}>
-            ELECTRONIC MUSIC ARTIST
+            {t.artist}
           </div>
 
           <div className="flex items-center gap-6">

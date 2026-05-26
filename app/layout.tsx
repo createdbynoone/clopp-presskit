@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { ScrollAnimationsInit } from "@/components/ui/scroll-animations-init";
 import { FullpageScroll } from "@/components/ui/fullpage-scroll";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -29,9 +30,11 @@ export default function RootLayout({
         <link rel="preload" href="/images/hero-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" />
       </head>
       <body>
-        <ScrollAnimationsInit />
-        <FullpageScroll />
-        {children}
+        <LanguageProvider>
+          <ScrollAnimationsInit />
+          <FullpageScroll />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
