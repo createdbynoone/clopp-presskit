@@ -5,6 +5,8 @@ import { motion, stagger, useAnimate } from "motion/react"
 import Floating, { FloatingElement } from "@/components/ui/parallax-floating"
 import { ScrambleOnView } from "@/components/ui/scramble-on-view"
 
+const isMobile = () => typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches
+
 const IMG = "/images/hero.webp"
 
 const DOWNLOAD_STYLE: React.CSSProperties = {
@@ -47,6 +49,30 @@ export default function Gallery() {
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
   }, [lightbox])
+
+  // Mobile: static 2-col grid, no parallax, no motion/react animation frame
+  if (isMobile()) return (
+    <section id="gallery" style={{ backgroundColor: "#0A0A0A", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(16px,3vh,32px)", padding: "clamp(20px,4vh,64px) 24px" }}>
+      <a href="#" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
+        DOWNLOAD<br />CONTENT
+      </a>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", width: "100%" }}>
+        {FRAMES.slice(0, 6).map(({ obj }, i) => (
+          <img key={i} src={IMG} alt="CLOPP live — press" onClick={() => setLightbox({ src: IMG, obj })}
+            style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover", objectPosition: obj, cursor: "pointer" }} />
+        ))}
+      </div>
+      {lightbox && (
+        <div onClick={() => setLightbox(null)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.88)", zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+          <div onClick={e => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", width: "100%" }}>
+            <button onClick={() => setLightbox(null)} style={{ alignSelf: "flex-end", background: "none", border: "none", color: "#888", fontSize: "11px", letterSpacing: "0.18em", cursor: "pointer" }}>CLOSE ✕</button>
+            <img src={lightbox.src} alt="CLOPP press" style={{ width: "100%", maxHeight: "70vh", objectFit: "cover", objectPosition: lightbox.obj }} />
+            <a href={lightbox.src} download="CLOPP-press.jpg" onClick={e => e.stopPropagation()} style={{ fontSize: "11px", letterSpacing: "0.18em", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", padding: "8px 24px", textDecoration: "none" }}>DOWNLOAD</a>
+          </div>
+        </div>
+      )}
+    </section>
+  )
 
   return (
     <section

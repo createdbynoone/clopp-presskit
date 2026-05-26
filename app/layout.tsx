@@ -25,7 +25,8 @@ export default function RootLayout({
     <html lang="en" className={jetbrainsMono.variable}>
       <head>
         <link rel="preload" href="/fonts/NeueHaasDisplayMedium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/images/hero.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/images/hero.webp" as="image" type="image/webp" media="(min-width: 769px)" />
+        <link rel="preload" href="/images/hero-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" />
       </head>
       <body>
         <ScrollAnimationsInit />

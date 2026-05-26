@@ -28,6 +28,22 @@
 }
 
 /* ──────────────────────────────────────────────
+   HERO BACKGROUND — responsive image
+   ────────────────────────────────────────────── */
+.hero-bg {
+  background-image: url('/images/hero.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .hero-bg {
+    background-image: url('/images/hero-mobile.webp');
+  }
+}
+
+/* ──────────────────────────────────────────────
    RESET & BASE
    ────────────────────────────────────────────── */
 *, *::before, *::after {

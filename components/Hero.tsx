@@ -20,18 +20,10 @@ export default function Hero() {
       className="relative w-full flex flex-col overflow-hidden"
       style={{ height: "100dvh", minHeight: "600px" }}
     >
-      {/* Background photo */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url(/images/hero.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+      {/* Background photo — mobile gets 22KB version, desktop 473KB */}
+      <div className="hero-bg absolute inset-0" />
 
-      {/* Morphing text banner — always animating */}
+      {/* Morphing text banner */}
       <div className="absolute inset-0">
         <MorphingText
           texts={BANNER_TEXTS}

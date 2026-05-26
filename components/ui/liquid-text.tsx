@@ -36,6 +36,13 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
   useEffect(() => {
     if (!texts.length) return;
 
+    // On touch/mobile skip the blur-filter animation loop — too GPU-heavy
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      if (text2Ref.current) { text2Ref.current.textContent = texts[0]; text2Ref.current.style.opacity = '1'; }
+      if (text1Ref.current) text1Ref.current.style.opacity = '0';
+      return;
+    }
+
     indexRef.current = texts.length - 1;
     morphRef.current = 0;
     cooldownRef.current = COOLDOWN_TIME;
