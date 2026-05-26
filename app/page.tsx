@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Navigation />
 
-      <main>
+      <main style={{ touchAction: 'pan-x pinch-zoom' }}>
         <Hero />
         <About />
         <Music />

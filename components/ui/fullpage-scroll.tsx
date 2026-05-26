@@ -6,7 +6,6 @@ export function FullpageScroll() {
   const idx = useRef(0)
 
   useEffect(() => {
-    // Always start at the top — disable browser scroll restoration
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
     window.scrollTo(0, 0)
 
@@ -22,7 +21,6 @@ export function FullpageScroll() {
       setTimeout(() => { locked.current = false }, 900)
     }
 
-    // Sync idx when scrolling via nav links or browser back/forward
     const syncIdx = () => {
       if (locked.current) return
       const secs = getSections()
@@ -43,7 +41,6 @@ export function FullpageScroll() {
 
       const vh = window.innerHeight
       const sy = window.scrollY
-      // Section content taller than viewport — only intercept at boundaries
       const fits = cur.offsetHeight <= vh + 60
       const atBottom = sy + vh >= cur.offsetTop + cur.offsetHeight - 50
       const atTop = sy <= cur.offsetTop + 50
@@ -57,25 +54,38 @@ export function FullpageScroll() {
       }
     }
 
-    // Touch support
-    let touchY = 0
-    const onTouchStart = (e: TouchEvent) => { touchY = e.touches[0].clientY }
+    // ── Touch: record start position and X for scroll vs swipe detection
+    let touchStartY = 0
+    let touchStartX = 0
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY
+      touchStartX = e.touches[0].clientX
+    }
+
+    // Prevent native scroll while a vertical swipe is in progress
+    const onTouchMove = (e: TouchEvent) => {
+      const dy = Math.abs(e.touches[0].clientY - touchStartY)
+      const dx = Math.abs(e.touches[0].clientX - touchStartX)
+      // Only block vertical swipes (not horizontal — e.g. password input)
+      if (dy > dx) e.preventDefault()
+    }
+
     const onTouchEnd = (e: TouchEvent) => {
-      const delta = touchY - e.changedTouches[0].clientY
-      if (Math.abs(delta) < 60) return
+      const deltaY = touchStartY - e.changedTouches[0].clientY
+      const deltaX = Math.abs(touchStartX - e.changedTouches[0].clientX)
+      // Ignore mostly-horizontal gestures (scrolling inside inputs, etc.)
+      if (Math.abs(deltaY) < 40 || deltaX > Math.abs(deltaY)) return
+      if (locked.current) return
+
       const secs = getSections()
       const cur = secs[idx.current]
       if (!cur) return
-      const vh = window.innerHeight
-      const sy = window.scrollY
-      const fits = cur.offsetHeight <= vh + 60
-      const atBottom = sy + vh >= cur.offsetTop + cur.offsetHeight - 50
-      const atTop = sy <= cur.offsetTop + 50
-      if (delta > 0 && (fits || atBottom)) goTo(idx.current + 1)
-      else if (delta < 0 && (fits || atTop)) goTo(idx.current - 1)
+
+      if (deltaY > 0) goTo(idx.current + 1)
+      else goTo(idx.current - 1)
     }
 
-    // Keyboard navigation
     const onKey = (e: KeyboardEvent) => {
       if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
         e.preventDefault(); goTo(idx.current + 1)
@@ -87,6 +97,7 @@ export function FullpageScroll() {
     window.addEventListener('wheel', onWheel, { passive: false })
     window.addEventListener('scroll', syncIdx, { passive: true })
     window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: false })
     window.addEventListener('touchend', onTouchEnd, { passive: true })
     window.addEventListener('keydown', onKey)
 
@@ -94,6 +105,7 @@ export function FullpageScroll() {
       window.removeEventListener('wheel', onWheel)
       window.removeEventListener('scroll', syncIdx)
       window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
       window.removeEventListener('touchend', onTouchEnd)
       window.removeEventListener('keydown', onKey)
     }
