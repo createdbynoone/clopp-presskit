@@ -536,3 +536,18 @@ nav[data-scrolled="true"] .nav-link {
 .mobile-menu.open {
   transform: translateX(0);
 }
+
+
+/* ──────────────────────────────────────────────
+   PASSWORD SHAKE
+   ────────────────────────────────────────────── */
+@keyframes pw-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-6px); }
+  80%       { transform: translateX(6px); }
+}
+.pw-shake {
+  animation: pw-shake 0.45s ease;
+}
