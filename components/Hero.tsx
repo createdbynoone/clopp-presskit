@@ -1,29 +1,17 @@
 "use client";
 
 import { useRef } from "react";
-import { MorphingText } from "@/components/ui/liquid-text";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { T } from "@/lib/translations";
-
-const BANNER_TEXTS = ["CLOPP", "MEDIA", "KIT"];
-
-const TEXT_STYLE: React.CSSProperties = {
-  fontSize: "clamp(80px, 18vw, 240px)",
-  lineHeight: 0.85,
-  letterSpacing: "-0.02em",
-  color: "#FFFFFF",
-  fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",
-  fontWeight: 500,
-  textTransform: "uppercase" as const,
-};
 
 export default function Hero() {
   const { lang } = useLanguage();
   const t = T[lang].hero;
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
-  const handleVideoEnded = () => {
-    const v = videoRef.current;
+  const makeLoopHandler = (ref: React.RefObject<HTMLVideoElement>) => () => {
+    const v = ref.current;
     if (!v) return;
     v.currentTime = 0;
     v.play();
@@ -36,18 +24,26 @@ export default function Hero() {
     >
       <div className="hero-bg absolute inset-0" />
 
-      {/* Desktop: morphing text */}
-      <div className="hidden md:block absolute inset-0">
-        <MorphingText texts={BANNER_TEXTS} textStyle={TEXT_STYLE} />
-      </div>
-
-      {/* Mobile: video — mix-blend-mode:screen fakes alpha (black=transparent, white=white) */}
+      {/* Desktop: horizontal video loop */}
       <video
-        ref={videoRef}
+        ref={desktopVideoRef}
         autoPlay
         muted
         playsInline
-        onEnded={handleVideoEnded}
+        onEnded={makeLoopHandler(desktopVideoRef)}
+        className="hidden md:block absolute inset-0 w-full h-full"
+        style={{ objectFit: "cover", mixBlendMode: "screen" }}
+      >
+        <source src="/videos/banner-desktop.webm" type="video/webm" />
+      </video>
+
+      {/* Mobile: vertical video loop */}
+      <video
+        ref={mobileVideoRef}
+        autoPlay
+        muted
+        playsInline
+        onEnded={makeLoopHandler(mobileVideoRef)}
         className="md:hidden absolute inset-0 w-full h-full"
         style={{ objectFit: "cover", mixBlendMode: "screen" }}
       >
