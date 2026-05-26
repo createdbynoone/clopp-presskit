@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 
 const TECHNICAL_RIDER = [
@@ -30,10 +30,22 @@ const ROW_STYLE = {
 } as const;
 
 export default function Riders() {
+  // Hospitality gate
   const [pw, setPw] = useState('');
   const [showPw, setShowPw] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const [shake, setShake] = useState(false);
+
+  // Technical gate
+  const [pwT, setPwT] = useState('');
+  const [showPwT, setShowPwT] = useState(false);
+  const [unlockedT, setUnlockedT] = useState(false);
+  const [shakeT, setShakeT] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+  }, []);
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,6 +55,17 @@ export default function Riders() {
       setShake(true);
       setPw('');
       setTimeout(() => setShake(false), 500);
+    }
+  };
+
+  const handleUnlockT = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pwT === 'clopp00') {
+      setUnlockedT(true);
+    } else {
+      setShakeT(true);
+      setPwT('');
+      setTimeout(() => setShakeT(false), 500);
     }
   };
 
@@ -56,6 +79,8 @@ export default function Riders() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: 'clamp(20px, 4vh, 64px) 0',
+          position: 'relative',
+          overflow: 'hidden',
         }}
       >
         <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
@@ -107,6 +132,95 @@ export default function Riders() {
             </a>
           </div>
         </div>
+
+        {/* ── Technical password overlay ── */}
+        {!unlockedT && (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 'clamp(16px, 3vh, 40px)',
+              // Mobile: solid black. Desktop: frosted glass blur
+              backgroundColor: isMobile ? '#0A0A0A' : 'rgba(10, 10, 10, 0.55)',
+              backdropFilter: isMobile ? 'none' : 'blur(14px)',
+              WebkitBackdropFilter: isMobile ? 'none' : 'blur(14px)',
+            }}
+          >
+            <h2
+              style={{
+                fontSize: 'clamp(48px, 8vw, 110px)',
+                lineHeight: 0.9,
+                letterSpacing: '-0.02em',
+                color: '#FFFFFF',
+                textAlign: 'center',
+              }}
+            >
+              PASSWORD
+            </h2>
+
+            <form
+              onSubmit={handleUnlockT}
+              style={{ width: '100%', maxWidth: '660px', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(12px, 2vh, 24px)' }}
+            >
+              <div
+                className={shakeT ? 'pw-shake' : ''}
+                style={{
+                  width: '100%',
+                  position: 'relative',
+                  border: '2px solid #FFFFFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'transparent',
+                }}
+              >
+                <input
+                  type={showPwT ? 'text' : 'password'}
+                  value={pwT}
+                  onChange={e => setPwT(e.target.value)}
+                  autoComplete="off"
+                  style={{
+                    flex: 1,
+                    background: 'transparent',
+                    border: 'none',
+                    outline: 'none',
+                    padding: 'clamp(18px, 3vh, 32px) 24px',
+                    fontSize: 'clamp(18px, 2.5vw, 28px)',
+                    letterSpacing: '0.12em',
+                    color: '#FFFFFF',
+                    caretColor: '#D40000',
+                    fontFamily: 'inherit',
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPwT(v => !v)}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 24px', display: 'flex', alignItems: 'center', flexShrink: 0 }}
+                  aria-label={showPwT ? 'Hide password' : 'Show password'}
+                >
+                  {showPwT ? (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  ) : (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                      <line x1="1" y1="1" x2="23" y2="23"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+
+              <p style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#888888', textAlign: 'center' }}>
+                CONTRASEÑA PARA MOSTRAR TECHNICAL RIDER
+              </p>
+            </form>
+          </div>
+        )}
       </section>
 
       {/* ── HOSPITALITY RIDER — red background, black text ── */}
