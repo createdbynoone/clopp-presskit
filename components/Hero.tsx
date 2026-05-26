@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { MorphingText } from "@/components/ui/liquid-text";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { T } from "@/lib/translations";
@@ -19,6 +20,14 @@ const TEXT_STYLE: React.CSSProperties = {
 export default function Hero() {
   const { lang } = useLanguage();
   const t = T[lang].hero;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoEnded = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play();
+  };
 
   return (
     <section
@@ -32,14 +41,15 @@ export default function Hero() {
         <MorphingText texts={BANNER_TEXTS} textStyle={TEXT_STYLE} />
       </div>
 
-      {/* Mobile: video loop */}
+      {/* Mobile: video — mix-blend-mode:screen fakes alpha (black=transparent, white=white) */}
       <video
+        ref={videoRef}
         autoPlay
-        loop
         muted
         playsInline
+        onEnded={handleVideoEnded}
         className="md:hidden absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", mixBlendMode: "screen" }}
       >
         <source src="/videos/banner-mobile.webm" type="video/webm" />
       </video>
