@@ -133,14 +133,21 @@ img {
   }
 }
 
-/* Mobile: disable scroll-reveal so content appears instantly after fullpage jump */
+/* Mobile: lighter/faster scroll-reveal, and disable expensive SVG morph filter */
 @media (hover: none) and (pointer: coarse) {
   .scroll-trigger.animate--slide-in,
-  .scroll-trigger.animate--rolling-fade-in,
+  .scroll-trigger.animate--rolling-fade-in {
+    transform: translateY(24px);
+    transition:
+      opacity  0.4s cubic-bezier(0, 0, 0.3, 1),
+      transform 0.4s cubic-bezier(0, 0, 0.3, 1);
+  }
   .scroll-trigger.animate--fade-in {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+    transition: opacity 0.4s cubic-bezier(0, 0, 0.3, 1);
+  }
+  /* Remove the liquid SVG filter — crossfade runs instead (set by JS) */
+  .morph-container {
+    filter: none !important;
   }
 }
 
