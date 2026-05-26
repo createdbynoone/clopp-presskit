@@ -142,7 +142,7 @@ function CarouselCard({ card }: { card: CarouselCard }) {
               <img
                 src={s.src}
                 alt={s.label}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }}
                 draggable={false}
               />
             </div>
