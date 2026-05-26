@@ -15,12 +15,6 @@ const SC_SETS = [
   { title: 'PANORAMA BAR CAST', duration: '1H 30M', year: '2023' },
 ];
 
-const H2 = {
-  fontSize: 'clamp(44px, 6.5vw, 88px)',
-  lineHeight: 0.9,
-  letterSpacing: '-0.02em',
-  marginBottom: '64px',
-} as const;
 
 export default function Music() {
   return (
@@ -30,13 +24,9 @@ export default function Music() {
         <MusicPortfolio releases={RELEASES_DATA} />
       </section>
 
-      {/* ── SESSIONS — separate full-screen section ── */}
-      <section id="sessions" style={{ padding: 'clamp(80px, 10vw, 140px) 0' }}>
-        <div className="px-6 md:px-10 max-w-screen-2xl mx-auto">
-
-          <h2 style={H2}>
-            <ScrambleOnView as="span">SESSIONS</ScrambleOnView>
-          </h2>
+      {/* ── SESSIONS — fullscreen, no title, content centered ── */}
+      <section id="sessions" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(48px, 6vw, 80px) 0' }}>
+        <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
 
           {/* YouTube placeholder */}
           <div
@@ -58,7 +48,7 @@ export default function Music() {
           </div>
 
           {/* SoundCloud sets */}
-          <div style={{ marginTop: '48px', marginBottom: '48px' }}>
+          <div style={{ marginTop: '32px' }}>
             {SC_SETS.map(({ title, duration, year }) => (
               <div
                 key={title}
