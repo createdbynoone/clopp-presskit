@@ -28,6 +28,11 @@ export default function Music() {
       <section id="sessions" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(48px, 6vw, 80px) 0' }}>
         <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
 
+          {/* Title */}
+          <div style={{ fontSize: 'clamp(11px, 1vw, 13px)', letterSpacing: '0.22em', color: '#3A3A3A', marginBottom: '20px' }}>
+            SESSIONS
+          </div>
+
           {/* YouTube placeholder */}
           <div
             className="relative w-full border"
