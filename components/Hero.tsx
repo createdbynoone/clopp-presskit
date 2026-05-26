@@ -32,7 +32,7 @@ export default function Hero() {
         playsInline
         onEnded={makeLoopHandler(desktopVideoRef)}
         className="hidden md:block absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover", mixBlendMode: "screen" }}
+        style={{ objectFit: "contain", mixBlendMode: "screen" }}
       >
         <source src="/videos/banner-desktop.webm" type="video/webm" />
       </video>
