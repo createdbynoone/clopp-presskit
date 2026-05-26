@@ -113,8 +113,8 @@ export default function Booking() {
                   />
                 </div>
                 <div
-                  className="flex items-center justify-end border-t"
-                  style={{ borderColor: '#1E1E1E', marginTop: 'clamp(12px, 2vh, 40px)', paddingTop: 'clamp(12px, 2vh, 24px)' }}
+                  className="flex items-center justify-end"
+                  style={{ marginTop: 'clamp(12px, 2vh, 40px)' }}
                 >
                   <button
                     type="submit"

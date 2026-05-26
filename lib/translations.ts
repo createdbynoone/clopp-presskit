@@ -57,8 +57,8 @@ export const T = {
       ],
     },
     booking: {
-      title1: 'HABLEMOS',
-      title2: 'HABLEMOS',
+      title1: 'CONTACT',
+      title2: 'MANAGEMENT',
       description: 'Para bookings, festivales y colaboraciones. Respuesta en 48 horas. Incluye fecha del evento, aforo del venue y rango de caché.',
       name: 'NOMBRE *',
       company: 'EMPRESA / PROMOTOR',
@@ -132,8 +132,8 @@ export const T = {
       ],
     },
     booking: {
-      title1: "LET'S",
-      title2: 'TALK',
+      title1: 'CONTACT',
+      title2: 'MANAGEMENT',
       description: 'For bookings, festival slots, and collaborations. Response within 48 hours. Include event date, venue capacity and expected fee range.',
       name: 'NAME *',
       company: 'COMPANY / PROMOTER',
