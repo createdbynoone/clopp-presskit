@@ -55,7 +55,7 @@ export default function Hero() {
       </video>
 
       {/* Scroll indicator — all screens */}
-      <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-3 pointer-events-none">
+      <div className="absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center gap-3 pointer-events-none">
         <span
           style={{
             fontSize: "10px",
