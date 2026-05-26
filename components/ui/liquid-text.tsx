@@ -115,10 +115,9 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
           </filter>
         </defs>
       </svg>
-      {/* contain: layout paint limits repaint scope to this element */}
       <div
         className={`relative w-full h-full ${className} morph-container`}
-        style={{ filter: "url(#morph-liquid) blur(0.6px)", contain: "layout paint" }}
+        style={{ filter: "url(#morph-liquid) blur(0.6px)" }}
       >
         {/* will-change promotes spans to GPU layers — blur runs on compositor */}
         <span
