@@ -6,7 +6,7 @@ import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -23,6 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={jetbrainsMono.variable}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/NeueHaasDisplayMedium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <ScrollAnimationsInit />
         <FullpageScroll />
