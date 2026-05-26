@@ -287,6 +287,17 @@ nav[data-scrolled="true"] .nav-link {
   border-bottom-color: #D40000;
 }
 
+.form-input--onred {
+  color: #000000;
+  border-bottom-color: rgba(0,0,0,0.35);
+}
+.form-input--onred::placeholder {
+  color: rgba(0,0,0,0.45);
+}
+.form-input--onred:focus {
+  border-bottom-color: #000000;
+}
+
 .form-textarea {
   resize: none;
   min-height: clamp(56px, 9vh, 120px);

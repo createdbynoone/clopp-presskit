@@ -6,7 +6,6 @@ import About from '@/components/About';
 // Code-split everything below the fold
 const Music   = dynamic(() => import('@/components/Music'));
 const Gallery = dynamic(() => import('@/components/Gallery'));
-const Riders  = dynamic(() => import('@/components/Riders'));
 const Booking = dynamic(() => import('@/components/Booking'));
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
         <About />
         <Music />
         <Gallery />
-        <Riders />
         <Booking />
       </main>
     </>

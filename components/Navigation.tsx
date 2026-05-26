@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { T } from '@/lib/translations';
 
@@ -9,6 +10,7 @@ const NAV_LINKS = ['ABOUT', 'MUSIC', 'GALLERY', 'RIDERS', 'BOOKING'];
 export default function Navigation() {
   const { lang, toggle } = useLanguage();
   const t = T[lang].nav;
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
@@ -23,8 +25,8 @@ export default function Navigation() {
     { label: t.sessions, id: 'sessions' },
   ];
   const RIDERS_SUB = [
-    { label: t.technical, id: 'technical-rider' },
-    { label: t.hospitality, id: 'hospitality-rider' },
+    { label: t.technical, id: 'technical-rider', href: '/riders#technical-rider' },
+    { label: t.hospitality, id: 'hospitality-rider', href: '/riders#hospitality-rider' },
   ];
 
   useEffect(() => {
@@ -45,6 +47,12 @@ export default function Navigation() {
     setTimeout(() => {
       document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
     }, 300);
+  };
+
+  const handleRiderClick = (href: string) => {
+    setMenuOpen(false);
+    setRidersOpen(false);
+    router.push(href);
   };
 
   const dropdownStyle = (open: boolean) => ({
@@ -148,17 +156,17 @@ export default function Navigation() {
                 onMouseLeave={() => setRidersOpen(false)}
               >
                 <button
-                  onClick={() => handleNavClick('technical-rider')}
+                  onClick={() => router.push('/riders')}
                   className="nav-link bg-transparent border-none cursor-pointer"
                 >
                   {link}
                 </button>
                 <div style={dropdownStyle(ridersOpen)}>
                   <div style={dropdownInnerStyle(ridersOpen)}>
-                    {RIDERS_SUB.map(({ label, id }) => (
+                    {RIDERS_SUB.map(({ label, id, href }) => (
                       <button
                         key={id}
-                        onClick={() => handleNavClick(id)}
+                        onClick={() => handleRiderClick(href)}
                         className="block w-full text-left bg-transparent border-none cursor-pointer px-5 py-3 transition-colors duration-150"
                         style={subBtnStyle}
                         onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#D40000'; }}
@@ -262,8 +270,8 @@ export default function Navigation() {
                   <span style={{ fontSize: '16px', transform: mobileRidersOpen ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s ease', display: 'inline-block' }}>›</span>
                 </button>
                 <div style={{ maxHeight: mobileRidersOpen ? '120px' : '0px', overflow: 'hidden', transition: 'max-height 0.3s ease', paddingLeft: '8px' }}>
-                  {RIDERS_SUB.map(({ label, id }) => (
-                    <button key={id} onClick={() => handleNavClick(id)}
+                  {RIDERS_SUB.map(({ label, id, href }) => (
+                    <button key={id} onClick={() => handleRiderClick(href)}
                       className="block text-left bg-transparent border-none cursor-pointer text-[#888888] hover:text-[#D40000] transition-colors duration-200"
                       style={{ fontSize: 'clamp(18px, 5vw, 28px)', fontWeight: 500, letterSpacing: '0.12em', paddingTop: '8px', paddingBottom: '4px' }}
                     >
