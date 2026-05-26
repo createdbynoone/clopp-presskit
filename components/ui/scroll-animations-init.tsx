@@ -21,7 +21,16 @@ export function ScrollAnimationsInit() {
       { rootMargin: '0px 0px -80px 0px', threshold: 0 }
     )
 
-    document.querySelectorAll('.scroll-trigger').forEach(el => observer.observe(el))
+    const els = document.querySelectorAll('.scroll-trigger')
+    els.forEach(el => {
+      const rect = el.getBoundingClientRect()
+      // Already fully or partially in view — show immediately without waiting for observer
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('scroll-trigger--passed')
+      } else {
+        observer.observe(el)
+      }
+    })
 
     return () => observer.disconnect()
   }, [pathname])
