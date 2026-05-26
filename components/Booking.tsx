@@ -2,6 +2,13 @@
 import React, { useState } from 'react';
 import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 
+const SOCIALS = [
+  { label: 'IG', href: '#' },
+  { label: 'SC', href: '#' },
+  { label: 'RA', href: '#' },
+  { label: 'BC', href: '#' },
+];
+
 export default function Booking() {
   const [form, setForm] = useState({ name: '', company: '', date: '', city: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sent'>('idle');
@@ -18,9 +25,12 @@ export default function Booking() {
   };
 
   return (
-    <section id="booking" style={{ padding: 'clamp(80px, 10vw, 140px) 0' }}>
-      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto">
-
+    <section
+      id="booking"
+      style={{ display: 'flex', flexDirection: 'column', paddingTop: 'clamp(80px, 10vw, 140px)' }}
+    >
+      {/* ── Main booking content ── */}
+      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full" style={{ flex: 1, paddingBottom: 'clamp(60px, 8vw, 100px)' }}>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
 
           {/* Left — email + info */}
@@ -53,7 +63,6 @@ export default function Booking() {
               Include event date, venue capacity and expected fee range.
             </p>
 
-            {/* Email prominent */}
             <div style={{ marginBottom: '40px' }}>
               <a
                 href="mailto:info@cloppmusic.com"
@@ -64,14 +73,13 @@ export default function Booking() {
               </a>
             </div>
 
-            {/* Info block */}
             <div className="flex flex-col gap-0">
               {[
                 { label: 'MANAGEMENT', value: 'SELF-MANAGED' },
                 { label: 'BASE', value: 'BARCELONA, SPAIN' },
                 { label: 'TRAVEL', value: 'WORLDWIDE' },
                 { label: 'RESPONSE', value: '48H MAX' },
-              ].map(({ label, value }, i) => (
+              ].map(({ label, value }) => (
                 <div key={label} className="flex items-center gap-8 py-4 border-b" style={{ borderColor: '#1E1E1E' }}>
                   <ScrambleOnView as="span" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888', minWidth: '120px' }}>
                     {label}
@@ -89,9 +97,7 @@ export default function Booking() {
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '400px', gap: '16px' }}>
                 <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#D40000', marginBottom: '8px' }}>■</div>
-                <div style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.01em' }}>
-                  MESSAGE SENT
-                </div>
+                <div style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.01em' }}>MESSAGE SENT</div>
                 <p style={{ fontSize: '15px', letterSpacing: '0.08em', color: '#888888', textTransform: 'none' }}>
                   Your mail client should have opened. We'll be in touch within 48 hours.
                 </p>
@@ -138,6 +144,55 @@ export default function Booking() {
           </div>
         </div>
       </div>
+
+      {/* ── Footer bar — integrated at bottom of this section ── */}
+      <footer style={{ backgroundColor: '#D40000', marginTop: 'auto' }}>
+        <div
+          className="px-6 md:px-10 max-w-screen-2xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          style={{ padding: '28px 40px' }}
+        >
+          {/* Left */}
+          <div>
+            <div
+              style={{
+                fontFamily: "'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif",
+                fontSize: 'clamp(22px, 3.5vw, 36px)',
+                lineHeight: 1,
+                letterSpacing: '-0.01em',
+                marginBottom: '6px',
+                color: '#000000',
+              }}
+            >
+              CLOPP
+            </div>
+            <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(0,0,0,0.5)' }}>
+              © {new Date().getFullYear()} — ALL RIGHTS RESERVED
+            </div>
+          </div>
+
+          {/* Center */}
+          <div
+            className="hidden md:block"
+            style={{ fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.4)' }}
+          >
+            ELECTRONIC MUSIC ARTIST
+          </div>
+
+          {/* Right — socials */}
+          <div className="flex items-center gap-6">
+            {SOCIALS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="transition-opacity duration-200 hover:opacity-50"
+                style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#000000' }}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
     </section>
   );
 }

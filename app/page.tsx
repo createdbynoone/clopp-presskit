@@ -4,7 +4,6 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Riders from '@/components/Riders';
 import Booking from '@/components/Booking';
-import Footer from '@/components/Footer';
 
 // Heavy sections — code-split so they don't block the initial Hero bundle
 const Gallery = dynamic(() => import('@/components/Gallery'));
@@ -23,8 +22,6 @@ export default function Home() {
         <Music />
         <Booking />
       </main>
-
-      <Footer />
     </>
   );
 }
