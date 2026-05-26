@@ -44,6 +44,18 @@
 }
 
 /* ──────────────────────────────────────────────
+   SCROLL ARROW ANIMATION
+   ────────────────────────────────────────────── */
+@keyframes scroll-arrow-pulse {
+  0%, 100% { opacity: 0; transform: translateY(-6px); }
+  50%       { opacity: 1; transform: translateY(0px); }
+}
+
+.scroll-arrow-icon {
+  animation: scroll-arrow-pulse 1.6s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────
    RESET & BASE
    ────────────────────────────────────────────── */
 *, *::before, *::after {
