@@ -124,8 +124,8 @@ export default function Booking() {
                 >
                   <button
                     type="submit"
-                    className="flex items-center gap-4 border py-3 px-8 hover:bg-black hover:border-black hover:text-white transition-all duration-300 group"
-                    style={{ borderColor: '#000000', fontSize: '13px', letterSpacing: '0.15em', color: '#000000' }}
+                    className="flex items-center gap-4 border py-3 px-8 text-black hover:bg-black hover:border-black hover:text-white transition-all duration-300 group"
+                    style={{ borderColor: '#000000', fontSize: '13px', letterSpacing: '0.15em' }}
                   >
                     {t.send}
                     <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
