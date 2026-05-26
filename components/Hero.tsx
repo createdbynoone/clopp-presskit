@@ -32,21 +32,17 @@ export default function Hero() {
         <MorphingText texts={BANNER_TEXTS} textStyle={TEXT_STYLE} />
       </div>
 
-      {/* Mobile: static CLOPP centered */}
-      <div className="md:hidden absolute inset-0 flex items-center justify-center">
-        <span
-          style={{
-            fontSize: "clamp(72px, 22vw, 140px)",
-            lineHeight: 0.85,
-            letterSpacing: "-0.02em",
-            color: "#FFFFFF",
-            fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",
-            fontWeight: 500,
-          }}
-        >
-          CLOPP
-        </span>
-      </div>
+      {/* Mobile: video loop */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="md:hidden absolute inset-0 w-full h-full"
+        style={{ objectFit: "cover" }}
+      >
+        <source src="/videos/banner-mobile.webm" type="video/webm" />
+      </video>
 
       {/* Scroll indicator — all screens */}
       <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-3 pointer-events-none">
