@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 export function ScrollAnimationsInit() {
+  const pathname = usePathname()
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
@@ -21,7 +24,7 @@ export function ScrollAnimationsInit() {
     document.querySelectorAll('.scroll-trigger').forEach(el => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   return null
 }
