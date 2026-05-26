@@ -21,7 +21,7 @@ export function ScrambleOnView({
   style,
   duration = 0.7,
   speed = 0.03,
-  delay = 500,
+  delay = 200,
   characterSet = DEFAULT_CHARS,
 }: ScrambleOnViewProps) {
   const ref = useRef<HTMLElement>(null);
