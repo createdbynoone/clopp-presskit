@@ -1,50 +1,52 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 
-const TECHNICAL_CARDS = [
+type Slide = {
+  src: string;
+  label: string;
+  sublabel?: string;
+};
+
+type Card = {
+  id: string;
+  category: string;
+  slides: Slide[];
+};
+
+const TECHNICAL_CARDS: Card[] = [
   {
     id: 'player',
-    label: 'REPRODUCTOR DIGITAL',
-    spec: '3× CDJ-3000 O 3× CDJ-3000X',
-    images: [
-      { src: '/images/equipment/cdj3000.jpg', alt: 'Pioneer CDJ-3000' },
-      { src: '/images/equipment/cdj3000.jpg', alt: 'Pioneer CDJ-3000X' },
+    category: 'REPRODUCTOR DIGITAL',
+    slides: [
+      { src: '/images/equipment/cdj3000.jpg', label: 'CDJ-3000', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/cdj3000.jpg', label: 'CDJ-3000X', sublabel: 'PIONEER DJ' },
     ],
-    items: [],
   },
   {
     id: 'mixer',
-    label: 'MIXER',
-    spec: 'DJM-V10 — DJM-A9 — XONE:96',
-    images: [
-      { src: '/images/equipment/djmv10.jpg', alt: 'Pioneer DJM-V10' },
-      { src: '/images/equipment/djma9.jpg', alt: 'Pioneer DJM-A9' },
-      { src: '', alt: 'Allen & Heath XONE:96', label: 'XONE:96' },
+    category: 'MIXER',
+    slides: [
+      { src: '/images/equipment/djmv10.jpg', label: 'DJM-V10', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/djma9.jpg', label: 'DJM-A9', sublabel: 'PIONEER DJ' },
+      { src: '', label: 'XONE:96', sublabel: 'ALLEN & HEATH' },
     ],
-    items: [],
   },
   {
     id: 'booth',
-    label: 'BOOTH',
-    spec: '',
-    images: [],
-    items: [
-      'RETORNO / MONITORES DE SUELO',
-      'SUMINISTRO ELÉCTRICO ESTABLE',
-      'CABINA ACCESIBLE PARA SOUNDCHECK ANTES DE ACTUACIÓN',
+    category: 'BOOTH',
+    slides: [
+      { src: '', label: 'RETORNO / MONITORES DE SUELO' },
+      { src: '', label: 'SUMINISTRO ELÉCTRICO ESTABLE' },
+      { src: '', label: 'CABINA ACCESIBLE PARA SOUNDCHECK' },
     ],
   },
   {
     id: 'optional',
-    label: 'OPCIONAL',
-    spec: '',
-    images: [
-      { src: '/images/equipment/rmx1000.jpg', alt: 'Pioneer RMX-1000 / RMX Ignite' },
-    ],
-    items: [
-      '1× RMX-1000 / RMX IGNITE',
-      'SALIDAS DISPONIBLES PARA GRABACIÓN DESDE MIXER',
+    category: 'OPCIONAL',
+    slides: [
+      { src: '/images/equipment/rmx1000.jpg', label: 'RMX-1000 / RMX IGNITE', sublabel: 'PIONEER DJ' },
+      { src: '', label: 'SALIDAS PARA GRABACIÓN DESDE MIXER' },
     ],
   },
 ];
@@ -65,83 +67,188 @@ const ROW_STYLE = {
   paddingBottom: 'clamp(6px, 1.1vh, 18px)',
 } as const;
 
-function EquipCard({ card }: { card: typeof TECHNICAL_CARDS[0] }) {
+function EquipCard({ card }: { card: Card }) {
+  const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const total = card.slides.length;
+
+  const prev = () => setCurrent(i => (i - 1 + total) % total);
+  const next = () => setCurrent(i => (i + 1) % total);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 40) delta < 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  const slide = card.slides[current];
+
   return (
     <div
       style={{
         border: '1px solid #1E1E1E',
         display: 'flex',
         flexDirection: 'column',
-        padding: 'clamp(16px, 2.5vh, 32px)',
-        gap: 'clamp(12px, 2vh, 24px)',
+        overflow: 'hidden',
+        position: 'relative',
       }}
     >
-      {/* Header */}
-      <div>
-        <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#D40000', marginBottom: '8px' }}>
-          {card.label}
+      {/* Category label */}
+      <div style={{ padding: 'clamp(10px, 1.8vh, 20px) clamp(12px, 2vw, 24px)', borderBottom: '1px solid #1E1E1E' }}>
+        <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#D40000', margin: 0 }}>
+          {card.category}
         </p>
-        {card.spec && (
-          <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', letterSpacing: '0.05em', color: '#FFFFFF', lineHeight: 1.3 }}>
-            {card.spec}
-          </p>
-        )}
-        {card.items.length > 0 && (
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {card.items.map((item, i) => (
-              <li
-                key={i}
-                style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', letterSpacing: '0.04em', color: '#CCCCCC', lineHeight: 1.5, display: 'flex', gap: '10px', alignItems: 'flex-start' }}
-              >
-                <span style={{ color: '#D40000', flexShrink: 0, marginTop: '1px' }}>—</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
 
-      {/* Images */}
-      {card.images.length > 0 && (
+      {/* Slide strip */}
+      <div
+        style={{ overflow: 'hidden', cursor: total > 1 ? 'grab' : 'default' }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <div
           style={{
             display: 'flex',
-            gap: '8px',
-            flex: 1,
+            transform: `translateX(-${current * 100}%)`,
+            transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
-          {card.images.map((img, i) => (
+          {card.slides.map((s, i) => (
             <div
               key={i}
               style={{
-                flex: 1,
-                backgroundColor: '#111111',
-                border: '1px solid #1E1E1E',
-                aspectRatio: '1 / 1',
-                overflow: 'hidden',
+                flex: '0 0 100%',
+                aspectRatio: '4 / 3',
+                backgroundColor: '#0E0E0E',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                overflow: 'hidden',
                 position: 'relative',
               }}
             >
-              {img.src ? (
+              {s.src ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={img.src}
-                  alt={img.alt}
+                  src={s.src}
+                  alt={s.label}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  draggable={false}
                 />
               ) : (
-                /* Styled text placeholder for XONE:96 (no image available) */
-                <p style={{ fontSize: 'clamp(10px, 1.3vw, 14px)', letterSpacing: '0.12em', color: '#555555', textAlign: 'center', padding: '8px' }}>
-                  {'label' in img ? img.label : img.alt}
-                </p>
+                <div style={{ textAlign: 'center', padding: '24px' }}>
+                  <p style={{
+                    fontSize: 'clamp(14px, 2.2vw, 22px)',
+                    letterSpacing: '0.06em',
+                    color: '#FFFFFF',
+                    lineHeight: 1.3,
+                    fontWeight: 500,
+                  }}>
+                    {s.label}
+                  </p>
+                  {s.sublabel && (
+                    <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#555', marginTop: '8px' }}>
+                      {s.sublabel}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           ))}
         </div>
-      )}
+      </div>
+
+      {/* Info + navigation */}
+      <div style={{
+        padding: 'clamp(10px, 1.8vh, 20px) clamp(12px, 2vw, 24px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '12px',
+        borderTop: '1px solid #1E1E1E',
+      }}>
+        <div style={{ minWidth: 0 }}>
+          <p style={{
+            fontSize: 'clamp(13px, 1.8vh, 17px)',
+            letterSpacing: '0.05em',
+            color: '#FFFFFF',
+            fontWeight: 500,
+            margin: 0,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}>
+            {slide.label}
+          </p>
+          {slide.sublabel && slide.src && (
+            <p style={{ fontSize: '10px', letterSpacing: '0.18em', color: '#555', margin: '3px 0 0' }}>
+              {slide.sublabel}
+            </p>
+          )}
+        </div>
+
+        {/* Dots + arrows */}
+        {total > 1 && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+            {/* Prev arrow */}
+            <button
+              onClick={prev}
+              aria-label="Anterior"
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: '4px', color: '#555', lineHeight: 1,
+                display: 'flex', alignItems: 'center',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+
+            {/* Dot indicators */}
+            <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+              {card.slides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  style={{
+                    width: i === current ? '16px' : '6px',
+                    height: '6px',
+                    borderRadius: '3px',
+                    backgroundColor: i === current ? '#D40000' : '#333',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                    flexShrink: 0,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Next arrow */}
+            <button
+              onClick={next}
+              aria-label="Siguiente"
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: '4px', color: '#555', lineHeight: 1,
+                display: 'flex', alignItems: 'center',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -215,7 +322,6 @@ export default function Riders() {
             <ScrambleOnView as="span" style={{ color: '#D40000' }}>RIDER</ScrambleOnView>
           </h2>
 
-          {/* 4 equipment cards — no scroll-trigger so they're visible after unlock */}
           <div
             className="grid grid-cols-1 md:grid-cols-2"
             style={{ gap: 'clamp(8px, 1.5vh, 20px)' }}
@@ -422,7 +528,7 @@ export default function Riders() {
             </form>
           </div>
         ) : (
-          /* ── Hospitality content — no scroll-trigger so it's visible immediately ── */
+          /* ── Hospitality content ── */
           <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
             <h2
               style={{
