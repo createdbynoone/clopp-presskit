@@ -193,15 +193,17 @@ export default function Riders() {
               <CarouselCard key={card.id} card={card} category={categoryLabels[card.id]} />
             ))}
 
-            {/* BOOTH — plain text, no border box */}
-            <div style={{ display: 'flex', flexDirection: 'column', padding: '8px 4px', gap: '14px' }}>
-              <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: 0 }}>{t.booth}</p>
-              {t.boothItems.map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                  <span style={{ color: '#D40000', fontSize: '9px', flexShrink: 0, marginTop: '2px' }}>—</span>
-                  <p style={{ fontSize: '11px', letterSpacing: '0.04em', color: '#CCCCCC', lineHeight: 1.4, margin: 0 }}>{item}</p>
-                </div>
-              ))}
+            {/* BOOTH — plain text, spreads to match card height */}
+            <div style={{ display: 'flex', flexDirection: 'column', padding: '8px 8px', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+              <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: '0 0 16px' }}>{t.booth}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', flex: 1 }}>
+                {t.boothItems.map((item, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', paddingBottom: '12px' }}>
+                    <span style={{ color: '#D40000', fontSize: '10px', flexShrink: 0, marginTop: '3px' }}>—</span>
+                    <p style={{ fontSize: 'clamp(12px, 1.1vw, 15px)', letterSpacing: '0.06em', color: '#CCCCCC', lineHeight: 1.5, margin: 0 }}>{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
