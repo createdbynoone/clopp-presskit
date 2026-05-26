@@ -278,8 +278,6 @@ export default function MusicPortfolio({
           {' | '}
           <a href={socialLinks.beatport ?? '#'} target="_blank" rel="noopener">BEATPORT</a>
         </nav>
-        <div className="corner-item bottom-left">41.3851° N, 2.1734° E</div>
-        <TimeDisplay config={config} />
       </aside>
     </div>
   )
