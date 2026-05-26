@@ -56,9 +56,9 @@ export default function Navigation() {
   });
 
   const dropdownInnerStyle = (open: boolean) => ({
-    backgroundColor: scrolled ? '#D40000' : '#0A0A0A',
+    backgroundColor: '#0A0A0A',
     border: '1px solid',
-    borderColor: scrolled ? 'rgba(255,255,255,0.2)' : '#2A2A2A',
+    borderColor: '#2A2A2A',
     padding: '6px 0',
     minWidth: '140px',
   });
@@ -66,7 +66,7 @@ export default function Navigation() {
   const subBtnStyle = {
     fontSize: '11px',
     letterSpacing: '0.18em',
-    color: scrolled ? '#FFFFFF' : '#AAAAAA',
+    color: '#AAAAAA',
   };
 
   return (
@@ -104,8 +104,8 @@ export default function Navigation() {
                         onClick={() => handleNavClick(id)}
                         className="block w-full text-left bg-transparent border-none cursor-pointer px-5 py-3 transition-colors duration-150"
                         style={subBtnStyle}
-                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = scrolled ? '#000000' : '#D40000'; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = scrolled ? '#FFFFFF' : '#AAAAAA'; }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#D40000'; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#AAAAAA'; }}
                       >
                         {label}
                       </button>
@@ -137,8 +137,8 @@ export default function Navigation() {
                         onClick={() => handleNavClick(id)}
                         className="block w-full text-left bg-transparent border-none cursor-pointer px-5 py-3 transition-colors duration-150"
                         style={subBtnStyle}
-                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = scrolled ? '#000000' : '#D40000'; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = scrolled ? '#FFFFFF' : '#AAAAAA'; }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#D40000'; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#AAAAAA'; }}
                       >
                         {label}
                       </button>
