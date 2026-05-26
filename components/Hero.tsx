@@ -2,7 +2,7 @@
 
 import { MorphingText } from "@/components/ui/liquid-text";
 
-const BANNER_TEXTS = ["CLOPP", "MEDIA", "KIT", "ARTIST"];
+const BANNER_TEXTS = ["CLOPP", "MEDIA", "KIT"];
 
 const TEXT_STYLE: React.CSSProperties = {
   fontSize: "clamp(80px, 18vw, 240px)",
