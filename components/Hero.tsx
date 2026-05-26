@@ -1,6 +1,8 @@
 "use client";
 
 import { MorphingText } from "@/components/ui/liquid-text";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { T } from "@/lib/translations";
 
 const BANNER_TEXTS = ["CLOPP", "MEDIA", "KIT"];
 
@@ -15,6 +17,9 @@ const TEXT_STYLE: React.CSSProperties = {
 };
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const t = T[lang].hero;
+
   return (
     <section
       className="relative w-full flex flex-col overflow-hidden"
@@ -28,9 +33,7 @@ export default function Hero() {
       </div>
 
       {/* Mobile: static CLOPP centered */}
-      <div
-        className="md:hidden absolute inset-0 flex items-center justify-center"
-      >
+      <div className="md:hidden absolute inset-0 flex items-center justify-center">
         <span
           style={{
             fontSize: "clamp(72px, 22vw, 140px)",
@@ -45,8 +48,8 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* Mobile: scroll indicator */}
-      <div className="md:hidden absolute bottom-10 left-0 right-0 flex flex-col items-center gap-3 pointer-events-none">
+      {/* Scroll indicator — all screens */}
+      <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-3 pointer-events-none">
         <span
           style={{
             fontSize: "10px",
@@ -55,7 +58,7 @@ export default function Hero() {
             fontWeight: 500,
           }}
         >
-          SCROLL DOWN TO SEE MORE
+          {t.scrollDown}
         </span>
         <svg
           className="scroll-arrow-icon"

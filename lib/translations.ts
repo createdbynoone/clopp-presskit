@@ -12,6 +12,9 @@ export const T = {
       technical: 'TÉCNICO',
       hospitality: 'HOSPITALIDAD',
     },
+    hero: {
+      scrollDown: 'DESLIZA PARA VER MÁS',
+    },
     about: {
       bio1: 'Clopp es un artista y productor de música electrónica afincado en Barcelona. Su trabajo explora la intersección del techno, el ambient y el diseño de sonido industrial. Sus sets y producciones oscilan entre el ritmo hipnótico y la tensión atmosférica, construyendo espacios simultáneamente viscerales e introspectivos.',
       bio2: 'Activo desde 2018, Clopp ha desarrollado un sonido definido por la precisión y la emoción — texturas crudas sobre estructuras rítmicas precisas. Sus actuaciones en vivo y como DJ lo han llevado por clubs y festivales de Europa, donde se ha ganado una reputación por sets profundamente inmersivos.',
@@ -86,6 +89,9 @@ export const T = {
       sessions: 'SESSIONS',
       technical: 'TECHNICAL',
       hospitality: 'HOSPITALITY',
+    },
+    hero: {
+      scrollDown: 'SCROLL DOWN TO SEE MORE',
     },
     about: {
       bio1: 'Clopp is a Barcelona-based electronic music artist and producer whose work explores the intersection of techno, ambient and industrial sound design. His sets and productions move between hypnotic rhythm and atmospheric tension, building spaces that are simultaneously visceral and introspective.',
