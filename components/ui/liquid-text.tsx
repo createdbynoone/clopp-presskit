@@ -21,30 +21,20 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
   const prevTimeRef = useRef(Date.now());
   const wasInCooldownRef = useRef(true);
 
-  const applyStyles = useCallback((frac: number, noBlur = false) => {
+  const applyStyles = useCallback((frac: number) => {
     const t1 = text1Ref.current;
     const t2 = text2Ref.current;
     if (!t1 || !t2) return;
     const f = Math.max(frac, 0.001);
     const g = Math.max(1 - frac, 0.001);
-    if (noBlur) {
-      // Mobile: pure opacity crossfade, no blur filter
-      t2.style.filter = '';
-      t2.style.opacity = String(f);
-      t1.style.filter = '';
-      t1.style.opacity = String(g);
-    } else {
-      t2.style.filter = `blur(${Math.min(8 / f - 8, 100)}px)`;
-      t2.style.opacity = String(Math.pow(f, 0.4));
-      t1.style.filter = `blur(${Math.min(8 / g - 8, 100)}px)`;
-      t1.style.opacity = String(Math.pow(g, 0.4));
-    }
+    t2.style.filter = `blur(${Math.min(8 / f - 8, 100)}px)`;
+    t2.style.opacity = String(Math.pow(f, 0.4));
+    t1.style.filter = `blur(${Math.min(8 / g - 8, 100)}px)`;
+    t1.style.opacity = String(Math.pow(g, 0.4));
   }, []);
 
   useEffect(() => {
     if (!texts.length) return;
-
-    const mobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     indexRef.current = texts.length - 1;
     morphRef.current = 0;
@@ -99,7 +89,7 @@ export function MorphingText({ texts, className = "", textStyle }: MorphingTextP
         frac = 1;
       }
 
-      applyStyles(frac, mobile);
+      applyStyles(frac);
     };
 
     frameId = requestAnimationFrame(tick);

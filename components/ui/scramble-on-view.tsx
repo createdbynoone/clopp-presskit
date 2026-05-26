@@ -34,10 +34,8 @@ export function ScrambleOnView({
     let delayTimer: ReturnType<typeof setTimeout>;
     let scrambleTimer: ReturnType<typeof setInterval>;
 
-    // On mobile: run scramble but faster — 0ms delay, 0.3s duration
-    const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    const effectiveDuration = isMobile ? 0.3 : duration;
-    const effectiveDelay = isMobile ? 0 : delay;
+    const effectiveDuration = duration;
+    const effectiveDelay = delay;
 
     const obs = new IntersectionObserver(
       ([entry]) => {
