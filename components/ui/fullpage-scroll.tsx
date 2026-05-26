@@ -6,6 +6,10 @@ export function FullpageScroll() {
   const idx = useRef(0)
 
   useEffect(() => {
+    // Always start at the top — disable browser scroll restoration
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+    window.scrollTo(0, 0)
+
     const getSections = (): HTMLElement[] =>
       Array.from(document.querySelectorAll('main > section'))
 
