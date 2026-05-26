@@ -1,6 +1,6 @@
 'use client';
-
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 
 export default function Booking() {
   const [form, setForm] = useState({ name: '', company: '', date: '', city: '', message: '' });
@@ -18,13 +18,13 @@ export default function Booking() {
   };
 
   return (
-    <section id="booking" className="section-reveal" style={{ padding: 'clamp(80px, 10vw, 140px) 0' }}>
+    <section id="booking" style={{ padding: 'clamp(80px, 10vw, 140px) 0' }}>
       <div className="px-6 md:px-10 max-w-screen-2xl mx-auto">
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
 
           {/* Left — email + info */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-5 scroll-trigger animate--slide-in">
             <h2
               style={{
                 fontSize: 'clamp(40px, 5.5vw, 78px)',
@@ -33,8 +33,9 @@ export default function Booking() {
                 marginBottom: '40px',
               }}
             >
-              LET'S<br />
-              <span style={{ color: '#D40000' }}>TALK</span>
+              <ScrambleOnView as="span">{"LET'S"}</ScrambleOnView>
+              <br />
+              <ScrambleOnView as="span" style={{ color: '#D40000' }}>TALK</ScrambleOnView>
             </h2>
 
             <p
@@ -59,7 +60,7 @@ export default function Booking() {
                 className="block hover:text-[#D40000] transition-colors duration-200"
                 style={{ fontSize: 'clamp(16px, 2.5vw, 26px)', letterSpacing: '0.06em', color: '#FFFFFF' }}
               >
-                INFO@CLOPPMUSIC.COM
+                <ScrambleOnView as="span">INFO@CLOPPMUSIC.COM</ScrambleOnView>
               </a>
             </div>
 
@@ -70,21 +71,21 @@ export default function Booking() {
                 { label: 'BASE', value: 'BARCELONA, SPAIN' },
                 { label: 'TRAVEL', value: 'WORLDWIDE' },
                 { label: 'RESPONSE', value: '48H MAX' },
-              ].map(({ label, value }) => (
+              ].map(({ label, value }, i) => (
                 <div key={label} className="flex items-center gap-8 py-4 border-b" style={{ borderColor: '#1E1E1E' }}>
-                  <span style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888', minWidth: '120px' }}>
+                  <ScrambleOnView as="span" style={{ fontSize: '13px', letterSpacing: '0.15em', color: '#888888', minWidth: '120px' }}>
                     {label}
-                  </span>
-                  <span style={{ fontSize: '15px', letterSpacing: '0.1em' }}>
+                  </ScrambleOnView>
+                  <ScrambleOnView as="span" style={{ fontSize: '15px', letterSpacing: '0.1em' }}>
                     {value}
-                  </span>
+                  </ScrambleOnView>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right — form */}
-          <div className="md:col-span-7">
+          <div className="md:col-span-7 scroll-trigger animate--slide-in" style={{ '--animation-order': 1 } as React.CSSProperties}>
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '400px', gap: '16px' }}>
                 <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#D40000', marginBottom: '8px' }}>■</div>

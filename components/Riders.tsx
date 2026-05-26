@@ -1,3 +1,7 @@
+'use client';
+import React from 'react';
+import { ScrambleOnView } from '@/components/ui/scramble-on-view';
+
 const TECHNICAL_RIDER = [
   { num: '01', item: '2× CDJ-3000 o equivalente (Pioneer DXJ-XP2 aceptado)' },
   { num: '02', item: 'Pioneer DJM-900NXS2 o DJM-V10 (preferido)' },
@@ -20,74 +24,122 @@ const HOSPITALITY_RIDER = [
   { num: '08', item: 'Contacto del promotor en sala desde la llegada del artista' },
 ];
 
+const H2 = {
+  fontSize: 'clamp(44px, 6.5vw, 88px)',
+  lineHeight: 0.9,
+  letterSpacing: '-0.02em',
+  marginBottom: '52px',
+} as const;
+
 export default function Riders() {
   return (
-    <section id="riders" className="section-reveal" style={{ padding: 'clamp(80px, 10vw, 140px) 0' }}>
-      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto">
+    <>
+      {/* ── TECHNICAL RIDER ── */}
+      <section
+        id="technical-rider"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: 'clamp(64px, 8vw, 100px) 0',
+        }}
+      >
+        <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
 
-        <h2
-          style={{
-            fontSize: 'clamp(44px, 6.5vw, 88px)',
-            lineHeight: 0.9,
-            letterSpacing: '-0.02em',
-            marginBottom: '64px',
-          }}
-        >
-          TECHNICAL /<br />HOSPITALITY
-        </h2>
+          <h2 style={H2}>
+            <ScrambleOnView as="span">TECHNICAL</ScrambleOnView>
+            <br />
+            <ScrambleOnView as="span" style={{ color: '#D40000' }}>RIDER</ScrambleOnView>
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-
-          {/* Technical Rider */}
-          <div style={{ borderRight: '1px solid #3A3A3A', paddingRight: '48px' }}>
-            <h3 style={{ fontSize: '14px', letterSpacing: '0.15em', marginBottom: '32px' }}>
-              TECHNICAL RIDER
-            </h3>
-            <div className="flex flex-col">
-              {TECHNICAL_RIDER.map(({ num, item }) => (
-                <div key={num} className="flex gap-6 py-5 border-b" style={{ borderColor: '#222222' }}>
-                  <span style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#D40000', flexShrink: 0, paddingTop: '2px' }}>
-                    {num}
-                  </span>
-                  <span style={{ fontSize: '15px', lineHeight: 1.6, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-col scroll-trigger animate--slide-in">
+            {TECHNICAL_RIDER.map(({ num, item }) => (
+              <div key={num} className="flex gap-6 py-5 border-b" style={{ borderColor: '#1E1E1E' }}>
+                <span style={{ fontSize: '11px', letterSpacing: '0.18em', color: '#D40000', flexShrink: 0, paddingTop: '3px', minWidth: '28px' }}>
+                  {num}
+                </span>
+                <span style={{ fontSize: '15px', lineHeight: 1.65, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
+                  {item}
+                </span>
+              </div>
+            ))}
           </div>
 
-          {/* Hospitality Rider */}
-          <div style={{ paddingLeft: '48px' }}>
-            <h3 style={{ fontSize: '14px', letterSpacing: '0.15em', marginBottom: '32px' }}>
-              HOSPITALITY RIDER
-            </h3>
-            <div className="flex flex-col">
-              {HOSPITALITY_RIDER.map(({ num, item }) => (
-                <div key={num} className="flex gap-6 py-5 border-b" style={{ borderColor: '#222222' }}>
-                  <span style={{ fontSize: '12px', letterSpacing: '0.15em', color: '#D40000', flexShrink: 0, paddingTop: '2px' }}>
-                    {num}
-                  </span>
-                  <span style={{ fontSize: '15px', lineHeight: 1.6, letterSpacing: '0.04em', color: '#CCCCCC', textTransform: 'none' }}>
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="flex justify-end mt-10 pt-8 border-t scroll-trigger animate--fade-in" style={{ borderColor: '#1E1E1E' }}>
+            <a
+              href="mailto:info@cloppmusic.com"
+              className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"
+              style={{ borderColor: '#3A3A3A', fontSize: '12px', letterSpacing: '0.18em', whiteSpace: 'nowrap' }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#D40000';
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = '#D40000';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent';
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = '#3A3A3A';
+              }}
+            >
+              REQUEST PDF
+            </a>
           </div>
         </div>
+      </section>
 
-        {/* CTA */}
-        <div className="flex justify-end mt-16 pt-10 border-t" style={{ borderColor: '#3A3A3A' }}>
-          <a
-            href="mailto:info@cloppmusic.com"
-            className="inline-flex items-center gap-3 border py-3 px-6 hover:bg-[#D40000] hover:border-[#D40000] transition-all duration-200"
-            style={{ borderColor: '#3A3A3A', fontSize: '13px', letterSpacing: '0.15em', whiteSpace: 'nowrap' }}
-          >
-            SOLICITAR RIDER PDF
-          </a>
+      {/* ── HOSPITALITY RIDER — red background, black text ── */}
+      <section
+        id="hospitality-rider"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: 'clamp(64px, 8vw, 100px) 0',
+          backgroundColor: '#D40000',
+        }}
+      >
+        <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
+
+          <h2 style={{ ...H2, color: '#000000' }}>
+            <ScrambleOnView as="span">HOSPITALITY</ScrambleOnView>
+            <br />
+            <ScrambleOnView as="span">RIDER</ScrambleOnView>
+          </h2>
+
+          <div className="flex flex-col scroll-trigger animate--slide-in">
+            {HOSPITALITY_RIDER.map(({ num, item }) => (
+              <div
+                key={num}
+                className="flex gap-6 py-5 border-b"
+                style={{ borderColor: 'rgba(0,0,0,0.12)' }}
+              >
+                <span style={{ fontSize: '11px', letterSpacing: '0.18em', color: 'rgba(0,0,0,0.35)', flexShrink: 0, paddingTop: '3px', minWidth: '28px' }}>
+                  {num}
+                </span>
+                <span style={{ fontSize: '15px', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-end mt-10 pt-8 border-t scroll-trigger animate--fade-in" style={{ borderColor: 'rgba(0,0,0,0.15)' }}>
+            <a
+              href="mailto:info@cloppmusic.com"
+              className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"
+              style={{ borderColor: '#000000', fontSize: '12px', letterSpacing: '0.18em', color: '#000000', whiteSpace: 'nowrap' }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#000000';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#D40000';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#000000';
+              }}
+            >
+              REQUEST PDF
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

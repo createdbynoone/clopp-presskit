@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import { MorphingText } from "@/components/ui/liquid-text";
 
-const HERO_TEXTS = ["CLOPP", "TECHNO", "AMBIENT", "DJ", "PRODUCER", "CLOPP"];
+const BANNER_TEXTS = ["CLOPP", "MEDIA", "KIT", "ARTIST"];
 
-const TITLE_STYLE: React.CSSProperties = {
-  fontSize: "clamp(100px, 20vw, 260px)",
+const TEXT_STYLE: React.CSSProperties = {
+  fontSize: "clamp(80px, 18vw, 240px)",
   lineHeight: 0.85,
   letterSpacing: "-0.02em",
   color: "#FFFFFF",
@@ -16,8 +15,6 @@ const TITLE_STYLE: React.CSSProperties = {
 };
 
 export default function Hero() {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <section
       className="relative w-full flex flex-col overflow-hidden"
@@ -34,20 +31,11 @@ export default function Hero() {
         }}
       />
 
-      {/* Title — mix-blend-mode difference + gooey on hover */}
-      <div
-        className="absolute inset-0 flex items-center justify-center cursor-crosshair"
-        style={{ mixBlendMode: "difference" }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <GooeyText
-          texts={HERO_TEXTS}
-          morphTime={1}
-          cooldownTime={0.5}
-          active={hovered}
-          textClassName="hero-title"
-          textStyle={TITLE_STYLE}
+      {/* Morphing text banner — always animating */}
+      <div className="absolute inset-0">
+        <MorphingText
+          texts={BANNER_TEXTS}
+          textStyle={TEXT_STYLE}
         />
       </div>
     </section>

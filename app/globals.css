@@ -73,6 +73,7 @@
   --color-clopp-grey: #888888;
   --color-clopp-dark: #3A3A3A;
   --font-display: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
 }
 
 /* ──────────────────────────────────────────────
@@ -88,15 +89,23 @@ html {
   background-color: #0A0A0A;
 }
 
+section {
+  min-height: 100vh;
+}
+
 body {
-  font-family: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 500;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-weight: 400;
   background-color: #0A0A0A;
   color: #FFFFFF;
   text-transform: uppercase;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
 }
 
 a {
@@ -142,30 +151,49 @@ img {
 }
 
 /* ──────────────────────────────────────────────
-   SCROLL-DRIVEN REVEAL
+   OVO-STYLE SCROLL REVEAL
+   CSS transitions triggered by .scroll-trigger--passed (added by IntersectionObserver)
    ────────────────────────────────────────────── */
-.section-reveal {
-  animation: section-fade-up linear both;
-  animation-timeline: view();
-  animation-range: entry 0% entry 30%;
+
+/* Slide + fade — large translateY so the motion is clearly visible */
+.scroll-trigger.animate--slide-in,
+.scroll-trigger.animate--rolling-fade-in {
+  opacity: 0;
+  transform: translateY(64px);
+  transition:
+    opacity  0.85s cubic-bezier(0, 0, 0.3, 1),
+    transform 0.85s cubic-bezier(0, 0, 0.3, 1);
 }
 
-@keyframes section-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Fade only */
+.scroll-trigger.animate--fade-in {
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0, 0, 0.3, 1);
+}
+
+/* Cascade stagger via --animation-order CSS custom property */
+.scroll-trigger.animate--rolling-fade-in {
+  transition-delay: calc(var(--animation-order, 0) * 80ms);
+}
+
+/* Revealed — IntersectionObserver adds this class */
+.scroll-trigger.scroll-trigger--passed.animate--slide-in,
+.scroll-trigger.scroll-trigger--passed.animate--rolling-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-trigger.scroll-trigger--passed.animate--fade-in {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .section-reveal {
-    animation: none;
-    opacity: 1;
-    transform: none;
+  .scroll-trigger.animate--slide-in,
+  .scroll-trigger.animate--rolling-fade-in,
+  .scroll-trigger.animate--fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
@@ -200,9 +228,10 @@ img {
    ────────────────────────────────────────────── */
 .nav-link {
   position: relative;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   color: #FFFFFF;
   padding: 4px 10px;
   transition: color 0.2s ease, background-color 0.2s ease;
@@ -273,9 +302,9 @@ nav[data-scrolled="true"] .nav-link {
   border: none;
   border-bottom: 1px solid #3A3A3A;
   color: #FFFFFF;
-  font-family: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 16px 0;
@@ -314,6 +343,227 @@ nav[data-scrolled="true"] .nav-link {
   width: 100%;
   height: 1px;
   background-color: #3A3A3A;
+}
+
+/* ──────────────────────────────────────────────
+   MUSIC PORTFOLIO (releases table)
+   ────────────────────────────────────────────── */
+
+/* Outer wrapper — full-screen banner */
+.mp-outer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Gradient overlay — darkens top and bottom edges for readability */
+.mp-outer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,10,10,0.55) 0%,
+    transparent 28%,
+    transparent 55%,
+    rgba(10,10,10,0.82) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Main content: pushed to bottom of the full-screen area */
+.portfolio-container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 24px 64px;
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .portfolio-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.mp-heading {
+  font-family: 'NeueHaasDisplay', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(44px, 6.5vw, 88px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 52px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #1C1C1C;
+}
+
+/* Each row */
+.project-item {
+  display: grid;
+  grid-template-columns: 0.6fr 1.8fr 0.7fr 1fr 0.4fr;
+  gap: 0 clamp(16px, 2.5vw, 40px);
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid #1C1C1C;
+  cursor: default;
+  transition: border-color 0.25s ease, opacity 0.3s ease;
+  user-select: none;
+}
+
+.project-item:hover,
+.project-item.active {
+  border-bottom-color: #D40000;
+}
+
+/* Dim non-hovered rows when one is active */
+.portfolio-container.has-active .project-item:not(.active) {
+  opacity: 0.25;
+}
+
+/* Data cells */
+.project-data {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-weight: 400 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.project-data.artist {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: #2E2E2E;
+}
+
+.project-data.album {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: #BBBBBB;
+}
+
+.project-data.category {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: #D40000;
+}
+
+.project-data.label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: #3A3A3A;
+}
+
+.project-data.year {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: #2E2E2E;
+  text-align: right;
+}
+
+/* Active / hover state overrides */
+.project-item:hover .project-data.artist,
+.project-item.active .project-data.artist   { color: #666666; }
+
+.project-item:hover .project-data.album,
+.project-item.active .project-data.album    { color: #FFFFFF; }
+
+.project-item:hover .project-data.category,
+.project-item.active .project-data.category { color: #FF3333; }
+
+.project-item:hover .project-data.label,
+.project-item.active .project-data.label    { color: #777777; }
+
+.project-item:hover .project-data.year,
+.project-item.active .project-data.year     { color: #666666; }
+
+/* Background image (cover art) — always visible as banner, JS controls opacity */
+.background-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.05);
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  filter: grayscale(10%) brightness(0.75);
+}
+
+/* Corner elements overlay */
+.corner-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.corner-item {
+  position: absolute;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.25);
+  line-height: 1;
+}
+
+.corner-item.top-left  { top: 14px;    left: 0; }
+.corner-item.top-right { top: 14px;    right: 0; pointer-events: all; display: flex; align-items: center; gap: 6px; }
+.corner-item.bottom-left  { bottom: 14px; left: 0; }
+.corner-item.bottom-right { bottom: 14px; right: 0; }
+
+.corner-square {
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: block;
+}
+
+.corner-item a {
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  letter-spacing: 0.2em;
+  font-size: 9px;
+}
+
+.corner-item a:hover { color: #D40000; }
+
+/* Blinking colon in time display */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.time-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Mobile: collapse artist/label columns */
+@media (max-width: 640px) {
+  .project-item {
+    grid-template-columns: 1fr 0.6fr 0.4fr;
+  }
+  .project-data.artist,
+  .project-data.label { display: none; }
+  .corner-item.top-right { display: none; }
 }
 
 /* ──────────────────────────────────────────────
