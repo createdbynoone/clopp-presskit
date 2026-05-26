@@ -34,6 +34,9 @@ export function ScrambleOnView({
     let delayTimer: ReturnType<typeof setTimeout>;
     let scrambleTimer: ReturnType<typeof setInterval>;
 
+    // Skip scramble on touch/mobile — show text immediately
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
