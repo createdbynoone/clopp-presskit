@@ -27,10 +27,10 @@ export default function Booking() {
   return (
     <section
       id="booking"
-      style={{ display: 'flex', flexDirection: 'column', paddingTop: 'clamp(20px, 4vh, 72px)' }}
+      style={{ display: 'flex', flexDirection: 'column', paddingTop: 'clamp(72px, 9vh, 120px)' }}
     >
       {/* ── Main booking content ── */}
-      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full" style={{ flex: 1, paddingBottom: 'clamp(20px, 4vh, 60px)' }}>
+      <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full" style={{ marginBottom: 'clamp(20px, 3vh, 48px)' }}>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
 
           {/* Left — email + info */}
@@ -153,7 +153,7 @@ export default function Booking() {
       </div>
 
       {/* ── Footer bar ── */}
-      <footer style={{ backgroundColor: '#D40000', marginTop: 'auto' }}>
+      <footer style={{ backgroundColor: '#D40000', marginTop: 'auto', flexShrink: 0 }}>
         <div
           className="px-6 md:px-10 max-w-screen-2xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{ padding: '24px 40px' }}
