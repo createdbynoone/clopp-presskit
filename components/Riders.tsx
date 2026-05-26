@@ -8,45 +8,60 @@ type Slide = {
   sublabel?: string;
 };
 
-type Card = {
+type CarouselCard = {
+  type: 'carousel';
   id: string;
   category: string;
   slides: Slide[];
 };
 
+type ListCard = {
+  type: 'list';
+  id: string;
+  category: string;
+  items: string[];
+};
+
+type Card = CarouselCard | ListCard;
+
 const TECHNICAL_CARDS: Card[] = [
   {
+    type: 'carousel',
     id: 'player',
     category: 'REPRODUCTOR DIGITAL',
     slides: [
-      { src: '/images/equipment/cdj3000.jpg', label: 'CDJ-3000', sublabel: 'PIONEER DJ' },
-      { src: '/images/equipment/cdj3000.jpg', label: 'CDJ-3000X', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/cdj3000.webp', label: 'CDJ-3000', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/cdj3000x.webp', label: 'CDJ-3000X', sublabel: 'PIONEER DJ' },
     ],
   },
   {
+    type: 'carousel',
     id: 'mixer',
     category: 'MIXER',
     slides: [
-      { src: '/images/equipment/djmv10.jpg', label: 'DJM-V10', sublabel: 'PIONEER DJ' },
-      { src: '/images/equipment/djma9.jpg', label: 'DJM-A9', sublabel: 'PIONEER DJ' },
-      { src: '', label: 'XONE:96', sublabel: 'ALLEN & HEATH' },
+      { src: '/images/equipment/djmv10.webp', label: 'DJM-V10', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/djma9.webp', label: 'DJM-A9', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/xone96.webp', label: 'XONE:96', sublabel: 'ALLEN & HEATH' },
     ],
   },
   {
+    type: 'list',
     id: 'booth',
     category: 'BOOTH',
-    slides: [
-      { src: '', label: 'RETORNO / MONITORES DE SUELO' },
-      { src: '', label: 'SUMINISTRO ELÉCTRICO ESTABLE' },
-      { src: '', label: 'CABINA ACCESIBLE PARA SOUNDCHECK' },
+    items: [
+      'RETORNO / MONITORES DE SUELO',
+      'SUMINISTRO ELÉCTRICO ESTABLE',
+      'CABINA ACCESIBLE PARA SOUNDCHECK ANTES DE ACTUACIÓN',
+      'SALIDAS DISPONIBLES PARA GRABACIÓN DESDE MIXER',
     ],
   },
   {
+    type: 'carousel',
     id: 'optional',
     category: 'OPCIONAL',
     slides: [
-      { src: '/images/equipment/rmx1000.jpg', label: 'RMX-1000 / RMX IGNITE', sublabel: 'PIONEER DJ' },
-      { src: '', label: 'SALIDAS PARA GRABACIÓN DESDE MIXER' },
+      { src: '/images/equipment/rmx1000.webp', label: 'RMX-1000', sublabel: 'PIONEER DJ' },
+      { src: '/images/equipment/rmxignite.webp', label: 'RMX IGNITE', sublabel: 'PIONEER DJ' },
     ],
   },
 ];
@@ -67,7 +82,7 @@ const ROW_STYLE = {
   paddingBottom: 'clamp(6px, 1.1vh, 18px)',
 } as const;
 
-function EquipCard({ card }: { card: Card }) {
+function CarouselCard({ card }: { card: CarouselCard }) {
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const total = card.slides.length;
@@ -89,15 +104,7 @@ function EquipCard({ card }: { card: Card }) {
   const slide = card.slides[current];
 
   return (
-    <div
-      style={{
-        border: '1px solid #1E1E1E',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        position: 'relative',
-      }}
-    >
+    <div style={{ border: '1px solid #1E1E1E', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Category label */}
       <div style={{ padding: '8px 12px', borderBottom: '1px solid #1E1E1E' }}>
         <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: 0 }}>
@@ -107,7 +114,7 @@ function EquipCard({ card }: { card: Card }) {
 
       {/* Slide strip */}
       <div
-        style={{ overflow: 'hidden', cursor: total > 1 ? 'grab' : 'default' }}
+        style={{ overflow: 'hidden', cursor: total > 1 ? 'grab' : 'default', flex: 1 }}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -129,36 +136,15 @@ function EquipCard({ card }: { card: Card }) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                position: 'relative',
               }}
             >
-              {s.src ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={s.src}
-                  alt={s.label}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  draggable={false}
-                />
-              ) : (
-                <div style={{ textAlign: 'center', padding: '24px' }}>
-                  <p style={{
-                    fontSize: 'clamp(11px, 1.4vw, 14px)',
-                    letterSpacing: '0.06em',
-                    color: '#FFFFFF',
-                    lineHeight: 1.3,
-                    fontWeight: 500,
-                    textAlign: 'center',
-                  }}>
-                    {s.label}
-                  </p>
-                  {s.sublabel && (
-                    <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#555', marginTop: '6px', textAlign: 'center' }}>
-                      {s.sublabel}
-                    </p>
-                  )}
-                </div>
-              )}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={s.src}
+                alt={s.label}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                draggable={false}
+              />
             </div>
           ))}
         </div>
@@ -174,84 +160,64 @@ function EquipCard({ card }: { card: Card }) {
         borderTop: '1px solid #1E1E1E',
       }}>
         <div style={{ minWidth: 0 }}>
-          <p style={{
-            fontSize: '11px',
-            letterSpacing: '0.04em',
-            color: '#FFFFFF',
-            fontWeight: 500,
-            margin: 0,
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}>
+          <p style={{ fontSize: '11px', letterSpacing: '0.04em', color: '#FFFFFF', fontWeight: 500, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {slide.label}
           </p>
-          {slide.sublabel && slide.src && (
+          {slide.sublabel && (
             <p style={{ fontSize: '9px', letterSpacing: '0.15em', color: '#555', margin: '2px 0 0' }}>
               {slide.sublabel}
             </p>
           )}
         </div>
 
-        {/* Dots + arrows */}
         {total > 1 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-            {/* Prev arrow */}
-            <button
-              onClick={prev}
-              aria-label="Anterior"
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                padding: '2px', color: '#555', lineHeight: 1,
-                display: 'flex', alignItems: 'center',
-              }}
-            >
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6"/>
-              </svg>
+            <button onClick={prev} aria-label="Anterior" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: '#555', lineHeight: 1, display: 'flex', alignItems: 'center' }}>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-
-            {/* Dot indicators */}
             <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
               {card.slides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  aria-label={`Slide ${i + 1}`}
-                  style={{
-                    width: i === current ? '12px' : '5px',
-                    height: '5px',
-                    borderRadius: '3px',
-                    backgroundColor: i === current ? '#D40000' : '#333',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'pointer',
-                    transition: 'all 0.25s ease',
-                    flexShrink: 0,
-                  }}
-                />
+                <button key={i} onClick={() => setCurrent(i)} aria-label={`Slide ${i + 1}`} style={{ width: i === current ? '12px' : '5px', height: '5px', borderRadius: '3px', backgroundColor: i === current ? '#D40000' : '#333', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.25s ease', flexShrink: 0 }} />
               ))}
             </div>
-
-            {/* Next arrow */}
-            <button
-              onClick={next}
-              aria-label="Siguiente"
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                padding: '2px', color: '#555', lineHeight: 1,
-                display: 'flex', alignItems: 'center',
-              }}
-            >
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
+            <button onClick={next} aria-label="Siguiente" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: '#555', lineHeight: 1, display: 'flex', alignItems: 'center' }}>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
           </div>
         )}
       </div>
     </div>
   );
+}
+
+function TextListCard({ card }: { card: ListCard }) {
+  return (
+    <div style={{ border: '1px solid #1E1E1E', display: 'flex', flexDirection: 'column' }}>
+      {/* Category label */}
+      <div style={{ padding: '8px 12px', borderBottom: '1px solid #1E1E1E' }}>
+        <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: 0 }}>
+          {card.category}
+        </p>
+      </div>
+
+      {/* Items list — fills same visual weight as image cards */}
+      <div style={{ flex: 1, padding: '14px 12px', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', gap: '10px' }}>
+        {card.items.map((item, i) => (
+          <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+            <span style={{ color: '#D40000', fontSize: '9px', flexShrink: 0, marginTop: '2px' }}>—</span>
+            <p style={{ fontSize: '11px', letterSpacing: '0.04em', color: '#CCCCCC', lineHeight: 1.4, margin: 0 }}>
+              {item}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function EquipCard({ card }: { card: Card }) {
+  if (card.type === 'list') return <TextListCard card={card} />;
+  return <CarouselCard card={card} />;
 }
 
 export default function Riders() {
