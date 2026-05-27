@@ -43,7 +43,7 @@ export default function Booking() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
 
           {/* Left — email + info */}
-          <div className="md:col-span-5 scroll-trigger animate--slide-in" style={{ transition: 'opacity 0.2s cubic-bezier(0, 0, 0.3, 1), transform 0.2s cubic-bezier(0, 0, 0.3, 1)' }}>
+          <div className="md:col-span-5 scroll-trigger animate--slide-in">
             <h2
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 78px)',
@@ -53,9 +53,9 @@ export default function Booking() {
                 color: '#000000',
               }}
             >
-              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300}>{t.title1}</ScrambleOnView>
+              <ScrambleOnView as="span">{t.title1}</ScrambleOnView>
               <br />
-              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300}>{t.title2}</ScrambleOnView>
+              <ScrambleOnView as="span">{t.title2}</ScrambleOnView>
             </h2>
 
             <p
@@ -77,12 +77,12 @@ export default function Booking() {
               className="block transition-opacity duration-200 hover:opacity-60"
               style={{ fontSize: 'clamp(14px, 2.2vw, 26px)', letterSpacing: '0.06em', color: '#000000' }}
             >
-              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300}>INFO@CLOPPMUSIC.COM</ScrambleOnView>
+              <ScrambleOnView as="span">INFO@CLOPPMUSIC.COM</ScrambleOnView>
             </a>
           </div>
 
           {/* Right — form */}
-          <div className="md:col-span-7 scroll-trigger animate--slide-in" style={{ '--animation-order': 1, transition: 'opacity 0.2s cubic-bezier(0, 0, 0.3, 1), transform 0.2s cubic-bezier(0, 0, 0.3, 1)' } as React.CSSProperties}>
+          <div className="md:col-span-7 scroll-trigger animate--slide-in" style={{ '--animation-order': 1 } as React.CSSProperties}>
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '300px', gap: '16px' }}>
                 <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#000000', marginBottom: '8px' }}>■</div>
