@@ -53,9 +53,9 @@ export default function Booking() {
                 color: '#000000',
               }}
             >
-              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300}>{t.title1}</ScrambleOnView>
+              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300} duration={1.4}>{t.title1}</ScrambleOnView>
               <br />
-              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300}>{t.title2}</ScrambleOnView>
+              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300} duration={1.4} dispatchOnComplete="scramble:booking:titles-done">{t.title2}</ScrambleOnView>
             </h2>
 
             <p
@@ -77,7 +77,7 @@ export default function Booking() {
               className="block transition-opacity duration-200 hover:opacity-60"
               style={{ fontSize: 'clamp(14px, 2.2vw, 26px)', letterSpacing: '0.06em', color: '#000000' }}
             >
-              <ScrambleOnView as="span" triggerEvent="fullpage:settled" delay={300}>INFO@CLOPPMUSIC.COM</ScrambleOnView>
+              <ScrambleOnView as="span" triggerEvent="scramble:booking:titles-done" delay={120} duration={1.4}>INFO@CLOPPMUSIC.COM</ScrambleOnView>
             </a>
           </div>
 

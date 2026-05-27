@@ -15,6 +15,8 @@ type ScrambleOnViewProps = {
   /** If set, scramble fires when this window event fires (and element is in viewport)
    *  instead of using the built-in IntersectionObserver. */
   triggerEvent?: string;
+  /** If set, dispatches this window event once the scramble animation completes. */
+  dispatchOnComplete?: string;
 };
 
 export function ScrambleOnView({
@@ -27,6 +29,7 @@ export function ScrambleOnView({
   delay = 200,
   characterSet = DEFAULT_CHARS,
   triggerEvent,
+  dispatchOnComplete,
 }: ScrambleOnViewProps) {
   const ref = useRef<HTMLElement>(null);
   const [text, setText] = useState(children);
@@ -71,6 +74,7 @@ export function ScrambleOnView({
             clearInterval(scrambleTimer);
             scrambling.current = false;
             setText(childrenRef.current);
+            if (dispatchOnComplete) window.dispatchEvent(new Event(dispatchOnComplete));
           }
         }, speed * 1000);
       }, delay);
