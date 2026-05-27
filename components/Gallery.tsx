@@ -8,7 +8,7 @@ import { ScrambleOnView } from "@/components/ui/scramble-on-view"
 const IMG = "/images/hero.webp"
 
 const DOWNLOAD_STYLE: React.CSSProperties = {
-  fontFamily: "var(--font-mono), 'JetBrains Mono', monospace",
+  fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",
   fontWeight: 500,
   fontSize: "clamp(40px, 7vw, 110px)",
   lineHeight: 0.88,
