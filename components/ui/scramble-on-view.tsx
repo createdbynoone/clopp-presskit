@@ -27,9 +27,11 @@ export function ScrambleOnView({
   const ref = useRef<HTMLElement>(null);
   const [text, setText] = useState(children);
   const scrambling = useRef(false);
+  // Always holds the latest children so the observer closure never goes stale
+  const childrenRef = useRef(children);
 
-  // Sync displayed text when children changes (e.g. language toggle) without re-scrambling
   useEffect(() => {
+    childrenRef.current = children;
     if (!scrambling.current) setText(children);
   }, [children]);
 
@@ -46,7 +48,8 @@ export function ScrambleOnView({
         obs.disconnect();
 
         delayTimer = setTimeout(() => {
-          const original = children;
+          // Use ref so we always scramble to the current language value
+          const original = childrenRef.current;
           const totalSteps = Math.ceil(duration / speed);
           let step = 0;
           scrambling.current = true;
@@ -69,7 +72,7 @@ export function ScrambleOnView({
             if (step >= totalSteps) {
               clearInterval(scrambleTimer);
               scrambling.current = false;
-              setText(original);
+              setText(childrenRef.current);
             }
           }, speed * 1000);
         }, delay);
