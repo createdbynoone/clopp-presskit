@@ -8,7 +8,7 @@ import { ScrambleOnView } from "@/components/ui/scramble-on-view"
 const IMG = "/images/hero.webp"
 
 const DOWNLOAD_STYLE: React.CSSProperties = {
-  fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",
+  fontFamily: "var(--font-mono), 'JetBrains Mono', monospace",
   fontWeight: 500,
   fontSize: "clamp(40px, 7vw, 110px)",
   lineHeight: 0.88,
@@ -142,7 +142,7 @@ export default function Gallery() {
                 fontSize: "11px",
                 letterSpacing: "0.18em",
                 cursor: "pointer",
-                fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",
+                fontFamily: "var(--font-mono), 'JetBrains Mono', monospace",
                 padding: "4px 0",
               }}
             >
@@ -175,7 +175,7 @@ export default function Gallery() {
                 border: "1px solid rgba(255,255,255,0.25)",
                 padding: "8px 24px",
                 textDecoration: "none",
-                fontFamily: "NeueHaasDisplay, Helvetica Neue, Arial, sans-serif",
+                fontFamily: "var(--font-mono), 'JetBrains Mono', monospace",
                 transition: "border-color 0.2s, color 0.2s",
               }}
               onMouseEnter={e => {
