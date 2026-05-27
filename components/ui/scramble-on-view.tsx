@@ -26,6 +26,12 @@ export function ScrambleOnView({
 }: ScrambleOnViewProps) {
   const ref = useRef<HTMLElement>(null);
   const [text, setText] = useState(children);
+  const scrambling = useRef(false);
+
+  // Sync displayed text when children changes (e.g. language toggle) without re-scrambling
+  useEffect(() => {
+    if (!scrambling.current) setText(children);
+  }, [children]);
 
   useEffect(() => {
     const el = ref.current;
@@ -34,9 +40,6 @@ export function ScrambleOnView({
     let delayTimer: ReturnType<typeof setTimeout>;
     let scrambleTimer: ReturnType<typeof setInterval>;
 
-    const effectiveDuration = duration;
-    const effectiveDelay = delay;
-
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
@@ -44,8 +47,9 @@ export function ScrambleOnView({
 
         delayTimer = setTimeout(() => {
           const original = children;
-          const totalSteps = Math.ceil(effectiveDuration / speed);
+          const totalSteps = Math.ceil(duration / speed);
           let step = 0;
+          scrambling.current = true;
 
           scrambleTimer = setInterval(() => {
             step++;
@@ -64,10 +68,11 @@ export function ScrambleOnView({
 
             if (step >= totalSteps) {
               clearInterval(scrambleTimer);
+              scrambling.current = false;
               setText(original);
             }
           }, speed * 1000);
-        }, effectiveDelay);
+        }, delay);
       },
       { threshold: 0.15 }
     );
