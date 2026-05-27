@@ -18,10 +18,8 @@ export function FullpageScroll() {
       locked.current = true
       idx.current = target
       window.scrollTo({ top: secs[target].offsetTop, behavior: 'smooth' })
-      setTimeout(() => {
-        locked.current = false
-        window.dispatchEvent(new Event('fullpage:settled'))
-      }, 900)
+      setTimeout(() => { window.dispatchEvent(new Event('fullpage:settled')) }, 450)
+      setTimeout(() => { locked.current = false }, 900)
     }
 
     const syncIdx = () => {
