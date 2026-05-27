@@ -10,12 +10,8 @@ export default function Hero() {
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
-  const makeLoopHandler = (ref: React.RefObject<HTMLVideoElement | null>) => () => {
-    const v = ref.current;
-    if (!v) return;
-    v.currentTime = 0;
-    v.play();
-  };
+  const onDesktopEnded = () => { const v = desktopVideoRef.current; if (!v) return; v.currentTime = 0; v.play(); };
+  const onMobileEnded  = () => { const v = mobileVideoRef.current;  if (!v) return; v.currentTime = 0; v.play(); };
 
   return (
     <section
@@ -30,7 +26,7 @@ export default function Hero() {
         autoPlay
         muted
         playsInline
-        onEnded={makeLoopHandler(desktopVideoRef)}
+        onEnded={onDesktopEnded}
         className="hidden md:block absolute inset-0 w-full h-full"
         style={{ objectFit: "contain", mixBlendMode: "screen" }}
       >
@@ -43,7 +39,7 @@ export default function Hero() {
         autoPlay
         muted
         playsInline
-        onEnded={makeLoopHandler(mobileVideoRef)}
+        onEnded={onMobileEnded}
         className="md:hidden absolute inset-0 w-full h-full"
         style={{ objectFit: "cover", mixBlendMode: "screen" }}
       >
