@@ -12,6 +12,9 @@ type ScrambleOnViewProps = {
   speed?: number;
   delay?: number;
   characterSet?: string;
+  /** If set, scramble fires when this window event fires (and element is in viewport)
+   *  instead of using the built-in IntersectionObserver. */
+  triggerEvent?: string;
 };
 
 export function ScrambleOnView({
@@ -23,11 +26,11 @@ export function ScrambleOnView({
   speed = 0.03,
   delay = 200,
   characterSet = DEFAULT_CHARS,
+  triggerEvent,
 }: ScrambleOnViewProps) {
   const ref = useRef<HTMLElement>(null);
   const [text, setText] = useState(children);
   const scrambling = useRef(false);
-  // Always holds the latest children so the observer closure never goes stale
   const childrenRef = useRef(children);
 
   useEffect(() => {
@@ -42,40 +45,61 @@ export function ScrambleOnView({
     let delayTimer: ReturnType<typeof setTimeout>;
     let scrambleTimer: ReturnType<typeof setInterval>;
 
+    const runScramble = () => {
+      delayTimer = setTimeout(() => {
+        const original = childrenRef.current;
+        const totalSteps = Math.ceil(duration / speed);
+        let step = 0;
+        scrambling.current = true;
+
+        scrambleTimer = setInterval(() => {
+          step++;
+          const progress = step / totalSteps;
+          let scrambled = '';
+
+          for (let i = 0; i < original.length; i++) {
+            if (original[i] === ' ') { scrambled += ' '; continue; }
+            scrambled +=
+              progress * original.length > i
+                ? original[i]
+                : characterSet[Math.floor(Math.random() * characterSet.length)];
+          }
+
+          setText(scrambled);
+
+          if (step >= totalSteps) {
+            clearInterval(scrambleTimer);
+            scrambling.current = false;
+            setText(childrenRef.current);
+          }
+        }, speed * 1000);
+      }, delay);
+    };
+
+    if (triggerEvent) {
+      // Fire only when the event fires AND the element is inside the viewport
+      const onEvent = () => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          window.removeEventListener(triggerEvent, onEvent);
+          runScramble();
+        }
+      };
+      window.addEventListener(triggerEvent, onEvent);
+      return () => {
+        window.removeEventListener(triggerEvent, onEvent);
+        clearTimeout(delayTimer);
+        clearInterval(scrambleTimer);
+      };
+    }
+
+    // Default: IntersectionObserver
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         obs.disconnect();
-
-        delayTimer = setTimeout(() => {
-          // Use ref so we always scramble to the current language value
-          const original = childrenRef.current;
-          const totalSteps = Math.ceil(duration / speed);
-          let step = 0;
-          scrambling.current = true;
-
-          scrambleTimer = setInterval(() => {
-            step++;
-            const progress = step / totalSteps;
-            let scrambled = '';
-
-            for (let i = 0; i < original.length; i++) {
-              if (original[i] === ' ') { scrambled += ' '; continue; }
-              scrambled +=
-                progress * original.length > i
-                  ? original[i]
-                  : characterSet[Math.floor(Math.random() * characterSet.length)];
-            }
-
-            setText(scrambled);
-
-            if (step >= totalSteps) {
-              clearInterval(scrambleTimer);
-              scrambling.current = false;
-              setText(childrenRef.current);
-            }
-          }, speed * 1000);
-        }, delay);
+        runScramble();
       },
       { threshold: 0.15 }
     );
