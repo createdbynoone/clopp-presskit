@@ -10,7 +10,7 @@ export default function Hero() {
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
-  const makeLoopHandler = (ref: React.RefObject<HTMLVideoElement>) => () => {
+  const makeLoopHandler = (ref: React.RefObject<HTMLVideoElement | null>) => () => {
     const v = ref.current;
     if (!v) return;
     v.currentTime = 0;
