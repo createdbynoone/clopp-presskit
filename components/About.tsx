@@ -46,7 +46,7 @@ export default function About() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map(({ label, value }, i) => (
-                <div key={label} className="scroll-trigger animate--rolling-fade-in" style={{ '--animation-order': i } as React.CSSProperties}>
+                <div key={i} className="scroll-trigger animate--rolling-fade-in" style={{ '--animation-order': i } as React.CSSProperties}>
                   <ScrambleOnView as="div" style={{ fontSize: '11px', letterSpacing: '0.18em', color: '#888888', marginBottom: '6px' }}>
                     {label}
                   </ScrambleOnView>
