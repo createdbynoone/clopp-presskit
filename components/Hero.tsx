@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section
       className="relative w-full flex flex-col overflow-hidden"
-      style={{ height: "100dvh", minHeight: "600px" }}
+      style={{ height: "100svh", minHeight: "600px" }}
     >
       <div className="hero-bg absolute inset-0" />
 

@@ -138,10 +138,10 @@ export default function Booking() {
       </div>
 
       {/* ── Footer bar ── */}
-      <footer style={{ backgroundColor: '#000000', marginTop: 'auto', flexShrink: 0 }}>
+      <footer style={{ backgroundColor: '#000000', marginTop: 'auto', flexShrink: 0, paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <div
           className="px-6 md:px-10 max-w-screen-2xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{ padding: '24px 40px' }}
+          style={{ padding: '16px 24px' }}
         >
           <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)' }}>
             © {new Date().getFullYear()} — {t.rights}
