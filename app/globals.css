@@ -65,15 +65,23 @@
 
 html {
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
   background-color: #0A0A0A;
 }
 
 section {
   min-height: 100vh;        /* fallback */
   min-height: 100svh;       /* mobile: sized to viewport with browser chrome visible */
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+}
+
+/* Fullpage snap only on desktop (mouse/trackpad) — on touch devices native scroll allows chrome retraction */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }
 
 body {
