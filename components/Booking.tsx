@@ -46,7 +46,7 @@ export default function Booking() {
           <div className="md:col-span-5 scroll-trigger animate--slide-in">
             <h2
               style={{
-                fontSize: 'clamp(36px, 5.5vw, 78px)',
+                fontSize: 'clamp(26px, 4vw, 60px)',
                 lineHeight: 0.9,
                 letterSpacing: '-0.02em',
                 marginBottom: 'clamp(12px, 2.5vh, 40px)',
@@ -75,7 +75,7 @@ export default function Booking() {
             <a
               href="mailto:info@cloppmusic.com"
               className="block transition-opacity duration-200 hover:opacity-60"
-              style={{ fontSize: 'clamp(14px, 2.2vw, 26px)', letterSpacing: '0.06em', color: '#000000' }}
+              style={{ fontSize: 'clamp(13px, 1.6vw, 20px)', letterSpacing: '0.06em', color: '#000000' }}
             >
               <ScrambleOnView as="span">INFO@CLOPPMUSIC.COM</ScrambleOnView>
             </a>
@@ -86,7 +86,7 @@ export default function Booking() {
             {status === 'sent' ? (
               <div className="flex flex-col items-center justify-center h-full text-center" style={{ minHeight: '300px', gap: '16px' }}>
                 <div style={{ fontSize: '13px', letterSpacing: '0.18em', color: '#000000', marginBottom: '8px' }}>■</div>
-                <div style={{ fontSize: 'clamp(20px, 4vw, 44px)', letterSpacing: '-0.01em', color: '#000000' }}>{t.sent}</div>
+                <div style={{ fontSize: 'clamp(18px, 3vw, 36px)', letterSpacing: '-0.01em', color: '#000000' }}>{t.sent}</div>
                 <p style={{ fontSize: '14px', letterSpacing: '0.08em', color: 'rgba(0,0,0,0.6)', textTransform: 'none' }}>
                   {t.sentMsg}
                 </p>

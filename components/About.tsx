@@ -24,14 +24,14 @@ export default function About() {
           {/* Left — ghost number + red bar */}
           <div className="md:col-span-3 flex items-start gap-4 scroll-trigger animate--slide-in">
             <div style={{ width: '2px', height: 'clamp(80px, 12vh, 160px)', backgroundColor: '#D40000', flexShrink: 0, marginTop: '8px' }} />
-            <div style={{ fontSize: 'clamp(50px, 9vh, 140px)', lineHeight: 0.85, color: '#161616', letterSpacing: '-0.03em', userSelect: 'none' }}>
+            <div style={{ fontSize: 'clamp(36px, 7vh, 110px)', lineHeight: 0.85, color: '#161616', letterSpacing: '-0.03em', userSelect: 'none' }}>
               01
             </div>
           </div>
 
           {/* Right — content */}
           <div className="md:col-span-9 md:pl-16 scroll-trigger animate--slide-in" style={{ '--animation-order': 1 } as React.CSSProperties}>
-            <ScrambleOnView as="h2" style={{ fontSize: 'clamp(36px, 5.5vw, 78px)', lineHeight: 0.9, letterSpacing: '-0.02em', marginBottom: 'clamp(12px, 2.5vh, 36px)' }}>
+            <ScrambleOnView as="h2" style={{ fontSize: 'clamp(26px, 4vw, 60px)', lineHeight: 0.9, letterSpacing: '-0.02em', marginBottom: 'clamp(12px, 2.5vh, 36px)' }}>
               CLOPP
             </ScrambleOnView>
 
