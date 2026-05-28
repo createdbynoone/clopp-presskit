@@ -300,8 +300,18 @@ nav[data-scrolled="true"] .nav-link {
 
 .form-textarea {
   resize: none;
-  min-height: clamp(56px, 9vh, 120px);
+  min-height: clamp(44px, 7vh, 120px);
   padding-top: 14px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .form-input {
+    padding: 10px 0;
+  }
+  .form-textarea {
+    min-height: 44px;
+    padding-top: 10px;
+  }
 }
 
 /* ──────────────────────────────────────────────

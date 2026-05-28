@@ -34,13 +34,13 @@ export default function Booking() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 'clamp(72px, 9vh, 120px)',
+        paddingTop: 'clamp(36px, 5vh, 120px)',
         backgroundColor: '#D40000',
       }}
     >
       {/* ── Main booking content ── */}
       <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16">
 
           {/* Left — email + info */}
           <div className="md:col-span-5 scroll-trigger animate--slide-in">
@@ -49,7 +49,7 @@ export default function Booking() {
                 fontSize: 'clamp(26px, 4vw, 60px)',
                 lineHeight: 0.9,
                 letterSpacing: '-0.02em',
-                marginBottom: 'clamp(12px, 2.5vh, 40px)',
+                marginBottom: 'clamp(6px, 1.5vh, 40px)',
                 color: '#000000',
               }}
             >
@@ -65,7 +65,7 @@ export default function Booking() {
                 letterSpacing: '0.03em',
                 color: 'rgba(0,0,0,0.6)',
                 textTransform: 'none',
-                marginBottom: 'clamp(12px, 2.5vh, 40px)',
+                marginBottom: 'clamp(6px, 1.5vh, 40px)',
                 maxWidth: '360px',
               }}
             >
@@ -120,7 +120,7 @@ export default function Booking() {
                 </div>
                 <div
                   className="flex items-center justify-end"
-                  style={{ marginTop: 'clamp(12px, 2vh, 40px)' }}
+                  style={{ marginTop: 'clamp(8px, 1.5vh, 40px)' }}
                 >
                   <button
                     type="submit"
