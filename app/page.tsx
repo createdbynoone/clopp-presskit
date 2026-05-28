@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Navigation />
 
-      <main style={{ touchAction: 'pan-x pinch-zoom' }}>
+      <main>
         <Hero />
         <About />
         <Music />
