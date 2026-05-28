@@ -64,9 +64,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  overflow-y: scroll;
   scroll-snap-type: y mandatory;
-  overscroll-behavior: none;
   background-color: #0A0A0A;
 }
 
