@@ -65,21 +65,22 @@
 
 html {
   overflow-y: scroll;
+  scroll-snap-type: y proximity; /* proximity lets native scroll (and chrome retraction) happen before snapping */
   background-color: #0A0A0A;
 }
 
 section {
   min-height: 100vh;        /* fallback */
   min-height: 100svh;       /* mobile: sized to viewport with browser chrome visible */
+  scroll-snap-align: start;
 }
 
-/* Fullpage snap only on desktop (mouse/trackpad) — on touch devices native scroll allows chrome retraction */
+/* Stricter snap on desktop (mouse/trackpad) */
 @media (hover: hover) and (pointer: fine) {
   html {
     scroll-snap-type: y mandatory;
   }
   section {
-    scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 }
