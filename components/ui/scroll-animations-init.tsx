@@ -9,7 +9,6 @@ export function ScrollAnimationsInit() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    // Reveal all .scroll-trigger elements currently inside the viewport
     const revealVisible = () => {
       document.querySelectorAll<Element>('.scroll-trigger:not(.scroll-trigger--passed)').forEach(el => {
         const rect = el.getBoundingClientRect()
@@ -19,13 +18,18 @@ export function ScrollAnimationsInit() {
       })
     }
 
-    // Immediate pass for elements already in view on mount
     revealVisible()
-
-    // Trigger animations once the fullpage snap has fully settled (no mid-scroll jump)
     window.addEventListener('fullpage:settled', revealVisible)
 
-    // Pick up .scroll-trigger elements added later by dynamic imports
+    // Debounced scroll fallback — covers mobile JS snap where fullpage:settled
+    // may fire before the section is fully in view
+    let revealTimer: ReturnType<typeof setTimeout>
+    const onScrollReveal = () => {
+      clearTimeout(revealTimer)
+      revealTimer = setTimeout(revealVisible, 200)
+    }
+    window.addEventListener('scroll', onScrollReveal, { passive: true })
+
     const mo = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
@@ -45,7 +49,9 @@ export function ScrollAnimationsInit() {
 
     return () => {
       window.removeEventListener('fullpage:settled', revealVisible)
+      window.removeEventListener('scroll', onScrollReveal)
       mo.disconnect()
+      clearTimeout(revealTimer)
     }
   }, [pathname])
 

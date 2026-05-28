@@ -28,7 +28,6 @@ export function FullpageScroll() {
       idx.current = best
     }
 
-    // Dispatch fullpage:settled once the snap animation finishes
     let fallbackTimer: ReturnType<typeof setTimeout>
     const dispatchSettled = () => window.dispatchEvent(new Event('fullpage:settled'))
 
@@ -43,9 +42,7 @@ export function FullpageScroll() {
       }
     }
 
-    if (hasScrollEnd) {
-      window.addEventListener('scrollend', onScrollEnd, { passive: true })
-    }
+    if (hasScrollEnd) window.addEventListener('scrollend', onScrollEnd, { passive: true })
     window.addEventListener('scroll', onScroll, { passive: true })
 
     const onKey = (e: KeyboardEvent) => {
@@ -57,10 +54,44 @@ export function FullpageScroll() {
     }
     window.addEventListener('keydown', onKey)
 
+    // Touch snap — passive listeners so the browser can retract the chrome naturally.
+    // On touchend we programmatically scroll to the target section, overriding momentum.
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+    let touchStartY = 0
+    let touchStartTime = 0
+    let touchStartIdx = 0
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY
+      touchStartTime = Date.now()
+      touchStartIdx = idx.current
+    }
+
+    const onTouchEnd = (e: TouchEvent) => {
+      const deltaY = touchStartY - e.changedTouches[0].clientY
+      const elapsed = Date.now() - touchStartTime
+      const velocity = Math.abs(deltaY) / elapsed
+
+      if (Math.abs(deltaY) > 30 || velocity > 0.2) {
+        goTo(touchStartIdx + (deltaY > 0 ? 1 : -1))
+      } else {
+        goTo(touchStartIdx)
+      }
+    }
+
+    if (isTouch) {
+      window.addEventListener('touchstart', onTouchStart, { passive: true })
+      window.addEventListener('touchend', onTouchEnd, { passive: true })
+    }
+
     return () => {
       if (hasScrollEnd) window.removeEventListener('scrollend', onScrollEnd)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('keydown', onKey)
+      if (isTouch) {
+        window.removeEventListener('touchstart', onTouchStart)
+        window.removeEventListener('touchend', onTouchEnd)
+      }
       clearTimeout(fallbackTimer)
     }
   }, [])
