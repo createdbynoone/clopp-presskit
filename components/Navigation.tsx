@@ -269,9 +269,7 @@ export default function Navigation() {
             );
           })}
         </div>
-        <div className="absolute bottom-10 left-12" style={{ fontSize: '10px', letterSpacing: '0.18em', color: '#888888', fontWeight: 300 }}>
-          (BCN) — 2024
-        </div>
+
       </div>
     </>
   );
