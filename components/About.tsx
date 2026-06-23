@@ -9,10 +9,9 @@ export default function About() {
   const t = T[lang].about;
 
   const stats = [
-    { label: t.base,   value: 'CALI / CO' },
-    { label: t.active, value: '2018 —' },
+    { label: t.base,   value: 'COLOMBIA' },
+    { label: t.active, value: 'SINCE 2018' },
     { label: t.genre,  value: 'INDIE DANCE / MELODIC HOUSE' },
-    { label: t.status, value: t.statusVal },
   ];
 
   return (
@@ -71,19 +70,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Venues bar */}
-        <div
-          className="flex flex-wrap border-t border-b scroll-trigger animate--slide-in"
-          style={{ '--animation-order': 2, borderColor: '#3A3A3A', marginTop: 'clamp(16px, 3vh, 64px)' } as React.CSSProperties}
-        >
-          {['FABRIC — LONDON', 'RAZZMATAZZ — BCN', 'ARENA CLUB — BER', 'LE BATACLAN — PAR'].map((venue) => (
-            <div key={venue} className="flex-1 border-r last:border-r-0" style={{ borderColor: '#3A3A3A', minWidth: '160px', padding: 'clamp(10px, 1.5vh, 20px) 24px' }}>
-              <ScrambleOnView as="div" style={{ fontSize: '13px', letterSpacing: '0.1em', color: '#FFFFFF' }}>
-                {venue}
-              </ScrambleOnView>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
