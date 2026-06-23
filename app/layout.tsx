@@ -28,8 +28,8 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="preload" href="/fonts/NeueHaasDisplayMedium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/images/hero.webp" as="image" type="image/webp" media="(min-width: 769px)" />
-        <link rel="preload" href="/images/hero-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" />
+        <link rel="preload" href="/videos/banner-morph-desktop.webm" as="video" type="video/webm" media="(min-width: 769px)" />
+        <link rel="preload" href="/videos/banner-morph-mobile.webm" as="video" type="video/webm" media="(max-width: 768px)" />
       </head>
       <body>
         <LanguageProvider>

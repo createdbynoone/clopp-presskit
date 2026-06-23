@@ -28,9 +28,9 @@ export default function Hero() {
         playsInline
         onEnded={onDesktopEnded}
         className="hidden md:block absolute inset-0 w-full h-full"
-        style={{ objectFit: "contain", mixBlendMode: "screen" }}
+        style={{ objectFit: "cover" }}
       >
-        <source src="/videos/banner-desktop.webm" type="video/webm" />
+        <source src="/videos/banner-morph-desktop.webm" type="video/webm" />
       </video>
 
       {/* Mobile: vertical video loop */}
@@ -41,9 +41,9 @@ export default function Hero() {
         playsInline
         onEnded={onMobileEnded}
         className="md:hidden absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover", mixBlendMode: "screen" }}
+        style={{ objectFit: "cover" }}
       >
-        <source src="/videos/banner-mobile.webm" type="video/webm" />
+        <source src="/videos/banner-morph-mobile.webm" type="video/webm" />
       </video>
 
       {/* Scroll indicator — all screens */}
