@@ -271,14 +271,21 @@ export default function Riders() {
             </h2>
 
             <div className="flex flex-col">
-              {t.hospitalityItems.map((item, i) => (
-                <div key={i} className="flex gap-6 border-b" style={{ borderColor: 'rgba(0,0,0,0.12)', ...ROW_STYLE }}>
-                  <span style={{ fontSize: '11px', letterSpacing: '0.18em', color: 'rgba(0,0,0,0.35)', flexShrink: 0, paddingTop: '3px', minWidth: '28px' }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
-                    {item}
-                  </span>
+              {t.hospitalityItems.map((block, i) => (
+                <div key={i} className="border-t" style={{ borderColor: 'rgba(0,0,0,0.12)', paddingTop: 'clamp(10px, 1.5vh, 20px)', paddingBottom: 'clamp(10px, 1.5vh, 20px)' }}>
+                  <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>
+                    {block.category}
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {block.items.map((item, j) => (
+                      <div key={j} className="flex gap-4">
+                        <span style={{ color: 'rgba(0,0,0,0.3)', fontSize: '10px', flexShrink: 0, marginTop: '4px' }}>—</span>
+                        <span style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
