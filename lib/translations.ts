@@ -51,7 +51,7 @@ export const T = {
       hospitalityItems: [
         { category: 'ACCESO', items: ['Pase de artista (pulsera o acreditación) + 2 acompañantes con acceso completo al evento'] },
         { category: 'BACKSTAGE', items: ['Zona de descanso privada o compartida para el artista, disponible antes y después de la actuación'] },
-        { category: 'CATERING', items: ['2x agua San Pellegrino (sin gas o con gas)', '1x snack saludable (fruta, frutos secos o equivalente)'] },
+        { category: 'CATERING', items: ['2x agua San Pellegrino', '1x snack saludable (fruta, frutos secos o equivalente)'] },
         { category: 'LOGÍSTICA Y COORDINACIÓN', items: [
           'Contacto directo con el promotor u organizador del evento para coordinación en sala',
           'Transporte terrestre desde el aeropuerto al venue (ida y vuelta), para actuaciones fuera de la ciudad del artista',
@@ -129,7 +129,7 @@ export const T = {
       hospitalityItems: [
         { category: 'ACCESS', items: ['Artist pass (wristband or badge) + 2 guests with full access to the event'] },
         { category: 'BACKSTAGE', items: ['Private or shared rest area for the artist, available before and after the performance'] },
-        { category: 'CATERING', items: ['2x San Pellegrino water (still or sparkling)', '1x healthy snack (fruit, nuts, or equivalent)'] },
+        { category: 'CATERING', items: ['2x San Pellegrino water', '1x healthy snack (fruit, nuts, or equivalent)'] },
         { category: 'LOGISTICS & COORDINATION', items: [
           'Direct point of contact with the promoter or event organizer for on-site coordination',
           'Ground transportation from airport to venue (round trip), for performances outside the artist\'s home city',
