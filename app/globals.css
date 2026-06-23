@@ -46,15 +46,16 @@
    HERO BACKGROUND — responsive image
    ────────────────────────────────────────────── */
 .hero-bg {
-  background-image: url('/images/hero.webp');
+  background-image: url('/images/hero-v2.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
 @media (max-width: 768px) {
   .hero-bg {
-    background-image: url('/images/hero-mobile.webp');
+    background-image: url('/images/hero-v2.jpg');
+    background-position: center center;
   }
 }
 
