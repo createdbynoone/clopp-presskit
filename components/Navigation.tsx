@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { T } from '@/lib/translations';
 
-const NAV_LINKS = ['ABOUT', 'MUSIC', 'GALLERY', 'RIDERS', 'BOOKING'];
+const NAV_LINKS = ['ABOUT', /* 'MUSIC', */ 'GALLERY', 'RIDERS', 'BOOKING'];
 
 export default function Navigation() {
   const { lang, toggle } = useLanguage();

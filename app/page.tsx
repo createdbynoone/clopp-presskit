@@ -18,7 +18,7 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Music />
+        {/* <Music /> */}
         <Gallery />
         <Booking />
       </main>
