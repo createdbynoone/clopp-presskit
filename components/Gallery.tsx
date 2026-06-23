@@ -64,7 +64,7 @@ export default function Gallery() {
             style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover", objectPosition: obj, cursor: "pointer" }} />
         ))}
       </div>
-      <a href="#" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
+      <a href="https://www.dropbox.com/scl/fo/00rv1vqbowdhyy9qg6ts4/AEosEoPbzTNEDyo6WKgM1NE?rlkey=k419i9lzdbtga2xuyi313pbms&st=uevy76wp&dl=0" target="_blank" rel="noopener noreferrer" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
         DOWNLOAD<br />CONTENT
       </a>
       {lightbox && (
@@ -87,7 +87,7 @@ export default function Gallery() {
     >
       {/* ── Center link ── */}
       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, pointerEvents: "none" }}>
-        <a href="#" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, pointerEvents: "all" }}>
+        <a href="https://www.dropbox.com/scl/fo/00rv1vqbowdhyy9qg6ts4/AEosEoPbzTNEDyo6WKgM1NE?rlkey=k419i9lzdbtga2xuyi313pbms&st=uevy76wp&dl=0" target="_blank" rel="noopener noreferrer" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, pointerEvents: "all" }}>
           <ScrambleOnView as="span" duration={0.9}>DOWNLOAD</ScrambleOnView>
           <br />
           <ScrambleOnView as="span" duration={0.9}>CONTENT</ScrambleOnView>
