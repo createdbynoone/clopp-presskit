@@ -80,7 +80,7 @@
 
 html {
   overflow-y: scroll;
-  background: linear-gradient(180deg, #C8A000 0%, #C03000 45%, #060606 100%);
+  background: linear-gradient(180deg, #060606 0%, #C03000 55%, #C8A000 100%);
   background-attachment: fixed;
 }
 
@@ -324,6 +324,18 @@ nav[data-scrolled="true"] .nav-link {
 }
 .form-input--onred:focus {
   border-bottom-color: #000000;
+}
+
+.form-input--onpurple {
+  color: #A8CC10;
+  border-bottom-color: rgba(168,204,16,0.35);
+  caret-color: #A8CC10;
+}
+.form-input--onpurple::placeholder {
+  color: rgba(168,204,16,0.4);
+}
+.form-input--onpurple:focus {
+  border-bottom-color: #A8CC10;
 }
 
 .form-textarea {
