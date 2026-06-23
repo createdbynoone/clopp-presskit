@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { ScrollAnimationsInit } from "@/components/ui/scroll-animations-init";
 import { FullpageScroll } from "@/components/ui/fullpage-scroll";
+import { Preloader } from "@/components/ui/preloader";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
+          <Preloader />
           <ScrollAnimationsInit />
           <FullpageScroll />
           {children}
