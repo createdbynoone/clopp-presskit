@@ -137,7 +137,7 @@ function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; cate
 }
 
 export default function Riders() {
-  const { lang } = useLanguage();
+  const { lang, toggle } = useLanguage();
   const t = T[lang].riders;
 
   // Hospitality gate
@@ -264,11 +264,31 @@ export default function Riders() {
           </div>
         ) : (
           <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full">
-            <h2 style={{ fontSize: 'clamp(36px, 6.5vw, 88px)', lineHeight: 0.9, letterSpacing: '-0.02em', marginBottom: 'clamp(16px, 2.5vh, 48px)', color: '#000000' }}>
+            <h2 style={{ fontSize: 'clamp(36px, 6.5vw, 88px)', lineHeight: 0.9, letterSpacing: '-0.02em', marginBottom: 'clamp(16px, 2.5vh, 24px)', color: '#000000' }}>
               <ScrambleOnView as="span">{t.hospitality}</ScrambleOnView>
               <br />
               <ScrambleOnView as="span">{t.rider}</ScrambleOnView>
             </h2>
+
+            <div style={{ marginBottom: 'clamp(12px, 2vh, 32px)' }}>
+              <button
+                onClick={toggle}
+                style={{
+                  background: 'none',
+                  border: '1px solid rgba(0,0,0,0.2)',
+                  color: 'rgba(0,0,0,0.45)',
+                  fontSize: '10px',
+                  letterSpacing: '0.18em',
+                  padding: '4px 10px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0,0,0,0.5)'; (e.currentTarget as HTMLButtonElement).style.color = '#000000'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0,0,0,0.2)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(0,0,0,0.45)'; }}
+              >
+                {lang === 'es' ? 'ENGLISH' : 'SPANISH'}
+              </button>
+            </div>
 
             <div className="flex flex-col">
               {t.hospitalityItems.map((block, i) => (

@@ -51,7 +51,7 @@ export default function About() {
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.5)'; (e.currentTarget as HTMLButtonElement).style.color = '#FFFFFF'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.2)'; (e.currentTarget as HTMLButtonElement).style.color = '#888888'; }}
               >
-                {lang === 'es' ? 'ENG' : 'ESP'}
+                {lang === 'es' ? 'ENGLISH' : 'SPANISH'}
               </button>
             </div>
 
