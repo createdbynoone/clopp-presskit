@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { T } from '@/lib/translations';
 
 export default function About() {
-  const { lang } = useLanguage();
+  const { lang, toggle } = useLanguage();
   const t = T[lang].about;
 
   const stats = [
@@ -35,13 +35,33 @@ export default function About() {
               CLOPP
             </ScrambleOnView>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" style={{ marginBottom: 'clamp(12px, 3vh, 48px)' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" style={{ marginBottom: 'clamp(8px, 1.5vh, 24px)' }}>
               <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', lineHeight: 1.7, letterSpacing: '0.03em', color: '#FFFFFF', textTransform: 'none' }}>
                 {t.bio1}
               </p>
               <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', lineHeight: 1.7, letterSpacing: '0.03em', color: '#888888', textTransform: 'none' }}>
                 {t.bio2}
               </p>
+            </div>
+
+            <div style={{ marginBottom: 'clamp(12px, 3vh, 48px)' }}>
+              <button
+                onClick={toggle}
+                style={{
+                  background: 'none',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  color: '#888888',
+                  fontSize: '10px',
+                  letterSpacing: '0.18em',
+                  padding: '4px 10px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.5)'; (e.currentTarget as HTMLButtonElement).style.color = '#FFFFFF'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.2)'; (e.currentTarget as HTMLButtonElement).style.color = '#888888'; }}
+              >
+                {lang === 'es' ? 'ENG' : 'ESP'}
+              </button>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

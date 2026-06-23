@@ -8,7 +8,7 @@ import { T } from '@/lib/translations';
 const NAV_LINKS = ['ABOUT', /* 'MUSIC', */ 'GALLERY', 'RIDERS', 'BOOKING'];
 
 export default function Navigation() {
-  const { lang, toggle } = useLanguage();
+  const { lang } = useLanguage();
   const t = T[lang].nav;
   const router = useRouter();
   const pathname = usePathname();
@@ -95,27 +95,6 @@ export default function Navigation() {
           backdropFilter: 'none',
         }}
       >
-        {/* ESP / ENG toggle — top right */}
-        <button
-          onClick={toggle}
-          className="absolute right-10 hidden md:flex items-center"
-          style={{
-            background: 'none',
-            border: '1px solid',
-            borderColor: scrolled ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)',
-            color: scrolled ? '#000000' : '#FFFFFF',
-            fontSize: '10px',
-            letterSpacing: '0.18em',
-            padding: '4px 10px',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = scrolled ? '#000' : '#fff'; (e.currentTarget as HTMLButtonElement).style.opacity = '0.7'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = scrolled ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)'; (e.currentTarget as HTMLButtonElement).style.opacity = '1'; }}
-        >
-          {lang === 'es' ? 'ENG' : 'ESP'}
-        </button>
-
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => {
@@ -196,15 +175,6 @@ export default function Navigation() {
             );
           })}
         </div>
-
-        {/* Mobile ESP/ENG toggle */}
-        <button
-          onClick={toggle}
-          className="md:hidden absolute left-6"
-          style={{ background: 'none', border: '1px solid', borderColor: scrolled ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)', color: scrolled ? '#000' : '#fff', fontSize: '9px', letterSpacing: '0.15em', padding: '3px 8px', cursor: 'pointer' }}
-        >
-          {lang === 'es' ? 'ENG' : 'ESP'}
-        </button>
 
         {/* Mobile hamburger */}
         <div className="md:hidden absolute right-6">
