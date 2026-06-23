@@ -26,11 +26,11 @@ export default function About() {
               CLOPP
             </ScrambleOnView>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" style={{ marginBottom: 'clamp(8px, 1.5vh, 24px)' }}>
+            <div className="flex flex-col gap-4" style={{ marginBottom: 'clamp(8px, 1.5vh, 24px)', maxWidth: '640px' }}>
               <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', lineHeight: 1.7, letterSpacing: '0.03em', color: '#FFFFFF', textTransform: 'none' }}>
                 {t.bio1}
               </p>
-              <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', lineHeight: 1.7, letterSpacing: '0.03em', color: '#888888', textTransform: 'none' }}>
+              <p style={{ fontSize: 'clamp(13px, 1.8vh, 17px)', lineHeight: 1.7, letterSpacing: '0.03em', color: '#FFFFFF', textTransform: 'none' }}>
                 {t.bio2}
               </p>
             </div>
