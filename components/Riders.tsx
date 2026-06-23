@@ -90,7 +90,7 @@ function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; cate
   return (
     <div style={{ border: '1px solid #1E1E1E', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <div style={{ padding: '8px 12px', borderBottom: '1px solid #1E1E1E' }}>
-        <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#D40000', margin: 0 }}>{category}</p>
+        <p style={{ fontSize: '9px', letterSpacing: '0.18em', color: '#A8CC10', margin: 0 }}>{category}</p>
       </div>
 
       <div style={{ overflow: 'hidden', flex: 1, cursor: 'grab' }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
@@ -124,7 +124,7 @@ function CarouselCard({ card, category }: { card: typeof CAROUSEL_CARDS[0]; cate
           </button>
           <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
             {card.slides.map((_, i) => (
-              <button key={i} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} style={{ width: i === displayIdx ? '12px' : '5px', height: '5px', borderRadius: '3px', backgroundColor: i === displayIdx ? '#D40000' : '#333', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.25s ease', flexShrink: 0 }} />
+              <button key={i} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} style={{ width: i === displayIdx ? '12px' : '5px', height: '5px', borderRadius: '3px', backgroundColor: i === displayIdx ? '#A8CC10' : '#333', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.25s ease', flexShrink: 0 }} />
             ))}
           </div>
           <button onClick={next} aria-label="Siguiente" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: '#555', lineHeight: 1, display: 'flex', alignItems: 'center' }}>
@@ -184,7 +184,7 @@ export default function Riders() {
           <h2 style={{ fontSize: 'clamp(36px, 6.5vw, 88px)', lineHeight: 0.9, letterSpacing: '-0.02em', marginBottom: 'clamp(16px, 2.5vh, 48px)' }}>
             <ScrambleOnView as="span">{t.technical}</ScrambleOnView>
             <br />
-            <ScrambleOnView as="span" style={{ color: '#D40000' }}>{t.rider}</ScrambleOnView>
+            <ScrambleOnView as="span" style={{ color: '#A8CC10' }}>{t.rider}</ScrambleOnView>
           </h2>
 
           {/* 3 carousel cards + BOOTH plain text */}
@@ -195,11 +195,11 @@ export default function Riders() {
 
             {/* BOOTH — plain text, spreads to match card height */}
             <div style={{ display: 'flex', flexDirection: 'column', padding: '8px 8px', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-              <p style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#D40000', margin: '0 0 16px' }}>{t.booth}</p>
+              <p style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#A8CC10', margin: '0 0 16px' }}>{t.booth}</p>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', flex: 1 }}>
                 {t.boothItems.map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', paddingBottom: '12px' }}>
-                    <span style={{ color: '#D40000', fontSize: '10px', flexShrink: 0, marginTop: '3px' }}>—</span>
+                    <span style={{ color: '#A8CC10', fontSize: '10px', flexShrink: 0, marginTop: '3px' }}>—</span>
                     <p style={{ fontSize: 'clamp(12px, 1.1vw, 15px)', letterSpacing: '0.06em', color: '#CCCCCC', lineHeight: 1.5, margin: 0 }}>{item}</p>
                   </div>
                 ))}
@@ -212,7 +212,7 @@ export default function Riders() {
               href="mailto:info@cloppmusic.com"
               className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"
               style={{ borderColor: '#3A3A3A', fontSize: '12px', letterSpacing: '0.18em', whiteSpace: 'nowrap' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#D40000'; (e.currentTarget as HTMLAnchorElement).style.borderColor = '#D40000'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#A8CC10'; (e.currentTarget as HTMLAnchorElement).style.borderColor = '#A8CC10'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLAnchorElement).style.borderColor = '#3A3A3A'; }}
             >
               {t.requestPdf}
@@ -228,7 +228,7 @@ export default function Riders() {
             </h2>
             <form onSubmit={handleUnlockT} style={{ width: '100%', maxWidth: '660px', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(12px, 2vh, 24px)' }}>
               <div className={shakeT ? 'pw-shake' : ''} style={{ width: '100%', position: 'relative', border: '2px solid #FFFFFF', display: 'flex', alignItems: 'center', backgroundColor: 'transparent' }}>
-                <input type={showPwT ? 'text' : 'password'} value={pwT} onChange={e => setPwT(e.target.value)} autoComplete="off" style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: 'clamp(18px, 3vh, 32px) 24px', fontSize: 'clamp(18px, 2.5vw, 28px)', letterSpacing: '0.12em', color: '#FFFFFF', caretColor: '#D40000', fontFamily: 'inherit' }} />
+                <input type={showPwT ? 'text' : 'password'} value={pwT} onChange={e => setPwT(e.target.value)} autoComplete="off" style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: 'clamp(18px, 3vh, 32px) 24px', fontSize: 'clamp(18px, 2.5vw, 28px)', letterSpacing: '0.12em', color: '#FFFFFF', caretColor: '#A8CC10', fontFamily: 'inherit' }} />
                 <button type="button" onClick={() => setShowPwT(v => !v)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 24px', display: 'flex', alignItems: 'center', flexShrink: 0 }} aria-label={showPwT ? 'Hide' : 'Show'}>
                   {showPwT
                     ? <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -243,7 +243,7 @@ export default function Riders() {
       </section>
 
       {/* ── HOSPITALITY RIDER ── */}
-      <section id="hospitality-rider" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(20px, 4vh, 64px) 0', backgroundColor: '#D40000' }}>
+      <section id="hospitality-rider" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(20px, 4vh, 64px) 0', backgroundColor: '#A8CC10' }}>
         {!unlocked ? (
           <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full flex flex-col items-center justify-center" style={{ gap: 'clamp(16px, 3vh, 40px)' }}>
             <h2 style={{ fontSize: 'clamp(48px, 8vw, 110px)', lineHeight: 0.9, letterSpacing: '-0.02em', color: '#000000', textAlign: 'center' }}>
@@ -312,7 +312,7 @@ export default function Riders() {
                 href="mailto:info@cloppmusic.com"
                 className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"
                 style={{ borderColor: '#000000', fontSize: '12px', letterSpacing: '0.18em', color: '#000000', whiteSpace: 'nowrap' }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#000000'; (e.currentTarget as HTMLAnchorElement).style.color = '#D40000'; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#000000'; (e.currentTarget as HTMLAnchorElement).style.color = '#A8CC10'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLAnchorElement).style.color = '#000000'; }}
               >
                 {t.requestPdf}

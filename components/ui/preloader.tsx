@@ -66,7 +66,7 @@ export function Preloader() {
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: '#D40000',
+        backgroundColor: '#A8CC10',
         zIndex: 9999,
         display: 'flex',
         alignItems: 'center',

@@ -35,7 +35,7 @@ export default function Booking() {
         display: 'flex',
         flexDirection: 'column',
         paddingTop: 'clamp(36px, 5vh, 120px)',
-        backgroundColor: '#D40000',
+        backgroundColor: '#A8CC10',
       }}
     >
       {/* ── Main booking content ── */}

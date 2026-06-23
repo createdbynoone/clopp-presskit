@@ -91,7 +91,7 @@ export default function Navigation() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-6 md:px-10 py-5 transition-all duration-500"
         data-scrolled={String(scrolled)}
         style={{
-          backgroundColor: scrolled ? '#D40000' : 'transparent',
+          backgroundColor: scrolled ? '#A8CC10' : 'transparent',
           backdropFilter: 'none',
         }}
       >
@@ -120,7 +120,7 @@ export default function Navigation() {
                         onClick={() => handleNavClick(id)}
                         className="block w-full text-left bg-transparent border-none cursor-pointer px-5 py-3 transition-colors duration-150"
                         style={subBtnStyle}
-                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#D40000'; }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#A8CC10'; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#AAAAAA'; }}
                       >
                         {label}
@@ -153,7 +153,7 @@ export default function Navigation() {
                         onClick={() => handleRiderClick(href)}
                         className="block w-full text-left bg-transparent border-none cursor-pointer px-5 py-3 transition-colors duration-150"
                         style={subBtnStyle}
-                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#D40000'; }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#A8CC10'; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#AAAAAA'; }}
                       >
                         {label}
@@ -215,7 +215,7 @@ export default function Navigation() {
               <div key={link}>
                 <button
                   onClick={() => setMobileMusicOpen(v => !v)}
-                  className="text-left bg-transparent border-none cursor-pointer text-white hover:text-[#D40000] transition-colors duration-200 flex items-center gap-4"
+                  className="text-left bg-transparent border-none cursor-pointer text-white hover:text-[#A8CC10] transition-colors duration-200 flex items-center gap-4"
                   style={{ fontSize: 'clamp(36px, 10vw, 60px)', fontWeight: 900, letterSpacing: '0.05em' }}
                 >
                   {link}
@@ -224,7 +224,7 @@ export default function Navigation() {
                 <div style={{ maxHeight: mobileMusicOpen ? '120px' : '0px', overflow: 'hidden', transition: 'max-height 0.3s ease', paddingLeft: '8px' }}>
                   {MUSIC_SUB.map(({ label, id }) => (
                     <button key={id} onClick={() => handleNavClick(id)}
-                      className="block text-left bg-transparent border-none cursor-pointer text-[#888888] hover:text-[#D40000] transition-colors duration-200"
+                      className="block text-left bg-transparent border-none cursor-pointer text-[#888888] hover:text-[#A8CC10] transition-colors duration-200"
                       style={{ fontSize: 'clamp(18px, 5vw, 28px)', fontWeight: 500, letterSpacing: '0.12em', paddingTop: '8px', paddingBottom: '4px' }}
                     >
                       {label}
@@ -238,7 +238,7 @@ export default function Navigation() {
               <div key={link}>
                 <button
                   onClick={() => setMobileRidersOpen(v => !v)}
-                  className="text-left bg-transparent border-none cursor-pointer text-white hover:text-[#D40000] transition-colors duration-200 flex items-center gap-4"
+                  className="text-left bg-transparent border-none cursor-pointer text-white hover:text-[#A8CC10] transition-colors duration-200 flex items-center gap-4"
                   style={{ fontSize: 'clamp(36px, 10vw, 60px)', fontWeight: 900, letterSpacing: '0.05em' }}
                 >
                   {link}
@@ -247,7 +247,7 @@ export default function Navigation() {
                 <div style={{ maxHeight: mobileRidersOpen ? '120px' : '0px', overflow: 'hidden', transition: 'max-height 0.3s ease', paddingLeft: '8px' }}>
                   {RIDERS_SUB.map(({ label, id, href }) => (
                     <button key={id} onClick={() => handleRiderClick(href)}
-                      className="block text-left bg-transparent border-none cursor-pointer text-[#888888] hover:text-[#D40000] transition-colors duration-200"
+                      className="block text-left bg-transparent border-none cursor-pointer text-[#888888] hover:text-[#A8CC10] transition-colors duration-200"
                       style={{ fontSize: 'clamp(18px, 5vw, 28px)', fontWeight: 500, letterSpacing: '0.12em', paddingTop: '8px', paddingBottom: '4px' }}
                     >
                       {label}
@@ -261,7 +261,7 @@ export default function Navigation() {
               <button
                 key={link}
                 onClick={() => handleNavClick(link)}
-                className="text-left bg-transparent border-none cursor-pointer text-white hover:text-[#D40000] transition-colors duration-200"
+                className="text-left bg-transparent border-none cursor-pointer text-white hover:text-[#A8CC10] transition-colors duration-200"
                 style={{ fontSize: 'clamp(36px, 10vw, 60px)', fontWeight: 900, letterSpacing: '0.05em', animationDelay: `${i * 60}ms` }}
               >
                 {link}

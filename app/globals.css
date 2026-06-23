@@ -15,11 +15,26 @@
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────
-   DESIGN TOKENS
+   PALETTE SAVED — ORIGINAL (restore to revert)
+   --color-clopp-black: #0A0A0A
+   --color-clopp-red:   #D40000
+   --color-clopp-white: #FFFFFF
+   --color-clopp-grey:  #888888
+   --color-clopp-dark:  #3A3A3A
+   body/html bg:        #0A0A0A
+   nav scrolled bg:     #D40000
+   gallery overlay:     #D40000
+   booking section bg:  #D40000
+   hospitality bg:      #D40000
+   preloader bg:        #D40000
+   ────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────
+   DESIGN TOKENS — EXPERIMENTAL PALETTE
    ────────────────────────────────────────────── */
 @theme {
-  --color-clopp-black: #0A0A0A;
-  --color-clopp-red: #D40000;
+  --color-clopp-black: #060606;
+  --color-clopp-red: #A8CC10;
   --color-clopp-white: #FFFFFF;
   --color-clopp-grey: #888888;
   --color-clopp-dark: #3A3A3A;
@@ -65,7 +80,8 @@
 
 html {
   overflow-y: scroll;
-  background-color: #0A0A0A;
+  background: linear-gradient(180deg, #C8A000 0%, #C03000 45%, #060606 100%);
+  background-attachment: fixed;
 }
 
 section {
@@ -87,7 +103,7 @@ section {
 body {
   font-family: var(--font-mono), 'JetBrains Mono', monospace;
   font-weight: 400;
-  background-color: #0A0A0A;
+  background: transparent;
   color: #FFFFFF;
   text-transform: uppercase;
   overflow-x: hidden;
@@ -221,10 +237,10 @@ nav[data-scrolled="true"] .nav-link {
   color: #000000;
 }
 
-/* Hover: red bg + black text */
+/* Hover: lime green bg + black text */
 .nav-link:hover {
   color: #000000 !important;
-  background-color: #D40000;
+  background-color: #A8CC10;
 }
 
 /* ──────────────────────────────────────────────
@@ -240,7 +256,7 @@ nav[data-scrolled="true"] .nav-link {
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background-color: #D40000;
+  background-color: #A8CC10;
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;

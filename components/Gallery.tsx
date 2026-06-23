@@ -13,7 +13,7 @@ const DOWNLOAD_STYLE: React.CSSProperties = {
   fontSize: "clamp(40px, 7vw, 110px)",
   lineHeight: 0.88,
   letterSpacing: "-0.02em",
-  color: "#D40000",
+  color: "#A8CC10",
   textDecoration: "none",
   textAlign: "center",
   textTransform: "uppercase",
@@ -57,7 +57,7 @@ export default function Gallery() {
 
   // Mobile: static 2-col grid, no parallax, no motion/react animation frame
   if (isMobile) return (
-    <section id="gallery" style={{ backgroundColor: "#0A0A0A", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(16px,3vh,32px)", padding: "clamp(20px,4vh,64px) 24px" }}>
+    <section id="gallery" style={{ backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(16px,3vh,32px)", padding: "clamp(20px,4vh,64px) 24px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", width: "100%" }}>
         {FRAMES.slice(0, 4).map(({ obj }, i) => (
           <img key={i} src={IMG} alt="CLOPP live — press" onClick={() => setLightbox({ src: IMG, obj })}
@@ -83,7 +83,7 @@ export default function Gallery() {
     <section
       id="gallery"
       ref={scope}
-      style={{ position: "relative", width: "100%", height: "100vh", backgroundColor: "#0A0A0A", overflow: "hidden" }}
+      style={{ position: "relative", width: "100%", height: "100vh", backgroundColor: "transparent", overflow: "hidden" }}
     >
       {/* ── Center link ── */}
       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, pointerEvents: "none" }}>
@@ -179,8 +179,8 @@ export default function Gallery() {
                 transition: "border-color 0.2s, color 0.2s",
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#D40000"
-                ;(e.currentTarget as HTMLAnchorElement).style.color = "#D40000"
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#A8CC10"
+                ;(e.currentTarget as HTMLAnchorElement).style.color = "#A8CC10"
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.25)"
