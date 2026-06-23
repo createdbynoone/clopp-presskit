@@ -40,8 +40,8 @@ export function Preloader() {
 
     // Crawl randomly to 80 while the page loads
     crawlId = setInterval(() => {
-      if (val < 80) animateTo(Math.min(val + Math.floor(Math.random() * 14 + 4), 80))
-    }, 220)
+      if (val < 80) animateTo(Math.min(val + Math.floor(Math.random() * 6 + 2), 80))
+    }, 400)
 
     const onLoad = () => document.fonts.ready.then(finish)
 
@@ -80,7 +80,7 @@ export function Preloader() {
         style={{
           fontFamily: 'NeueHaasDisplay, Helvetica Neue, Arial, sans-serif',
           fontWeight: 500,
-          fontSize: 'clamp(80px, 20vw, 260px)',
+          fontSize: 'clamp(36px, 8vw, 110px)',
           lineHeight: 1,
           letterSpacing: '-0.04em',
           color: '#000000',
