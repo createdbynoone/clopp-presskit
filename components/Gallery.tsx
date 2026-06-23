@@ -35,17 +35,10 @@ const FRAMES = [
 export default function Gallery() {
   const [scope, animate] = useAnimate()
   const [lightbox, setLightbox] = useState<{ src: string; obj: string } | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    // Detect touch/mobile after mount — avoids SSR hydration mismatch
-    setIsMobile(window.matchMedia('(hover: none) and (pointer: coarse)').matches)
-  }, [])
-
-  useEffect(() => {
-    if (isMobile) return
     animate("img", { opacity: [0, 1] }, { duration: 0.6, delay: stagger(0.12) })
-  }, [isMobile])
+  }, [])
 
   // Close lightbox on Escape
   useEffect(() => {
@@ -55,35 +48,11 @@ export default function Gallery() {
     return () => window.removeEventListener("keydown", onKey)
   }, [lightbox])
 
-  // Mobile: static 2-col grid, no parallax, no motion/react animation frame
-  if (isMobile) return (
-    <section id="gallery" style={{ backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(12px,2.5vh,28px)", padding: "clamp(16px,3vh,48px) 24px", height: "100dvh", overflow: "hidden" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", width: "100%" }}>
-        {FRAMES.slice(0, 4).map(({ obj }, i) => (
-          <img key={i} src={IMG} alt="CLOPP live — press" onClick={() => setLightbox({ src: IMG, obj })}
-            style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover", objectPosition: obj, cursor: "pointer" }} />
-        ))}
-      </div>
-      <a href="https://www.dropbox.com/scl/fo/00rv1vqbowdhyy9qg6ts4/AEosEoPbzTNEDyo6WKgM1NE?rlkey=k419i9lzdbtga2xuyi313pbms&st=uevy76wp&dl=0" target="_blank" rel="noopener noreferrer" aria-label="Download press content" style={{ ...DOWNLOAD_STYLE, fontSize: "clamp(36px,10vw,60px)" }}>
-        DOWNLOAD<br />CONTENT
-      </a>
-      {lightbox && (
-        <div onClick={() => setLightbox(null)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.88)", zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
-          <div onClick={e => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", width: "100%" }}>
-            <button onClick={() => setLightbox(null)} style={{ alignSelf: "flex-end", background: "none", border: "none", color: "#888", fontSize: "11px", letterSpacing: "0.18em", cursor: "pointer" }}>CLOSE ✕</button>
-            <img src={lightbox.src} alt="CLOPP press" style={{ width: "100%", maxHeight: "70vh", objectFit: "cover", objectPosition: lightbox.obj }} />
-            <a href={lightbox.src} download="CLOPP-press.jpg" onClick={e => e.stopPropagation()} style={{ fontSize: "11px", letterSpacing: "0.18em", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", padding: "8px 24px", textDecoration: "none" }}>DOWNLOAD</a>
-          </div>
-        </div>
-      )}
-    </section>
-  )
-
   return (
     <section
       id="gallery"
       ref={scope}
-      style={{ position: "relative", width: "100%", height: "100vh", backgroundColor: "transparent", overflow: "hidden" }}
+      style={{ position: "relative", width: "100%", height: "100dvh", backgroundColor: "transparent", overflow: "hidden" }}
     >
       {/* ── Center link ── */}
       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, pointerEvents: "none" }}>
