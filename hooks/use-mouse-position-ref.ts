@@ -19,7 +19,7 @@ export const useMousePositionRef = (
 
     const handleMouseMove = (ev: MouseEvent) => updatePosition(ev.clientX, ev.clientY);
 
-    // ── Touch drag (all mobile) ──────────────────────────────────────────────
+    // ── Touch drag ────────────────────────────────────────────────────────────
     let touching = false;
     const handleTouchStart = () => { touching = true; };
     const handleTouchEnd   = () => { touching = false; };
@@ -28,37 +28,40 @@ export const useMousePositionRef = (
       updatePosition(t.clientX, t.clientY);
     };
 
-    // ── Auto-float for touch devices (no permission needed) ──────────────────
-    // Uses two independent sine waves so the path feels organic, not mechanical.
-    let rafId: number;
-    const startTime = Date.now();
-    const autoFloat = () => {
-      if (!touching) {
-        const el = containerRef?.current as HTMLElement | null;
-        const rect = el?.getBoundingClientRect();
-        if (rect) {
-          const t = (Date.now() - startTime) / 1000;
-          positionRef.current = {
-            x: rect.width  / 2 + Math.sin(t * 0.22)          * rect.width  * 0.3,
-            y: rect.height / 2 + Math.sin(t * 0.17 + Math.PI / 2) * rect.height * 0.22,
-          };
-        }
-      }
-      rafId = requestAnimationFrame(autoFloat);
-    };
-
-    // ── Device orientation (Android gyroscope, no permission required) ────────
+    // ── Device orientation (gyroscope) ────────────────────────────────────────
+    // Position is relative to neutral (0,0) so images rest at their CSS positions.
     const handleOrientation = (ev: DeviceOrientationEvent) => {
       if (touching) return;
       const el = containerRef?.current as HTMLElement | null;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const gamma = ev.gamma ?? 0;
-      const beta  = (ev.beta ?? 60) - 60;
+      const gamma = ev.gamma ?? 0;       // left-right: neutral = 0
+      const beta  = (ev.beta ?? 60) - 60; // front-back: normalize to 0 at hold angle
       positionRef.current = {
-        x: Math.max(0, Math.min(rect.width,  rect.width  / 2 + (gamma / 25) * rect.width  * 0.5)),
-        y: Math.max(0, Math.min(rect.height, rect.height / 2 + (beta  / 25) * rect.height * 0.4)),
+        x: (gamma / 25) * rect.width  * 0.5,
+        y: (beta  / 25) * rect.height * 0.4,
       };
+    };
+
+    // ── Auto-float: two sine waves for organic motion (no permission needed) ──
+    // Oscillates around 0 so images rest at their CSS positions when neutral.
+    let rafId: number;
+    let orientationActive = false;
+    const startTime = Date.now();
+
+    const autoFloat = () => {
+      if (!touching && !orientationActive) {
+        const el = containerRef?.current as HTMLElement | null;
+        const rect = el?.getBoundingClientRect();
+        if (rect) {
+          const t = (Date.now() - startTime) / 1000;
+          positionRef.current = {
+            x: Math.sin(t * 0.22)                 * rect.width  * 0.25,
+            y: Math.sin(t * 0.17 + Math.PI / 2)   * rect.height * 0.18,
+          };
+        }
+      }
+      rafId = requestAnimationFrame(autoFloat);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -74,11 +77,15 @@ export const useMousePositionRef = (
         typeof (DeviceOrientationEvent as any).requestPermission === "function";
 
       if (!isIOS) {
-        // Android — gyroscope fires without permission
+        // Android — gyroscope fires without permission, overrides auto-float
+        orientationActive = true;
         window.addEventListener("deviceorientation", handleOrientation);
       } else {
-        // iOS — listen for grant event dispatched by MotionPermission component
-        const onGranted = () => window.addEventListener("deviceorientation", handleOrientation);
+        // iOS — activate gyroscope when MotionPermission component grants access
+        const onGranted = () => {
+          orientationActive = true;
+          window.addEventListener("deviceorientation", handleOrientation);
+        };
         window.addEventListener("motion-permission-granted", onGranted, { once: true });
       }
     }
