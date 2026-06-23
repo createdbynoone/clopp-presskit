@@ -9,9 +9,9 @@ export default function About() {
   const t = T[lang].about;
 
   const stats = [
-    { label: t.base,   value: 'BCN / ES' },
+    { label: t.base,   value: 'CALI / CO' },
     { label: t.active, value: '2018 —' },
-    { label: t.genre,  value: 'TECHNO / AMBIENT' },
+    { label: t.genre,  value: 'INDIE DANCE / MELODIC HOUSE' },
     { label: t.status, value: t.statusVal },
   ];
 

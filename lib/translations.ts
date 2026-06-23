@@ -16,8 +16,8 @@ export const T = {
       scrollDown: 'DESLIZA PARA VER MÁS',
     },
     about: {
-      bio1: 'Clopp es un artista y productor de música electrónica afincado en Barcelona. Su trabajo explora la intersección del techno, el ambient y el diseño de sonido industrial. Sus sets y producciones oscilan entre el ritmo hipnótico y la tensión atmosférica, construyendo espacios simultáneamente viscerales e introspectivos.',
-      bio2: 'Activo desde 2018, Clopp ha desarrollado un sonido definido por la precisión y la emoción — texturas crudas sobre estructuras rítmicas precisas. Sus actuaciones en vivo y como DJ lo han llevado por clubs y festivales de Europa, donde se ha ganado una reputación por sets profundamente inmersivos.',
+      bio1: 'Santiago Arcos, conocido como Clopp, es un DJ y productor colombiano nacido en 2002 en Cali. Su camino comenzó a los 16 años con el vinilo, antes de dar el salto a la producción musical un año después.',
+      bio2: 'Su sonido se mueve entre el indie dance y el melodic house, construido sobre atmósferas profundas y melodías guiadas por la intención más que por la fórmula. Ha consolidado su presencia en la escena de música electrónica de Colombia, compartiendo cabina con artistas destacados del género a nivel nacional.',
       base: 'BASE',
       active: 'ACTIVO',
       genre: 'GÉNERO',
@@ -94,8 +94,8 @@ export const T = {
       scrollDown: 'SCROLL DOWN TO SEE MORE',
     },
     about: {
-      bio1: 'Clopp is a Barcelona-based electronic music artist and producer whose work explores the intersection of techno, ambient and industrial sound design. His sets and productions move between hypnotic rhythm and atmospheric tension, building spaces that are simultaneously visceral and introspective.',
-      bio2: 'Active since 2018, Clopp has developed a sound defined by precision and emotion — raw textures layered over precise rhythmic structures. His live and DJ performances have taken him across clubs and festivals in Europe, where he has established a reputation for deeply immersive sets.',
+      bio1: 'Santiago Arcos, known as Clopp, is a Colombian DJ and producer born in 2002 in Cali. His journey began at 16 with vinyl, before making the leap into music production a year later.',
+      bio2: 'His sound moves between indie dance and melodic house, built on deep atmospheres and melodies driven by intention rather than formula. He has established his presence in Colombia\'s electronic music scene, sharing the booth with notable artists in the genre on a national level.',
       base: 'BASE',
       active: 'ACTIVE',
       genre: 'GENRE',
