@@ -292,7 +292,7 @@ export default function Riders() {
 
             <div className="flex flex-col">
               {t.hospitalityItems.map((block, i) => (
-                <div key={i} style={{ paddingTop: 'clamp(10px, 1.5vh, 20px)', paddingBottom: 'clamp(10px, 1.5vh, 20px)' }}>
+                <div key={i} style={{ paddingTop: 'clamp(10px, 1.5vh, 20px)', paddingBottom: 'clamp(10px, 1.5vh, 20px)', borderTop: 'none', borderBottom: 'none' }}>
                   <p style={{ fontSize: '10px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>
                     {block.category}
                   </p>
