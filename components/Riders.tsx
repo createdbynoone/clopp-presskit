@@ -243,7 +243,7 @@ export default function Riders() {
       </section>
 
       {/* ── HOSPITALITY RIDER ── */}
-      <section id="hospitality-rider" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(20px, 4vh, 64px) 0', backgroundColor: '#7B28C8' }}>
+      <section id="hospitality-rider" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(20px, 4vh, 64px) 0', backgroundColor: '#C03000' }}>
         {!unlocked ? (
           <div className="px-6 md:px-10 max-w-screen-2xl mx-auto w-full flex flex-col items-center justify-center" style={{ gap: 'clamp(16px, 3vh, 40px)' }}>
             <h2 style={{ fontSize: 'clamp(48px, 8vw, 110px)', lineHeight: 0.9, letterSpacing: '-0.02em', color: '#A8CC10', textAlign: 'center' }}>
@@ -312,7 +312,7 @@ export default function Riders() {
                 href="mailto:info@cloppmusic.com"
                 className="inline-flex items-center gap-3 border py-3 px-6 transition-all duration-200"
                 style={{ borderColor: '#A8CC10', fontSize: '12px', letterSpacing: '0.18em', color: '#A8CC10', whiteSpace: 'nowrap' }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#A8CC10'; (e.currentTarget as HTMLAnchorElement).style.color = '#7B28C8'; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#A8CC10'; (e.currentTarget as HTMLAnchorElement).style.color = '#C03000'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLAnchorElement).style.color = '#A8CC10'; }}
               >
                 {t.requestPdf}

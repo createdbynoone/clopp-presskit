@@ -4,7 +4,7 @@ import { ScrambleOnView } from '@/components/ui/scramble-on-view';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { T } from '@/lib/translations';
 
-const PURPLE = '#7B28C8';
+const PURPLE = '#C03000';
 const GREEN  = '#A8CC10';
 
 const SOCIALS = [
