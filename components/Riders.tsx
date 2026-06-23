@@ -298,12 +298,9 @@ export default function Riders() {
                   </p>
                   <div className="flex flex-col gap-2">
                     {block.items.map((item, j) => (
-                      <div key={j} className="flex gap-4">
-                        <span style={{ color: 'rgba(0,0,0,0.3)', fontSize: '10px', flexShrink: 0, marginTop: '4px' }}>—</span>
-                        <span style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
-                          {item}
-                        </span>
-                      </div>
+                      <span key={j} style={{ fontSize: 'clamp(12px, 1.6vh, 15px)', lineHeight: 1.55, letterSpacing: '0.04em', color: '#000000', textTransform: 'none' }}>
+                        {item}
+                      </span>
                     ))}
                   </div>
                 </div>
