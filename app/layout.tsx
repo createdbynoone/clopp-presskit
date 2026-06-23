@@ -3,6 +3,7 @@ import { JetBrains_Mono } from "next/font/google";
 import { ScrollAnimationsInit } from "@/components/ui/scroll-animations-init";
 import { FullpageScroll } from "@/components/ui/fullpage-scroll";
 import { Preloader } from "@/components/ui/preloader";
+import { MotionPermission } from "@/components/ui/motion-permission";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           <Preloader />
+          <MotionPermission />
           <ScrollAnimationsInit />
           <FullpageScroll />
           {children}

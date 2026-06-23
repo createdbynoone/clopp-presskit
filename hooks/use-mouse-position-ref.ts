@@ -69,12 +69,18 @@ export const useMousePositionRef = (
       window.addEventListener("touchmove",  handleTouchMove);
       rafId = requestAnimationFrame(autoFloat);
 
-      // Android gyroscope fires without permission — let it override auto-float
-      const supportsOrientation =
+      const isIOS =
         typeof DeviceOrientationEvent !== "undefined" &&
-        typeof (DeviceOrientationEvent as any).requestPermission !== "function";
-      if (supportsOrientation)
+        typeof (DeviceOrientationEvent as any).requestPermission === "function";
+
+      if (!isIOS) {
+        // Android — gyroscope fires without permission
         window.addEventListener("deviceorientation", handleOrientation);
+      } else {
+        // iOS — listen for grant event dispatched by MotionPermission component
+        const onGranted = () => window.addEventListener("deviceorientation", handleOrientation);
+        window.addEventListener("motion-permission-granted", onGranted, { once: true });
+      }
     }
 
     return () => {
