@@ -41,7 +41,7 @@ export default function Hero() {
         playsInline
         onEnded={onMobileEnded}
         className="md:hidden absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", transform: "scale(1.15)", transformOrigin: "center center" }}
       >
         <source src="/videos/banner-morph-mobile.mov" type="video/mp4; codecs=hvc1" />
         <source src="/videos/banner-morph-mobile-v2.webm" type="video/webm" />
