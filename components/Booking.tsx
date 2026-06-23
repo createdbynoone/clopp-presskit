@@ -5,10 +5,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { T } from '@/lib/translations';
 
 const SOCIALS = [
-  { label: 'IG', href: '#' },
-  { label: 'SC', href: '#' },
-  { label: 'RA', href: '#' },
-  { label: 'BC', href: '#' },
+  { label: 'IG', href: 'https://instagram.com/cloppmusic' },
+  { label: 'SC', href: 'https://soundcloud.com/cloppmusic' },
+  { label: 'RA', href: 'https://ra.co/dj/clopp' },
+  { label: 'BC', href: 'https://clopp.bandcamp.com' },
 ];
 
 export default function Booking() {
@@ -156,6 +156,8 @@ export default function Booking() {
               <a
                 key={label}
                 href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="transition-opacity duration-200 hover:opacity-50"
                 style={{ fontSize: '12px', letterSpacing: '0.18em', color: '#FFFFFF' }}
               >
