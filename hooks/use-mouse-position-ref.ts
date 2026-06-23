@@ -21,13 +21,12 @@ export const useMousePositionRef = (
       updatePosition(touch.clientX, touch.clientY);
     };
 
-    // Device orientation (gyroscope) — mobile parallax
     const handleOrientation = (ev: DeviceOrientationEvent) => {
       const el = containerRef?.current as HTMLElement | null;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const gamma = ev.gamma ?? 0;       // left-right tilt: -90 to 90, neutral = 0
-      const beta  = (ev.beta ?? 60) - 60; // front-back offset from ~natural hold angle
+      const gamma = ev.gamma ?? 0;
+      const beta  = (ev.beta ?? 60) - 60;
 
       const x = rect.width  / 2 + (gamma / 25) * rect.width  * 0.5;
       const y = rect.height / 2 + (beta  / 25) * rect.height * 0.4;
@@ -38,24 +37,28 @@ export const useMousePositionRef = (
       };
     };
 
-    // iOS 13+ requires explicit permission for DeviceOrientationEvent
     const addOrientationListener = () => {
-      if (typeof DeviceOrientationEvent !== "undefined" &&
-          typeof (DeviceOrientationEvent as any).requestPermission === "function") {
-        (DeviceOrientationEvent as any).requestPermission()
-          .then((state: string) => {
-            if (state === "granted")
-              window.addEventListener("deviceorientation", handleOrientation);
-          })
-          .catch(() => {});
-      } else {
-        window.addEventListener("deviceorientation", handleOrientation);
-      }
+      window.addEventListener("deviceorientation", handleOrientation);
     };
+
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof (DeviceOrientationEvent as any).requestPermission === "function"
+    ) {
+      // iOS 13+: permission must be requested from a user gesture
+      const onFirstTouch = () => {
+        (DeviceOrientationEvent as any)
+          .requestPermission()
+          .then((state: string) => { if (state === "granted") addOrientationListener(); })
+          .catch(() => {});
+      };
+      window.addEventListener("touchstart", onFirstTouch, { once: true });
+    } else {
+      addOrientationListener();
+    }
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove);
-    addOrientationListener();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);

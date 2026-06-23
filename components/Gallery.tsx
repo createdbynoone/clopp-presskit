@@ -19,7 +19,7 @@ const DOWNLOAD_STYLE: React.CSSProperties = {
   textTransform: "uppercase",
 }
 
-// Each floating image — src + objectPosition for the crop
+// Desktop floating frames
 const FRAMES = [
   { depth: 0.5,  pos: "top-[6%]  left-[5%]",  w: "clamp(130px,14vw,210px)", h: "clamp(130px,14vw,210px)", obj: "20% 30%" },
   { depth: 1,    pos: "top-[4%]  left-[26%]", w: "clamp(130px,15vw,230px)", h: "clamp(170px,20vw,300px)", obj: "60% 20%" },
@@ -32,11 +32,21 @@ const FRAMES = [
   { depth: 1.5,  pos: "top-[70%] left-[75%]", w: "clamp(140px,15vw,230px)", h: "clamp(190px,21vw,330px)", obj: "65% 85%" },
 ]
 
+// Mobile: 4 images sized in vw so they fit portrait viewport
+const MOBILE_FRAMES = [
+  { depth: 1,   pos: "top-[6%]  left-[4%]",  w: "42vw", h: "42vw", obj: "20% 30%" },
+  { depth: 2,   pos: "top-[3%]  left-[54%]", w: "38vw", h: "52vw", obj: "60% 20%" },
+  { depth: 1.5, pos: "top-[55%] left-[6%]",  w: "38vw", h: "52vw", obj: "30% 60%" },
+  { depth: 0.5, pos: "top-[57%] left-[53%]", w: "42vw", h: "42vw", obj: "70% 50%" },
+]
+
 export default function Gallery() {
   const [scope, animate] = useAnimate()
   const [lightbox, setLightbox] = useState<{ src: string; obj: string } | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    setIsMobile(window.matchMedia("(hover: none) and (pointer: coarse)").matches)
     animate("img", { opacity: [0, 1] }, { duration: 0.6, delay: stagger(0.12) })
   }, [])
 
@@ -64,8 +74,8 @@ export default function Gallery() {
       </div>
 
       {/* ── Floating images ── */}
-      <Floating sensitivity={-1} className="overflow-hidden">
-        {FRAMES.map(({ depth, pos, w, h, obj }, i) => (
+      <Floating sensitivity={isMobile ? -2.5 : -1} easingFactor={isMobile ? 0.03 : 0.05} className="overflow-hidden">
+        {(isMobile ? MOBILE_FRAMES : FRAMES).map(({ depth, pos, w, h, obj }, i) => (
           <FloatingElement key={i} depth={depth} className={pos}>
             <motion.img
               initial={{ opacity: 0 }}
