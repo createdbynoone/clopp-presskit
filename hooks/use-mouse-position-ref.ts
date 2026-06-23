@@ -37,25 +37,7 @@ export const useMousePositionRef = (
       };
     };
 
-    const addOrientationListener = () => {
-      window.addEventListener("deviceorientation", handleOrientation);
-    };
-
-    if (
-      typeof DeviceOrientationEvent !== "undefined" &&
-      typeof (DeviceOrientationEvent as any).requestPermission === "function"
-    ) {
-      // iOS 13+: permission must be requested from a user gesture
-      const onFirstTouch = () => {
-        (DeviceOrientationEvent as any)
-          .requestPermission()
-          .then((state: string) => { if (state === "granted") addOrientationListener(); })
-          .catch(() => {});
-      };
-      window.addEventListener("touchstart", onFirstTouch, { once: true });
-    } else {
-      addOrientationListener();
-    }
+    window.addEventListener("deviceorientation", handleOrientation);
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove);

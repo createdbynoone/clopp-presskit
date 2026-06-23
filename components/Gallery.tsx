@@ -32,12 +32,14 @@ const FRAMES = [
   { depth: 1.5,  pos: "top-[70%] left-[75%]", w: "clamp(140px,15vw,230px)", h: "clamp(190px,21vw,330px)", obj: "65% 85%" },
 ]
 
-// Mobile: 4 images sized in vw so they fit portrait viewport
+// Mobile: 6 images sized in vw so they fit portrait viewport
 const MOBILE_FRAMES = [
-  { depth: 1,   pos: "top-[6%]  left-[4%]",  w: "42vw", h: "42vw", obj: "20% 30%" },
-  { depth: 2,   pos: "top-[3%]  left-[54%]", w: "38vw", h: "52vw", obj: "60% 20%" },
-  { depth: 1.5, pos: "top-[55%] left-[6%]",  w: "38vw", h: "52vw", obj: "30% 60%" },
-  { depth: 0.5, pos: "top-[57%] left-[53%]", w: "42vw", h: "42vw", obj: "70% 50%" },
+  { depth: 1,   pos: "top-[4%]  left-[3%]",  w: "40vw", h: "40vw", obj: "20% 30%" },
+  { depth: 2,   pos: "top-[2%]  left-[54%]", w: "38vw", h: "50vw", obj: "60% 20%" },
+  { depth: 1.5, pos: "top-[36%] left-[5%]",  w: "36vw", h: "48vw", obj: "30% 50%" },
+  { depth: 0.5, pos: "top-[38%] left-[53%]", w: "40vw", h: "40vw", obj: "70% 40%" },
+  { depth: 2,   pos: "top-[68%] left-[2%]",  w: "38vw", h: "50vw", obj: "40% 80%" },
+  { depth: 1,   pos: "top-[66%] left-[54%]", w: "40vw", h: "40vw", obj: "55% 70%" },
 ]
 
 export default function Gallery() {
@@ -134,8 +136,9 @@ export default function Gallery() {
               alt="CLOPP press"
               style={{
                 aspectRatio: "4 / 5",
-                height: "clamp(360px, 78vh, 1100px)",
+                height: "clamp(240px, 55vh, 1100px)",
                 width: "auto",
+                maxWidth: "72vw",
                 objectFit: "cover",
                 objectPosition: lightbox.obj,
                 display: "block",
