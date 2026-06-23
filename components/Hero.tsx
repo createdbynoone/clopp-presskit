@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section
       className="relative w-full flex flex-col overflow-hidden"
-      style={{ height: "100dvh", minHeight: "600px", transform: "translateZ(0)" }}
+      style={{ height: "100dvh", minHeight: "600px" }}
     >
       <div className="hero-bg absolute inset-0" />
 
@@ -41,7 +41,7 @@ export default function Hero() {
         playsInline
         onEnded={onMobileEnded}
         className="md:hidden absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", clipPath: "inset(0)", WebkitClipPath: "inset(0)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "translateZ(0)" }}
       >
         <source src="/videos/banner-morph-mobile.mov" type="video/mp4; codecs=hvc1" />
         <source src="/videos/banner-morph-mobile-v2.webm" type="video/webm" />
