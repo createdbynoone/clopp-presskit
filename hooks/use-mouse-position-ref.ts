@@ -37,7 +37,26 @@ export const useMousePositionRef = (
       };
     };
 
-    window.addEventListener("deviceorientation", handleOrientation);
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof (DeviceOrientationEvent as any).requestPermission === "function"
+    ) {
+      // iOS 13+: request on first tap — dialog appears once, remembered forever
+      const onFirstTouch = () => {
+        (DeviceOrientationEvent as any)
+          .requestPermission()
+          .then((state: string) => {
+            if (state === "granted")
+              window.addEventListener("deviceorientation", handleOrientation);
+          })
+          .catch(() => {});
+      };
+      const target = (containerRef?.current as HTMLElement) ?? window;
+      target.addEventListener("touchstart", onFirstTouch, { once: true });
+    } else {
+      // Android / desktop — no permission needed
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove);
