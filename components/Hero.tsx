@@ -33,7 +33,18 @@ export default function Hero() {
         <source src="/videos/banner-morph-desktop.webm" type="video/webm" />
       </video>
 
-      {/* Mobile: photo only — WebM alpha not supported on iOS Safari */}
+      {/* Mobile: vertical video loop with alpha */}
+      <video
+        ref={mobileVideoRef}
+        autoPlay
+        muted
+        playsInline
+        onEnded={onMobileEnded}
+        className="md:hidden absolute inset-0 w-full h-full"
+        style={{ objectFit: "cover" }}
+      >
+        <source src="/videos/banner-morph-mobile-v2.webm" type="video/webm" />
+      </video>
 
       {/* Scroll indicator — all screens */}
       <div className="absolute left-0 right-0 z-10 flex flex-col items-center gap-3 pointer-events-none" style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}>
