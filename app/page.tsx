@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import { FullpageScroll } from '@/components/ui/fullpage-scroll';
 
 // Code-split everything below the fold
 const Music   = dynamic(() => import('@/components/Music'));
@@ -11,6 +12,7 @@ const Booking = dynamic(() => import('@/components/Booking'));
 export default function Home() {
   return (
     <>
+      <FullpageScroll />
       <Navigation />
 
       <main>

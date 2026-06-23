@@ -84,6 +84,20 @@ export function FullpageScroll() {
       window.addEventListener('touchend', onTouchEnd, { passive: true })
     }
 
+    // Wheel snap for desktop (non-touch)
+    let wheelLocked = false
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault()
+      if (wheelLocked) return
+      wheelLocked = true
+      goTo(idx.current + (e.deltaY > 0 ? 1 : -1))
+      setTimeout(() => { wheelLocked = false }, 900)
+    }
+
+    if (!isTouch) {
+      window.addEventListener('wheel', onWheel, { passive: false })
+    }
+
     return () => {
       if (hasScrollEnd) window.removeEventListener('scrollend', onScrollEnd)
       window.removeEventListener('scroll', onScroll)
@@ -91,6 +105,9 @@ export function FullpageScroll() {
       if (isTouch) {
         window.removeEventListener('touchstart', onTouchStart)
         window.removeEventListener('touchend', onTouchEnd)
+      }
+      if (!isTouch) {
+        window.removeEventListener('wheel', onWheel)
       }
       clearTimeout(fallbackTimer)
     }
