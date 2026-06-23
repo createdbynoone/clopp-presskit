@@ -57,7 +57,7 @@ export default function Gallery() {
 
   // Mobile: static 2-col grid, no parallax, no motion/react animation frame
   if (isMobile) return (
-    <section id="gallery" style={{ backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(16px,3vh,32px)", padding: "clamp(20px,4vh,64px) 24px" }}>
+    <section id="gallery" style={{ backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "clamp(12px,2.5vh,28px)", padding: "clamp(16px,3vh,48px) 24px", height: "100dvh", overflow: "hidden" }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", width: "100%" }}>
         {FRAMES.slice(0, 4).map(({ obj }, i) => (
           <img key={i} src={IMG} alt="CLOPP live — press" onClick={() => setLightbox({ src: IMG, obj })}
