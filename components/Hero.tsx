@@ -28,7 +28,7 @@ export default function Hero() {
         playsInline
         onEnded={onDesktopEnded}
         className="hidden md:block absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", mixBlendMode: "screen" }}
       >
         <source src="/videos/banner-morph-desktop.webm" type="video/webm" />
       </video>
@@ -41,7 +41,7 @@ export default function Hero() {
         playsInline
         onEnded={onMobileEnded}
         className="md:hidden absolute inset-0 w-full h-full"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", mixBlendMode: "screen" }}
       >
         <source src="/videos/banner-morph-mobile.webm" type="video/webm" />
       </video>
